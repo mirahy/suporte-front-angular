@@ -10,15 +10,15 @@ export class ReservasService {
 
     evento: EventoReserva = new EventoReserva();
     events: any[] = [];
-    eventsIndex = {};
+    eventsIndex:any = {};
     recurso:Recurso = new Recurso(0,"","");
     usuario:Usuario = new Usuario(0,"","","",false);
 
     constructor(private http:HttpClient, private dadosService:DadosService) { }
 
     create ():Promise<any> {
-        return this.http.post ("/reservas", this.evento.gerarEventPost(this.dadosService.statuses[0])).toPromise()
-            .then (response => {
+        return this.http.post ("/reservas", this.evento.gerarEventPost(this.dadosService.statuses![0])).toPromise()
+            .then ((response:any) => {
                 var e = EventoReserva.obtemEventoGet(response.json(), this.usuario);
                 this.eventsIndex[e.id] = this.events.length;
                 this.events = [...this.events, 
@@ -31,7 +31,7 @@ export class ReservasService {
 
     update ():Promise<any> {
         return this.http.put ("/reservas/"+this.evento.id, this.evento.gerarEventPost()).toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var e = EventoReserva.obtemEventoGet(response.json(), this.usuario);
                 var copia = this.events.slice();
                 copia[this.eventsIndex[e.id]] = e;
@@ -52,7 +52,7 @@ export class ReservasService {
 
     listar() : Promise<Array<any>>{
         return this.http.get("/reservas/listar").toPromise ()
-        .then(response => {
+        .then((response:any) => {
             var lista = response.json();
             this.events = [];
             this.eventsIndex = {};
@@ -69,7 +69,7 @@ export class ReservasService {
 
     usuarioLogadoRecurso(): Promise<Usuario> {
         return this.http.get("/reservas/usuario").toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var u = new Usuario(response.json())
                 this.usuario = u;
                 return this.usuario;
@@ -78,7 +78,7 @@ export class ReservasService {
 
     recursoSelecionado() {
         return this.http.get("/reservas/recurso").toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 this.recurso = new Recurso(response.json());
                 return this.recurso;
             }); 
@@ -86,7 +86,7 @@ export class ReservasService {
 
     cancelaReserva(justificativa:string):Promise<any> {
         return this.http.put("/reservas/cancelar/", {reservaId: this.evento.id, justificativa: justificativa}).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var e = EventoReserva.obtemEventoGet(response.json(), this.usuario);
                 var copia = this.events.slice();
                 copia[this.eventsIndex[e.id]] = e;
@@ -97,7 +97,7 @@ export class ReservasService {
 
     mudarStatusReserva(status:string, justificativa:string):Promise<any> {
         return this.http.put("/reservas/status/", {status: status, reservaId: this.evento.id, justificativa: justificativa}).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var e = EventoReserva.obtemEventoGet(response.json(), this.usuario);
                 var copia = this.events.slice();
                 copia[this.eventsIndex[e.id]] = e;

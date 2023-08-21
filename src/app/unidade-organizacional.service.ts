@@ -15,22 +15,22 @@ export class UnidadeOrganizacionalService {
     arvoreOU: Arvore = new Arvore (0,null);
 
 	unidadesOrganizacionais: UnidadeOrganizacional[] = [];
-	unidadesOrganizacionaisIndex: ArrayIndexador<UnidadeOrganizacional> = null;
+	unidadesOrganizacionaisIndex: ArrayIndexador<UnidadeOrganizacional> | undefined;
 
 
 
-    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string, senha) {        
+    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string, senha:unknown) {        
         return this.http.post("/formulario-insere-ad", {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON, senhaPadrao: senha})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.text();
             });
     }
 
-    alteraSenhaUsuarios(estudantesJSON:string, senha) {
+    alteraSenhaUsuarios(estudantesJSON:string, senha:unknown) {
         return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON, senhaPadrao: senha})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.text();
             });
     }
@@ -38,7 +38,7 @@ export class UnidadeOrganizacionalService {
 	listar() {
         return this.http.get("/unidade-organizacional/all")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.unidadesOrganizacionais = UnidadeOrganizacional.generateList(response.json());
                 this.unidadesOrganizacionaisIndex = new ArrayIndexador<UnidadeOrganizacional>(this.unidadesOrganizacionais);
                 return this.unidadesOrganizacionais;
@@ -70,7 +70,7 @@ export class UnidadeOrganizacionalService {
     getOuDirRoot () {
         return this.http.get("/unidade-organizacional/ou-dir-root")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.ouDirRoot = response.text();
                 return this.ouDirRoot;
             });
@@ -78,21 +78,21 @@ export class UnidadeOrganizacionalService {
     setOuDirRoot (ouDirRoot:string) {
         return this.http.post("/unidade-organizacional/ou-dir-root", {"ou-dir-root" : ouDirRoot})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.ouDirRoot = response.text();
                 return this.ouDirRoot;
             });
     }
 
-    substituiEmailsPorPadrao (estudantesJSON) {
+    substituiEmailsPorPadrao (estudantesJSON:unknown) {
         return this.http.post("/formulario-insere-ad/substitui-emails", {estudantes: estudantesJSON}).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var estudantes = Estudante.converteObjectParaEstudantesComSenha( response.json() ) ;
                 return estudantes;
             });
     }
 
-    private processaFilhas (filhas) {
+    private processaFilhas (filhas:any) {
 
         var sortFunctionPorDado = function (a1:Arvore, a2:Arvore) {
             if ( a1.dado.toLowerCase() ==  a2.dado.toLowerCase() )
@@ -100,7 +100,7 @@ export class UnidadeOrganizacionalService {
             return a1.dado.toLowerCase() < a2.dado.toLowerCase() ? -1 : 1;
         };
 
-        var ous = {};
+        var ous:any = {};
         var arvoreDir:Arvore = new Arvore(0, this.ouDirRoot);
         arvoreDir.sortFilhosArray = sortFunctionPorDado;
         var incrementador = 0;
@@ -126,10 +126,10 @@ export class UnidadeOrganizacionalService {
     getOuFilhas () {
         return this.http.get("/unidade-organizacional/ous-filhas")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var ouRoot = this.ouDirRoot;
                 var _this = this;
-                var ouFilhas = response.json().map(function (ou) {
+                var ouFilhas = response.json().map(function (ou:any) {
                     if (ou == ouRoot)
                         return [];
                     _this.ou_str = ou.search("OU=") >= 0 ? "OU=" : (ou.search("Ou=") >= 0 ? "Ou=" : "ou=");

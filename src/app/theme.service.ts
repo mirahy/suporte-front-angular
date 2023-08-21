@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { Theme } from './agenda/theme';
@@ -9,7 +8,7 @@ import { Subject, Observable } from 'rxjs';
 @Injectable()
 export class ThemeService {
     themes: Array<Theme>;
-    selectedTheme: string;
+    selectedTheme: string = '';
     private theme$: Subject<Theme>;
 
     constructor(private router: Router) {
@@ -29,7 +28,7 @@ export class ThemeService {
         this.selectedTheme = theme;
         var ft = this.findTheme(this.selectedTheme);
         var d = document.getElementById('themeStyleSheet')
-        d.setAttribute('href', this.getThemePath(theme));
+        d!.setAttribute('href', this.getThemePath(theme));
         this.setNewTheme(ft);
     }
 
@@ -42,7 +41,7 @@ export class ThemeService {
             }
         }
 
-        return theme;
+        return theme!;
     }
 
     getThemePath(theme: string): string {

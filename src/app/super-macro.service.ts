@@ -9,14 +9,14 @@ import { HttpClient } from '@angular/common/http';
 export class SuperMacroService {
 
     superMacros:Array<SuperMacro> = [];
-    superMacrosIndex: ArrayIndexador<SuperMacro> = null;
+    superMacrosIndex: ArrayIndexador<SuperMacro> | undefined;
     superMacroSelecionada: SuperMacro = SuperMacro.generate();
     constructor(private http: HttpClient, private periodoLetivosService: PeriodoLetivosService, private macroService: MacroService) { }
 
     listar() {
         return this.http.get("/super-macro/all")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.superMacros = SuperMacro.generateListPlus(response.json(), this.macroService.macros, this.macroService.macrosIndex);
                 this.superMacrosIndex = new ArrayIndexador<SuperMacro>(this.superMacros);
                 return this.superMacros;

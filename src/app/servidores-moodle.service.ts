@@ -14,7 +14,7 @@ export class ServidoresMoodleService {
 
     getServidoresMoodle() {
         return this.http.get("/servidores-moodle/all").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var sms = response.json();
                 this.servidoresMoodle = [];
                 this.servidoresMoodleIndex = new ArrayIndexador([]);
@@ -29,7 +29,7 @@ export class ServidoresMoodleService {
 
     getLinksServidoresMoodle () {
         return this.http.get("/servidores-moodle/links").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.json();
             });
     }
@@ -37,14 +37,14 @@ export class ServidoresMoodleService {
     createUpdate(sm: ServidorMoodle) {
         if (sm.id) {
             return this.http.put("/servidores-moodle/" + sm.id, sm).toPromise()
-                .then(response => {
+                .then((response:any) => {
                     this.getServidoresMoodle();
                     return response.json();
                 });
         }
         else {
             return this.http.post("/servidores-moodle/", sm).toPromise()
-                .then(response => {
+                .then((response:any) => {
                     this.getServidoresMoodle();
                     return response.json();
                 });
@@ -53,22 +53,22 @@ export class ServidoresMoodleService {
 
     delete(sm: ServidorMoodle) {
         return this.http.delete("/servidores-moodle/" + sm.id).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.getServidoresMoodle();
                 return response.json();
             });
     }
 
-    exportarEstudantes(estudantes, servidorMoodle, courseId, senhaPadrao) {
+    exportarEstudantes(estudantes:unknown, servidorMoodle:unknown, courseId:unknown, senhaPadrao:unknown) {
         return this.http.post("/formulario-insere-usuarios", {estudantes: estudantes, servidorMoodle: servidorMoodle, courseId:courseId, senhaPadrao:senhaPadrao} ).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.text();
             });
     }
 
-    getAcademicosDisciplinasSigecad(codDisciplina, periodoLetivoIdSigecad, turmaId, turmaNome){
+    getAcademicosDisciplinasSigecad(codDisciplina:unknown, periodoLetivoIdSigecad:unknown, turmaId:unknown, turmaNome:unknown){
         return this.http.get("/pl-disciplinas-academicos/academicos-disciplinas-sigecad/" + codDisciplina + "/" + periodoLetivoIdSigecad + "/" + turmaId + "/" + turmaNome).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 //return response.json();
                 var estudantes = Estudante.converteJSONParaEstudantesComSenha( Estudante.converteEstudantesParaJSON( response.json() ) );
                 return estudantes;

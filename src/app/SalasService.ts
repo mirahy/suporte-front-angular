@@ -29,7 +29,7 @@ export class SalasService {
           if (this.salas[i].id == sala.id) {
             this.salas[i] = sala;
             if (typeof sala.curso == 'number' || typeof sala.curso == 'string') {
-              this.salas[i].curso = this.cursosService.cursosIndex.get(sala.curso);
+              this.salas[i].curso = this.cursosService.cursosIndex!.get(sala.curso);
             }
             return null;
           }
@@ -45,7 +45,7 @@ export class SalasService {
     return this.http.get("/salas/listar")
       .toPromise()
       .then((response:any) => {
-        this.salas = Sala.generateListPlus(response.json().reverse(), this.cursosService.cursosIndex);
+        this.salas = Sala.generateListPlus(response.json().reverse(), this.cursosService.cursosIndex!);
         /*this.salasIndex = {};
         var ss = response.json();
         for (var i = 0; i < ss.length; i++) {
@@ -66,7 +66,7 @@ export class SalasService {
       });
   }
 
-  getSalaMoodle(id, sala) {
+  getSalaMoodle(id:unknown, sala:unknown) {
 
     return this.http.post("/salas/sala-moodle/" + id, sala)
       .toPromise()
@@ -79,7 +79,7 @@ export class SalasService {
   statusSala(sala: Sala, status: string, mensagem: string): Promise<any> {
     return this.http.patch('/salas/status/' + sala.id, { status: status, mensagem: mensagem })
       .toPromise()
-      .then(response => {
+      .then((response:any) => {
         var s = response.json();
         sala.status = s.status;
         return null;
@@ -90,7 +90,7 @@ export class SalasService {
   }
   preparaCreate() {
     return this.http.get("/salas/preparacreate").toPromise()
-      .then(response => {
+      .then((response:any) => {
         var r = response.json();
         var s = Sala.geraNovaSala();
         s.nome_professor = r.nome_professor;
@@ -115,27 +115,27 @@ export class SalasService {
     return sala;
   }
 
-  create(sala) {
+  create(sala:unknown) {
     return this.http.post("/salas/", sala).toPromise()
-      .then(response => {
+      .then((response:any) => {
         return response.json();
       });
   }
-  executarRestauracaoAutomatica(sala, courseImportId?) {
+  executarRestauracaoAutomatica(sala:any, courseImportId?:any) {
     return this.http.post('/salas/autorestore/' + sala.id, { sala_moodle_id: sala.sala_moodle_id, macro_id: sala.macro_id, courseImportId: courseImportId }).toPromise()
-      .then(response => {
+      .then((response:any) => {
         return response.text();
       });
   }
-  exportarEstudantesMoodle(sala) {
+  exportarEstudantesMoodle(sala:any) {
     return this.http.post('/salas/autorestore-estudantes/' + sala.id, { sala_moodle_id: sala.sala_moodle_id, macro_id: sala.macro_id }).toPromise()
-      .then(response => {
+      .then((response:any) => {
         return response.text();
       });
   }
   getModalidades() {
     return this.http.get('/salas/modalidades').toPromise()
-      .then(response => {
+      .then((response:any) => {
         var m = response.json();
         this.modalidades = m;
         return m;
@@ -143,21 +143,21 @@ export class SalasService {
   }
   getObjetivosSalas() {
     return this.http.get('/salas/objetivos').toPromise()
-      .then(response => {
+      .then((response:any) => {
         var o = response.json();
         this.objetivosSalas = o;
         return o;
       });
   }
 
-  convertCreatedSala(s, sala?: Sala, status?: Status) {
+  convertCreatedSala(s:any, sala?: Sala, status?: Status) {
     if (!sala)
       sala = Sala.geraNovaSala();
 
     else
       sala.id = s.id;
     sala.email = s.email;
-    sala.curso = this.cursosService.cursosIndex.get(s.curso_id);
+    sala.curso = this.cursosService.cursosIndex!.get(s.curso_id);
     //sala.mensagem = s.mensagem;
     sala.nome_professor = s.nome_professor;
     sala.nome_sala = s.nome_sala;
@@ -182,15 +182,15 @@ export class SalasService {
   }
 
   //converte dados brutos da sala do sigecad para Sala da view
-  convertChargedSala(s, sala?: Sala, status?: Status) {
+  convertChargedSala(s:any, sala?: Sala, status?: Status) {
     if (!sala)
       sala = Sala.geraNovaSala();
     //sala.id = s.id;
     //sala.email = s.email;
     if (s.hasOwnProperty('codigo_curso'))
-      sala.curso = this.cursosService.cursosKeyIndex.get(s.codigo_curso);
+      sala.curso = this.cursosService.cursosKeyIndex!.get(s.codigo_curso);
     else {
-      sala.curso = this.cursosService.cursosIndex.get(s.curso_id);
+      sala.curso = this.cursosService.cursosIndex!.get(s.curso_id);
       s.codigo_curso = sala.curso.curso_key;
     }
     //sala.mensagem = s.mensagem;
@@ -203,7 +203,7 @@ export class SalasService {
     //sala.senha_aluno = s.senha_aluno;
     //sala.estudantes = s.estudantes;
     //sala.periodo_letivo_id =  this.periodoLetivoService.periodoLetivosKeyIndex.get( s.periodo_letivo_id ).id.toString();
-    sala.periodo_letivo_id = this.periodoLetivoService.periodoLetivosNameIndex.get(s.periodo_letivo).id.toString();
+    sala.periodo_letivo_id = this.periodoLetivoService.periodoLetivosNameIndex!.get(s.periodo_letivo).id.toString();
     sala.carga_horaria_total_disciplina = s.carga_horaria_total_disciplina;
     sala.avaliacao = s.avaliacao;
     sala.turma_nome = s.turma_nome;
@@ -216,9 +216,9 @@ export class SalasService {
     //sala.solicitante_id = s.solicitante_id;
     return sala;
   }
-  chargeSala(sala: Sala, plKey, codigoCurso, codigoDiscoplina, salaTurma) {
+  chargeSala(sala: Sala, plKey:unknown, codigoCurso:unknown, codigoDiscoplina:unknown, salaTurma:unknown) {
     return this.http.get('/salas/charge/' + plKey + "/" + codigoCurso + "/" + codigoDiscoplina + "/" + salaTurma).toPromise()
-      .then(response => {
+      .then((response:any) => {
         if (response.text()) {
           var s = response.json();
           this.convertChargedSala(s, sala);
@@ -229,7 +229,7 @@ export class SalasService {
 
   getSufixoNomeSala() {
     return this.http.get('/sufixonome').toPromise()
-      .then(response => {
+      .then((response:any) => {
         return response.text();
       });
   }
@@ -243,7 +243,7 @@ export class SalasService {
         let linksValid = false;
         let msgLink = "";
         links = results;
-        links.forEach(element => {
+        links.forEach((element:any) => {
           if (link.includes(element + '/course/view.php?id=')) {
             linksValid = true;
           }
@@ -269,6 +269,7 @@ export class SalasService {
           retorno = { status: { value: true } };
           return retorno;
         }
+        return null;
       });
 
   }
@@ -313,7 +314,7 @@ export class SalasService {
     return retorno;
   }
 
-  sendEmail(id) {
+  sendEmail(id:unknown) {
     return this.http.post('/salas/sendemail/' + id, id).toPromise()
       .then(response => {
         return response;

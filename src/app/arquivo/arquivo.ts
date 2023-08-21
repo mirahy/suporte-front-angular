@@ -3,7 +3,7 @@ export class Arquivo {
     path: string;
     created: Date;
 
-    constructor (name:(string|any),path:string, created:Date) {
+    constructor (name:(string|any),path?:string|any, created?:Date|any) {
         if (typeof name == 'string') {
             this.name = name;
             this.path = path.replace(/\\/g, '/');

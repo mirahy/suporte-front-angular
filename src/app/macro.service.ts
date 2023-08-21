@@ -14,9 +14,9 @@ export class MacroService {
     macroSelecionada!:Macro;
 
     files:Array<Arquivo> = [];
-    filesIndex = {};
+    filesIndex: {}|any = {};
     macros:Array<Macro> = [];
-    macrosIndex = {};
+    macrosIndex: {}|any = {};
 
     constructor(private http:HttpClient, private periodoLetivosService:PeriodoLetivosService) { 
         this.resetMacroSelecionada();
@@ -43,7 +43,7 @@ export class MacroService {
 
     getMacros() {
         return this.http.get("/macro/all").toPromise()
-            .then(response => {
+            .then((response: any) => {
                 var macros = response.json();
                 this.macros = [];
                 this.macrosIndex = {};
@@ -77,7 +77,7 @@ export class MacroService {
 
     getEntradasBuscadores() {
         return this.http.get("/macro/entradas").toPromise()
-            .then(response => {
+            .then((response: any) => {
                 this.ENTRADAS = response.json();
                 return this.ENTRADAS;
             });
@@ -85,7 +85,7 @@ export class MacroService {
 
     getBuscadores () {
         return this.http.get ("/macro/"+this.macroSelecionada.id+"/buscador").toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var buscadores = response.json();
                 this.macroSelecionada.buscadores = [];
                 for(var i in buscadores) {
@@ -95,23 +95,24 @@ export class MacroService {
         
     }
 
-    onFileUpload(data: { files: File }): Promise<string> {
+    onFileUpload(data: { files: File }|any): Promise<string> | unknown{
         const formData: FormData = new FormData();
         const file = data.files[0];
         if (file) {
             formData.append('arquivo', file, file.name);
             formData.append('macroId', "" + this.macroSelecionada.id);
             return this.http.post("/macro/file", formData).toPromise()
-                .then(r => {
+                .then((r:any) => {
                     return r.json();
                 });
         }
-        
+
+        return null;
     }
 
     changeArquivo(nomeFile: string) : Promise<Macro> {
         return this.http.post("macro/mudararquivo", {"nomeFile": nomeFile, "macroId": this.macroSelecionada.id}).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var macroAlterada = response.json()
                 macroAlterada.arquivo = this.files[this.filesIndex[macroAlterada.arquivo]];
                 macroAlterada.periodo_letivo_id = this.periodoLetivosService.periodoLetivos[this.periodoLetivosService.periodoLetivosIndex[<number>macroAlterada.periodo_letivo_id]];

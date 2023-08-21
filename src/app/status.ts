@@ -28,7 +28,7 @@ export class Status {
         return new Status (st.id, st.chave, st.descricao,st.cor);
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var statusList:Array<Status> = [];
         for(var i = 0; i < list.length; i++) {
             var st = Status.generateStatus(list[i]);

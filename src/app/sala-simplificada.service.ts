@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class SalaSimplificadaService {
 
 	salasSimplificadas: Array<SalaSimplificada> = [];
-	salasSimplificadasIndex: ArrayIndexador<SalaSimplificada> = null;
+	salasSimplificadasIndex: ArrayIndexador<SalaSimplificada> | any;
 	salaSimplificadaSelecionada: SalaSimplificada = SalaSimplificada.generate();
 
 	constructor(private http: HttpClient, private loteSalasSimplificadoService: LoteSalasSimplificadoService, 
@@ -29,12 +29,12 @@ export class SalaSimplificadaService {
         this.salaSimplificadaSelecionada = SalaSimplificada.generate();
     }
 
-    list (postSelectId?) {
+    list (postSelectId?:unknown) {
         return this.http.get("/salas-simplificadas/list-lote/"+ this.loteSalasSimplificadoSelecionado.id)
             .toPromise()
-            .then(response => {
-                this.salasSimplificadas = SalaSimplificada.generateListPlus(response.json(), this.cursosService.cursosIndex, 
-                    this.periodoLetivosService.periodoLetivosIdIndex, this.loteSalasSimplificadoSelecionado);
+            .then((response:any) => {
+                this.salasSimplificadas = SalaSimplificada.generateListPlus(response.json(), this.cursosService.cursosIndex!, 
+                    this.periodoLetivosService.periodoLetivosIdIndex!, this.loteSalasSimplificadoSelecionado);
                 this.salasSimplificadasIndex = new ArrayIndexador<SalaSimplificada>(this.salasSimplificadas);
                 if (postSelectId)
                     this.salaSimplificadaSelecionada = this.salasSimplificadasIndex.get(postSelectId).clone();
@@ -42,10 +42,10 @@ export class SalaSimplificadaService {
             });
     } 
 
-	create(salaSimplificadaPost) {
+	create(salaSimplificadaPost:unknown) {
         return this.http.post("/salas-simplificadas",salaSimplificadaPost)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return this.list(response.json());
             });
     }
@@ -53,36 +53,36 @@ export class SalaSimplificadaService {
 	async createAll(plDisciplinasAcademicos:Array<PlDisciplinasAcademicos>) {
         var _this = this;
         var salasIds = [];
-        var createUno = function (salaSimplificadaPost) {
+        var createUno = function (salaSimplificadaPost:unknown) {
             return _this.http.post("/salas-simplificadas",salaSimplificadaPost)
                 .toPromise()
         }
         for (var i in plDisciplinasAcademicos) {
             var salaSimplificadaPost = SalaSimplificada.generatePostSalaSimplificada(0,plDisciplinasAcademicos[i],'',
                 <PeriodoLetivo> plDisciplinasAcademicos[i].periodo_letivo,this.loteSalasSimplificadoService.loteSalasSimplificadoSelecionada.id);
-            var salaId = await createUno(salaSimplificadaPost);
+            var salaId:any = await createUno(salaSimplificadaPost);
             salasIds.push(salaId.text())
         }
         return this.list();
     }
 
-	update(salaSimplificadaPost) {
+	update(salaSimplificadaPost:any) {
         return this.http.put("/salas-simplificadas/"+salaSimplificadaPost.id, salaSimplificadaPost)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return this.list(response.json());
             });
     }
 
-	refreshSala(salaId) {
+	refreshSala(salaId:unknown) {
         return this.http.get("/salas-simplificadas/refresh/"+salaId)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return this.list(response.json());
             });
     }
 
-	delete(id) {
+	delete(id:unknown) {
         return this.http.delete("/salas-simplificadas/"+id)
             .toPromise()
             .then(response => {
@@ -90,25 +90,25 @@ export class SalaSimplificadaService {
             });
     }
 
-    exportarEstudantes(salaId) {
+    exportarEstudantes(salaId:unknown) {
         return this.http.get("/salas-simplificadas/estudantes/"+salaId)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.text();
             });
     }
 
-    executarRestauracaoSala(salaId, macroId, courseImportId?) {
+    executarRestauracaoSala(salaId:unknown, macroId:unknown, courseImportId?:unknown) {
         return this.http.get ('/salas-simplificadas/autorestore/' + salaId + "/" + macroId + ( courseImportId ? "/" + courseImportId : '')).toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 return response.text();
             })
     }
 
-    getMacro (salaId) {
+    getMacro (salaId:unknown) {
         return this.http.get("/salas-simplificadas/macro/"+salaId)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.json();
             });
     }

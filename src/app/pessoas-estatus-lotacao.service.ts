@@ -23,24 +23,24 @@ export class PessoasEstatusLotacaoService {
 	cursos = [];
 
 	arvoreLotacoes = new Arvore(0, null);
-	lotacaoIndexFull = {};
+	lotacaoIndexFull:any = {};
 
 	getEstatusList() {
         return this.http.get("/formulario-pessoas-estatus-lotacao/estatus")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.estatusList = response.json();
                 return this.estatusList;
             });
     }
-	getLotacoesList(estatus) {
+	getLotacoesList(estatus:string) {
         return this.http.post("/formulario-pessoas-estatus-lotacao/lotacoes", {estatus: estatus})
             .toPromise()
-            .then(response => {
-				var lotacaoIndex = {};
+            .then((response:any) => {
+				var lotacaoIndex:any = {};
 				var lotacoes = response.json();
 				if (lotacoes) {
-					lotacoes = lotacoes.map (function (e) {
+					lotacoes = lotacoes.map (function (e:any) {
 						if (e.estatus) {
                             var l = e.lotacao.split(" - ");
                             return {caminho: l[0].trim().replace(" ", "/").split("/"), nome: l[1], caminhoFull: l[0].trim()};
@@ -66,7 +66,7 @@ export class PessoasEstatusLotacaoService {
             });
     }
 
-	getDescLotacaoNodo(lotacaoNodo) {
+	getDescLotacaoNodo(lotacaoNodo:any) {
 		if (lotacaoNodo.dado) {
 			if (lotacaoNodo.dado.sigla) 
 				return lotacaoNodo.dado.nome ? lotacaoNodo.dado.sigla + " - " + lotacaoNodo.dado.nome : lotacaoNodo.dado.sigla;
@@ -76,12 +76,12 @@ export class PessoasEstatusLotacaoService {
 		return "null";
 	}
 
-	private geraArvoreLotacao (lotacaoIndex) {
-		var nodoIndex = {};
+	private geraArvoreLotacao (lotacaoIndex:any) {
+		var nodoIndex:any = {};
 		var incrementador = 0;
 		var _this = this;
 
-		var getCaminhoPars = function (caminho, idPars, caminhoFull) {
+		var getCaminhoPars = function (caminho:any, idPars:any, caminhoFull:any) {
 			var ret = caminho[idPars];
 			for (var i = idPars+1; i < caminho.length; i++) {
 				if (caminhoFull.search(" ") >= 0 && caminhoFull.search(ret+" "+caminho[i]) >= 0) 
@@ -135,11 +135,11 @@ export class PessoasEstatusLotacaoService {
 	getLotacoesFullList() {
         return this.http.get("/formulario-pessoas-estatus-lotacao/lotacoes-full")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
 				this.lotacaoIndexFull = {};
 				var lotacoes = response.json();
 				if (lotacoes) {
-					lotacoes = lotacoes.map (function (e) {
+					lotacoes = lotacoes.map (function (e:any) {
 						if (e.lotacao) {
 							var l = e.lotacao.split(" - ");
                         	return {caminho: l[0].trim().replace(" ", "/").split("/"), nome: l[1], caminhoFull: l[0].trim()};
@@ -149,7 +149,7 @@ export class PessoasEstatusLotacaoService {
 				}
 				for (var cont = 0; cont < lotacoes.length; cont++) {
 					if (!lotacoes[cont]) {
-						lotacoes.splice (i, 1);
+						lotacoes.splice ('', 1);
 						cont--;
 					}
 				}
@@ -164,40 +164,40 @@ export class PessoasEstatusLotacaoService {
                 return this.lotacaoIndexFull;
             });
     }
-	getFaculdadesList(estatus) {
+	getFaculdadesList(estatus:any) {
         return this.http.post("/formulario-pessoas-estatus-lotacao/faculdades", {estatus: estatus})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
 				var faculdades = response.json();
 				if (faculdades)
-					faculdades = faculdades.map (function (e) {return e.faculdade});
+					faculdades = faculdades.map (function (e:any) {return e.faculdade});
 				this.faculdades = faculdades;
                 return faculdades
             });
     }
-	getCursosFaculdadeList(estatus, faculdade) {
+	getCursosFaculdadeList(estatus:any, faculdade:any) {
         return this.http.post("/formulario-pessoas-estatus-lotacao/cursos-faculdade", {estatus: estatus, faculdade: faculdade})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
 				var cursos = response.json();
 				if (cursos)
-				cursos = cursos.map (function (e) {return e.lotacao});
+				cursos = cursos.map (function (e:any) {return e.lotacao});
 				this.cursos = cursos;
                 return cursos
             });
     }
 
-	getDadosAcademico(estatus, faculdade, curso) {
+	getDadosAcademico(estatus:any, faculdade:any, curso:any) {
 		return this.http.post("/formulario-pessoas-estatus-lotacao/academico", {estatus: estatus, faculdade: faculdade, curso: curso})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.json();
             });
 	}
-	getDadosFuncionario(estatus, faculdade, curso) {
+	getDadosFuncionario(estatus:any, faculdade:any, curso:any) {
 		return this.http.post("/formulario-pessoas-estatus-lotacao/funcionario", {estatus: estatus, faculdade: faculdade, curso: curso})
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.json();
             });
 	}

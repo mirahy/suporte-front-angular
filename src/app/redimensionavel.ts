@@ -2,11 +2,11 @@ export class Redimensionavel {
 
         elemento:any;
         base:number;
-        min:number;
-        max:number;
+        min:number|unknown;
+        max:number|unknown;
         personalizado:any; // {funcao, parametros }
     
-        constructor(elemento:any,base,min?,max?,personalizado?) {
+        constructor(elemento:any,base:any,min?:any,max?:any,personalizado?:any) {
             this.elemento = elemento;
             this.base = parseInt(base);
             this.min = min != null ? parseInt(min) : null;

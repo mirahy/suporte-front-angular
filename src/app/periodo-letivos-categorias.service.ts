@@ -7,13 +7,13 @@ import { ArrayIndexador } from './array-indexador';
 export class PeriodoLetivosCategoriasService {
 
     periodoLetivosCategorias:Array<PeriodoLetivoCategoria> = [];
-    periodoLetivosCategoriasIndex:ArrayIndexador<PeriodoLetivoCategoria> = null;
+    periodoLetivosCategoriasIndex!: ArrayIndexador<PeriodoLetivoCategoria>;
 
     constructor(private http: HttpClient) { }
 
     getPeriodoLetivosCategrias(periodoLetivoId:number) {
         return this.http.get("/periodo-letivos-categorias/all/"+periodoLetivoId).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var plcs = response.json();
 
                 this.periodoLetivosCategorias = PeriodoLetivoCategoria.generateList(response.json());
@@ -22,7 +22,7 @@ export class PeriodoLetivosCategoriasService {
             });
     }
 
-    setCategoriaId(periodoLetivoId, cursoId, categoriaId) {
+    setCategoriaId(periodoLetivoId:string, cursoId:string, categoriaId:string) {
         return this.http.post("/periodo-letivos-categorias",{'periodo_letivo_id': periodoLetivoId, 'curso_id': cursoId, 'categoria_id': categoriaId}).toPromise()
             .then(response => {
                 this.periodoLetivosCategoriasIndex.get(cursoId).categoria_id = categoriaId;

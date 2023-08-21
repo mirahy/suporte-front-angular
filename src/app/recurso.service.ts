@@ -7,14 +7,14 @@ import { Usuario } from './usuarios/usuario';
 export class RecursoService {
 
     recursos:Array<Recurso> = [];
-    recursosIndex = {};
+    recursosIndex:any = {};
     recursoSelecionado:Recurso = new Recurso(0,"","");
 
     constructor(private http: HttpClient) { }
 
     listar(): Promise<Array<any>> {
         return this.http.get("/recursos/listar").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var lista = response.json();
                 this.recursos = [];
                 this.recursosIndex = {};
@@ -29,7 +29,7 @@ export class RecursoService {
 
     obtemGestoresRecurso():Promise<Array<Usuario>> {
         return this.http.get("/recursos/"+this.recursoSelecionado.id+"/gestores").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var lista = response.json();
                 this.recursoSelecionado.gestores = [];
                 

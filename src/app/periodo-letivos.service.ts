@@ -9,16 +9,16 @@ import { PeriodoLetivo } from './periodo-letivos/periodo-letivo';
 export class PeriodoLetivosService {
 
     periodoLetivos: Array<PeriodoLetivo> = [];
-    periodoLetivosIndex = {};
-    periodoLetivosIdIndex: ArrayIndexador<PeriodoLetivo>;
-    periodoLetivosKeyIndex: ArrayIndexador<PeriodoLetivo>;
-    periodoLetivosNameIndex: ArrayIndexador<PeriodoLetivo>;
+    periodoLetivosIndex: any = {};
+    periodoLetivosIdIndex: ArrayIndexador<PeriodoLetivo> | undefined;
+    periodoLetivosKeyIndex: ArrayIndexador<PeriodoLetivo> | undefined;
+    periodoLetivosNameIndex: ArrayIndexador<PeriodoLetivo> | undefined;
 
     constructor(private http: HttpClient) { }
 
     getPeriodoLetivos() {
         return this.http.get("/periodo-letivos/all").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var pls = response.json();
                 this.periodoLetivos = [];
                 this.periodoLetivosIndex = {};
@@ -36,7 +36,7 @@ export class PeriodoLetivosService {
 
     getPeriodoLetivosSigecad():Promise<Array<PeriodoLetivo>> {
         return this.http.get("/periodo-letivos/sigecad").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var pls = response.json();
                 var periodoLetivosSigecad:Array<PeriodoLetivo> = [];
                 for (var i in pls) {
@@ -49,31 +49,31 @@ export class PeriodoLetivosService {
 
     getPeriodoLetivoIdPadrao () {
         return this.http.get("/periodo-letivos/id-padrao").toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.json();
             });
     }
 
-    createUpdate(pl) {
+    createUpdate(pl:PeriodoLetivo) {
         if (pl.id) {
             return this.http.put("/periodo-letivos/" + pl.id, pl).toPromise()
-                .then(response => {
+                .then((response:any) => {
                     this.getPeriodoLetivos();
                     return response.json();
                 });
         }
         else {
             return this.http.post("/periodo-letivos/", pl).toPromise()
-                .then(response => {
+                .then((response:any) => {
                     this.getPeriodoLetivos();
                     return response.json();
                 });
         }
     }
 
-    delete(pl) {
+    delete(pl:PeriodoLetivo) {
         return this.http.delete("/periodo-letivos/" + pl.id).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.getPeriodoLetivos();
                 return response.json();
             });

@@ -7,13 +7,13 @@ import { Usuario } from './usuarios/usuario';
 })
 export class UsuarioService {
 
-    usuarios: Array<Usuario>;
+    usuarios: Array<Usuario> = [];
 
     constructor(private http: HttpClient) {
     }
 
     async listaUsuarios(): Promise<Array<Usuario>> {
-        const response = await this.http.get('usuarios/lista')
+        const response:any = await this.http.get('usuarios/lista')
             .toPromise();
         this.usuarios = Usuario.generateList(response.json());
         return this.usuarios;
@@ -21,7 +21,7 @@ export class UsuarioService {
 
     listaUsuariosCriaSala(): Promise<Array<Usuario>> {
         return this.http.get('salas/usuarios').toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.usuarios = Usuario.generateList(response.json());
                 return this.usuarios;
             })
@@ -29,7 +29,7 @@ export class UsuarioService {
 
     novoUsuario (usuario : Usuario) {
         return this.http.post('usuarios', usuario).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.usuarios = Usuario.generateList(response.json());
                 return this.usuarios;
             })
@@ -37,7 +37,7 @@ export class UsuarioService {
 
     alteraPermissao(usuario: Usuario): Promise<Usuario> {
         return this.http.put("usuarios/" + usuario.id, usuario).toPromise()
-            .then(response => {
+            .then((response:any) => {
                 var u = new Usuario(response.json());
                 for (var i in this.usuarios) {
                     if (this.usuarios[i].id == u.id)
@@ -52,7 +52,7 @@ export class UsuarioService {
 
     usuarioLogado(): Promise<Usuario> {
         return this.http.get("/logado") .toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var u = new Usuario(response.json())
                 return u;
             }); 

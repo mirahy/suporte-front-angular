@@ -8,9 +8,9 @@ import { SalaOld } from './salas-old/sala-old';
 )
 export class SalasOldService {
 
-    salas: Array<SalaOld>;
-    modalidades: Array<any>;
-    objetivosSalas: Array<any>;
+    salas: Array<SalaOld> = [];
+    modalidades: Array<any> = [];
+    objetivosSalas: Array<any> = [];
 
     constructor(private http: HttpClient) { }
 
@@ -34,7 +34,7 @@ export class SalasOldService {
     listar() {
         return this.http.get("/salas-old/listar")
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 this.salas = SalaOld.generateList(response.json().reverse());
                 /*this.salasIndex = {};
                 var ss = response.json();
@@ -51,7 +51,7 @@ export class SalasOldService {
     getMensagemSala (sala:SalaOld) {
         return this.http.get("/salas-old/mensagem/"+sala.id)
             .toPromise()
-            .then(response => {
+            .then((response:any) => {
                 return response.text();
             });
     }
@@ -59,7 +59,7 @@ export class SalasOldService {
     statusSala(sala:SalaOld, status:string, mensagem:string) :Promise<any> {
         return this.http.patch ('/salas-old/status/' + sala.id, {status: status, mensagem: mensagem})
             .toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var s = response.json();
                 sala.status = s.status;
                 return null;
@@ -70,7 +70,7 @@ export class SalasOldService {
     }
     getModalidades() {
         return this.http.get ('/salas/modalidades').toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var m = response.json();
                 this.modalidades = m;
                 return m
@@ -78,7 +78,7 @@ export class SalasOldService {
     }
     getObjetivosSalas() {
         return this.http.get ('/salas/objetivos').toPromise()
-            .then (response => {
+            .then ((response:any) => {
                 var o = response.json();
                 this.objetivosSalas = o;
                 return o
