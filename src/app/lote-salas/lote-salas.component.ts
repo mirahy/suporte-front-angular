@@ -27,6 +27,7 @@ declare var jQuery: any;
 })
 export class LoteSalasComponent extends AbstractComponent implements OnInit {
 
+
     constructor(private salasService: SalasService, private dadosService:DadosService, private faculdadeService: FaculdadeService, 
         private plDisciplinasAcademicosService:PlDisciplinasAcademicosService, private macroService:MacroService, private periodoLetivoService: PeriodoLetivosService, 
         private cursosService:CursosService, private usuarioService:UsuarioService, private loteSalasService: LoteSalasService) {
@@ -38,7 +39,7 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
     readonly STATUS_CONCLUIDO_PADRAO = Status.CHAVES.CONCLUIDO;
     readonly STATUS_REJEITADO_PADRAO = Status.CHAVES.REJEITADO;
 
-    loteSalas: LoteSalas = null;
+    loteSalas: LoteSalas|any;
 
     sala: Sala = Sala.geraNovaSala();
     salaPadraoDados: Sala = Sala.geraNovaSala();
@@ -55,11 +56,13 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
     cursoSelecionadoCodigo = "";
     disciplinaSelecionadaId = "";
 
+    selecionaPeriodoLetivo: any;
+
 
     usuarios: Array<Usuario> = [];
     filteredUsuarios = [];
     nome_professor_temp = "";
-    macrosBacks = {};
+    macrosBacks:any = {};
 
     mostraMais = false;
 
@@ -85,7 +88,7 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
         sala_moodle_id: false,
     }
 
-    get salas(): Array<Sala> {
+    get salas(): Array<Sala> | any {
         return this.salasService.salas;
     }
 
@@ -235,7 +238,7 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
             })
     } 
 
-    getPeriodoLetivo((plid : any)) {
+    getPeriodoLetivo(plid : any) {
         return this.periodoLetivoService.periodoLetivos[this.periodoLetivoService.periodoLetivosIndex[plid]];
     }
 
@@ -333,7 +336,7 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
             alert("Falta informar alguns dados:\n"+ checkValida);
     }
 
-    alteraMacro(sala:Sala,macroId) {
+    alteraMacro(sala:Sala,macroId?:any) {
         var macro_id_anterior = this.macrosBacks[sala.id];
         this.editavel = false;
         this.loteSalasService.updateMacro(sala, macroId)
@@ -409,7 +412,7 @@ export class LoteSalasComponent extends AbstractComponent implements OnInit {
         this.salas = [];
     }
 
-    excluiSala(sala) {
+    excluiSala(sala:any) {
         if (!confirm("Deseja remover esta sala do lote?"))
             return;
         

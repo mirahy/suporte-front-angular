@@ -48,7 +48,7 @@
                                 </button>
                             </td>
                             <td class="celula-trunca-texto" title="Excluir">
-                                <button style="text-align: center; margin-left: 2px;" title="Excluir" type="button" class="btn btn-danger botao-reduzido" (click)="remove(f)" [disabled]="!editavel">
+                                <button style="text-align: center; margin-left: 2px;" title="Excluir" type="button" class="btn btn-danger botao-reduzido" (click)="remove()" [disabled]="!editavel">
                                     <span class="span-icon-button"><i class="bi bi-x-lg"></i></span>
                                 </button>
                             </td>
@@ -56,7 +56,7 @@
                     </tbody>
                     <tfoot class="status-tabela">
                         <tr *ngIf="status == LOADING"><td colspan="5"><i>Carregando Faculdades...</i></td></tr>
-                        <tr *ngIf="periodoLetivos != null && periodoLetivos.length == 0 && status == COMPLETE"><td colspan="5"><i>Não Há Faculdades para serem listadas</i></td></tr>
+                        <tr *ngIf="faculdades != null && faculdades.length == 0 && status == COMPLETE"><td colspan="5"><i>Não Há Faculdades para serem listadas</i></td></tr>
                         <tr *ngIf="status == ERROR"><td class="erro" colspan="5"><i>Falha na obtenção de Faculdades!</i></td></tr>
                     </tfoot>
                 </table>

@@ -14,7 +14,8 @@ export class SelectUsuarioComponent extends AbstractComponent implements OnInit 
 
     criteria:string="";
 
-    usuarioTemp:Usuario;
+    usuarioTemp:Usuario|any;
+    salas: any;
 
     constructor(private usuarioService: UsuarioService, private recursoService:RecursoService) {
         super();
@@ -32,7 +33,7 @@ export class SelectUsuarioComponent extends AbstractComponent implements OnInit 
         this.usuarioTemp = new Usuario(0,"","","");
     }
 
-    addGestor(usuario) {
+    addGestor(usuario:Usuario) {
         if (confirm("Confirmar Adição deste Gestor?"))
         this.recursoService.adicionaGestorRecurso(usuario)
             .then(response => {

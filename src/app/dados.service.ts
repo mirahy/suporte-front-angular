@@ -35,7 +35,7 @@ export class DadosService {
             });
     }
     resizeTabelaLinhaFullHeight (redimensionavel: Redimensionavel) {
-        var width = jQuery(window).height() -redimensionavel.base;
+        var width:any = jQuery(window).height() -redimensionavel.base;
         if (redimensionavel.min != null && width < redimensionavel.min)
             width = redimensionavel.min;
         if (redimensionavel.max != null && width > redimensionavel.max)
@@ -60,7 +60,7 @@ export class DadosService {
             jQuery(redimensionavel.elemento).css('width', jQuery(window).width() -redimensionavel.base);
     }
     resizePersonalizado(redimensionavel:Redimensionavel) {
-        var width = jQuery(window).height() -redimensionavel.base;
+        var width:any = jQuery(window).height() -redimensionavel.base;
         if (redimensionavel.min != null && width < redimensionavel.min)
             width = redimensionavel.min;
         if (redimensionavel.max != null && width > redimensionavel.max)

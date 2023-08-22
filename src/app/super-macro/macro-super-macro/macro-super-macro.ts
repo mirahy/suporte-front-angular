@@ -3,14 +3,14 @@ import { Macro } from '../../macro/macro';
 import { SuperMacro } from '../super-macro';
 
 export class MacroSuperMacro {
-    id: number;
-    ordem:number;
-    campo:string;
-    operador:string;
-    valor:string;
+    id: number|any;
+    ordem:number|any;
+    campo:string|any;
+    operador:string|any;
+    valor:string|any;
 
-    macro:number|Macro;
-    super_macro:number|SuperMacro;
+    macro:number|Macro|any;
+    super_macro:number|SuperMacro|any;
     
 	constructor(id:(number|any), ordem?:number, campo?:string, operador?:string, valor?:string, macro?:(number|Macro), super_macro?:(number|SuperMacro)) {
         if (typeof id == "number") {
@@ -37,7 +37,7 @@ export class MacroSuperMacro {
         return new MacroSuperMacro(0,0,"","","",0,0);
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var macroSuperMacros:Array<MacroSuperMacro> = [];
         for(var i = 0; i < list.length; i++) {
             var sm = new MacroSuperMacro(list[i]);
@@ -45,7 +45,7 @@ export class MacroSuperMacro {
         }
         return macroSuperMacros;
     }
-    static generateListPlus(list, macros, macrosIndex, superMacroIndex: ArrayIndexador<SuperMacro>) {
+    static generateListPlus(list:any, macros:any, macrosIndex:any, superMacroIndex: ArrayIndexador<SuperMacro>|any) {
         var macroSuperMacros:Array<MacroSuperMacro> = [];
         for(var i = 0; i < list.length; i++) {
             var msm = new MacroSuperMacro(list[i]);

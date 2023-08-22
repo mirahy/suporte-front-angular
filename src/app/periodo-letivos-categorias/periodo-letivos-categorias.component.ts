@@ -22,7 +22,7 @@ export class PeriodoLetivosCategoriasComponent extends AbstractComponent impleme
     periodoLetivo:PeriodoLetivo = PeriodoLetivo.generatePeriodoLetivo();
     emAlteracao:boolean = false;
     cursoSelecionado:Curso = Curso.generateCurso();
-    categoriaIdTemp:number;
+    categoriaIdTemp:number | undefined;
     criteria:string = "";
     
     get periodoLetivos() {
@@ -35,7 +35,7 @@ export class PeriodoLetivosCategoriasComponent extends AbstractComponent impleme
         return this.periodoLetivoCategoriasService.periodoLetivosCategoriasIndex;
     }
 
-    selecionarPeriodoLetivo(pl) {
+    selecionarPeriodoLetivo(pl:any) {
         this.periodoLetivo = pl;
         this.editavel = false;
         this.getPeriodoLetivosCategorias();
@@ -52,9 +52,9 @@ export class PeriodoLetivosCategoriasComponent extends AbstractComponent impleme
     selecionarCurso(curso:Curso) {
         this.cursoSelecionado = curso;
         this.categoriaIdTemp = this.getCategoriaId(curso);
-        setTimeout ( function () {
+        setTimeout (  () => {
             var categoriaIdInput = document.getElementById('categoriaIdInput');
-            categoriaIdInput.focus();
+            categoriaIdInput!.focus();
             (<HTMLInputElement>categoriaIdInput).setSelectionRange(0,(this.categoriaIdTemp+"").length);
         },150);
     }

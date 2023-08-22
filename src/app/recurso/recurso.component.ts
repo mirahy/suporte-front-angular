@@ -9,12 +9,16 @@ import { Recurso } from './recurso';
     styleUrls: ['./recurso.component.less']
 })
 export class RecursoComponent extends AbstractComponent implements OnInit {
+selecionarMacro(arg0: null) {
+throw new Error('Method not implemented.');
+}
 
     readonly LOADING_GESTORES = 0;
     readonly COMPLETE_GESTORES = 1;
     readonly ERROR_GESTORES = 2;
     readonly RECNULL_GESTORES = 3;
     statusGestores:Number = this.RECNULL_GESTORES;
+macros: any;
 
     constructor(private recursoService:RecursoService) {
         super();

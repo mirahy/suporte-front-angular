@@ -95,7 +95,7 @@ export class ReservasService {
             })
     }
 
-    mudarStatusReserva(status:string, justificativa:string):Promise<any> {
+    mudarStatusReserva(status:string, justificativa:string|any):Promise<any> {
         return this.http.put("/reservas/status/", {status: status, reservaId: this.evento.id, justificativa: justificativa}).toPromise()
             .then((response:any) => {
                 var e = EventoReserva.obtemEventoGet(response.json(), this.usuario);

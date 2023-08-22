@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
 export class CursosService {
 
     cursos:Array<Curso> = [];
-    cursosIndex:ArrayIndexador<Curso> | undefined;
-    cursosKeyIndex: ArrayIndexador<Curso> | undefined;
+    cursosIndex:ArrayIndexador<Curso> | any;
+    cursosKeyIndex: ArrayIndexador<Curso> | any;
     faculdadeSelecionada:Faculdade = Faculdade.generateFaculdade();
 
     constructor(private http: HttpClient) { }

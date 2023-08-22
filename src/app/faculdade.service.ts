@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class FaculdadeService {
 
     faculdades:Array<Faculdade> = [];
-    faculdadesIndex: ArrayIndexador<Faculdade> | undefined;
+    faculdadesIndex!: ArrayIndexador<Faculdade>;
     constructor(private http: HttpClient, private cursosService:CursosService) { }
 
     listar() {

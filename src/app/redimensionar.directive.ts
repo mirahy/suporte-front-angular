@@ -15,11 +15,11 @@ export class RedimensionarDirective {
         jQuery(this.el!.nativeElement).addClass('linha-full-height');
     }
 
-    get redimensionar():number {
+    get redimensionar():number|any {
         return this._redimensionar;
     }
     @Input()
-    set redimensionar(value:number) {
+    set redimensionar(value:number|any) {
         this._redimensionar = value;
         this.processa();
     }

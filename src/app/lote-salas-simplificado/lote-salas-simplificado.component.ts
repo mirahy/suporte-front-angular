@@ -23,8 +23,8 @@ export class LoteSalasSimplificadoComponent extends AbstractComponent implements
 		super();
 	}
 
-	superMacroSelecionadaId = null;
-	servidorMoodleSelecionadoId = null; 
+	superMacroSelecionadaId:number|unknown;
+	servidorMoodleSelecionadoId:number|unknown ; 
 
 	grupoLoteSimplificadoTemp = GrupoLotesSimplificado.generate();
 
@@ -78,7 +78,7 @@ export class LoteSalasSimplificadoComponent extends AbstractComponent implements
 	}
 
 	selecionaGrupoLotes() {
-		var grupoTemp = this.grupoLotesSimplificadosService.gruposIndex.get(this.grupoSelecionadoId);
+		var grupoTemp = this.grupoLotesSimplificadosService.gruposIndex!.get(this.grupoSelecionadoId);
 		if (!grupoTemp)
 			grupoTemp = GrupoLotesSimplificado.generate();
 		this.grupoLotesSimplificadosSelecionado = grupoTemp;
@@ -97,7 +97,7 @@ export class LoteSalasSimplificadoComponent extends AbstractComponent implements
 			})
 	}
 
-	criarAlterarGrupoLote (ev) {
+	criarAlterarGrupoLote (ev:any) {
 		ev.preventDefault();
         var loteSalasForm = jQuery('#grupoLoteForm')[0];
 		if (loteSalasForm.reportValidity()) {
@@ -164,7 +164,7 @@ export class LoteSalasSimplificadoComponent extends AbstractComponent implements
 		}
 	}
 
-    criarAlterarLoteSalasSimplificado((ev : any)) {
+    criarAlterarLoteSalasSimplificado(ev:any) {
         ev.preventDefault();
         var loteSalasForm = jQuery('#loteSalasSimplificadoForm')[0];
 		if (loteSalasForm.reportValidity()) {
@@ -241,7 +241,7 @@ export class LoteSalasSimplificadoComponent extends AbstractComponent implements
 	}
 
 	selecionaSuperMacro () {
-		this.loteSelecionado.super_macro = this.superMacroService.superMacrosIndex.get(this.superMacroSelecionadaId);
+		this.loteSelecionado.super_macro = this.superMacroService.superMacrosIndex!.get(this.superMacroSelecionadaId);
 	}
 
 	exportarSalasMoodle() {

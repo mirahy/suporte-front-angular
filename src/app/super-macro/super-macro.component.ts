@@ -42,7 +42,7 @@ export class SuperMacroComponent extends AbstractComponent implements OnInit {
         return this;
     }
 
-    criarAlterarSuperMacro(ev) {
+    criarAlterarSuperMacro(ev:any) {
         ev.preventDefault();
         var superMacroForm = jQuery('#superMacroForm')[0];
 		if (superMacroForm.reportValidity()) {

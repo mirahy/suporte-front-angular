@@ -15,10 +15,10 @@ export class SalaOld {
     senha_aluno: string;
     senha_professor: string;
     status: Status;
-    created_at: Date;
+    created_at: Date|any;
 
     public constructor (id: number, curso: string, email: string, faculdade: string, mensagem: string, nome_professor: string, 
-        nome_sala: string, modalidade: string, objetivo_sala: string, observacao: string, senha_aluno: string, senha_professor: string, status: Status, created_at: Date,){
+        nome_sala: string, modalidade: string, objetivo_sala: string, observacao: string, senha_aluno: string, senha_professor: string, status: Status|any, created_at: Date|any){
 
         this.id = id;
         this.curso = curso;
@@ -45,7 +45,7 @@ export class SalaOld {
         });
         return salaList;
     };
-    public static generateSala (salaAny):SalaOld {
+    public static generateSala (salaAny:any):SalaOld {
         return new SalaOld(salaAny.id,
             salaAny.curso,
             salaAny.email,

@@ -29,9 +29,9 @@ export class FormularioInsercaoUsuariosAdComponent extends AbstractComponent imp
     usarSenha = false;
     senhaPadrao = "";
 
-    ousPastaCreate:Arvore[] = [null];
+    ousPastaCreate:Arvore[]|any = [null];
     ousPastaCreateSelected:Array<number|string> = [""];
-	ous = [];
+	ous:any = [];
 
     plDisciplinasAcademicosTemp: PlDisciplinasAcademicos = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
     periodoLetivoSelecionadoId = "";
@@ -91,7 +91,7 @@ export class FormularioInsercaoUsuariosAdComponent extends AbstractComponent imp
         if (confirm ("Deseja remover todos os estudantes"))
             this.estudantes = [];
     }
-	lerAlunosCSV (event) {
+	lerAlunosCSV (event:any) {
         var fileExtension = /.*\.csv/;
         var fileTobeRead = event.target.files[0];
         if (fileTobeRead.name.toLowerCase().match(fileExtension)) {
@@ -133,7 +133,7 @@ export class FormularioInsercaoUsuariosAdComponent extends AbstractComponent imp
         return ousArrConcat + (ousArrConcat ? "," : "") + this.ouDirRoot;
     }
 
-    selecionaPastaOU (paiId, index) {
+    selecionaPastaOU (paiId:any, index:any) {
         var nodoIndex = this.ousPastaCreateSelected[index];
         var nodo = null;
         if (nodoIndex)

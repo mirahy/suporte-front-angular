@@ -2,8 +2,8 @@ import { Macro } from '../macro/macro';
 
 export class SuperMacro {
     id: number;
-    descricao:string;
-    macro_padrao:number|Macro;
+    descricao:string|any;
+    macro_padrao:number|Macro|any;
 
     
 	constructor(id:(number|any), descricao?:string, macro_padrao?:(number|Macro)) {
@@ -23,7 +23,7 @@ export class SuperMacro {
         return new SuperMacro(0,"",0);
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var superMacros:Array<SuperMacro> = [];
         for(var i = 0; i < list.length; i++) {
             var sm = new SuperMacro(list[i]);
@@ -31,7 +31,7 @@ export class SuperMacro {
         }
         return superMacros;
     }
-    static generateListPlus(list, macros, macrosIndex) {
+    static generateListPlus(list:any, macros:any, macrosIndex:any) {
         var superMacros:Array<SuperMacro> = [];
         for(var i = 0; i < list.length; i++) {
             var sm = new SuperMacro(list[i]);

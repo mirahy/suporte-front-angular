@@ -10,9 +10,9 @@ export class PeriodoLetivosService {
 
     periodoLetivos: Array<PeriodoLetivo> = [];
     periodoLetivosIndex: any = {};
-    periodoLetivosIdIndex: ArrayIndexador<PeriodoLetivo> | undefined;
-    periodoLetivosKeyIndex: ArrayIndexador<PeriodoLetivo> | undefined;
-    periodoLetivosNameIndex: ArrayIndexador<PeriodoLetivo> | undefined;
+    periodoLetivosIdIndex: ArrayIndexador<PeriodoLetivo> | any;
+    periodoLetivosKeyIndex: ArrayIndexador<PeriodoLetivo> | any;
+    periodoLetivosNameIndex: ArrayIndexador<PeriodoLetivo> | any;
 
     constructor(private http: HttpClient) { }
 

@@ -19,6 +19,7 @@ declare var jQuery: any;
 @Component({
 	selector: 'app-sala-simplificada',
 	templateUrl: './sala-simplificada.component.html',
+	inputs: ['ancestral'],
 	styleUrls: ['./sala-simplificada.component.less']
 })
 export class SalaSimplificadaComponent extends AbstractComponentChild implements AbstractPLDAComponentInterface, OnInit {
@@ -82,7 +83,7 @@ export class SalaSimplificadaComponent extends AbstractComponentChild implements
 
 	// AbstractPLDAComponent
 	plDisciplinasAcademicosTemp = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
-	plDisciplinasAcademicosTempList = [];
+	plDisciplinasAcademicosTempList:Array<PlDisciplinasAcademicos> = [];
 	modoLista = false;
 	periodoLetivoSelecionadoId = "";
     cursoSelecionadoId = "";
@@ -105,7 +106,7 @@ export class SalaSimplificadaComponent extends AbstractComponentChild implements
 		this.plDisciplinasAcademicosSelecionadoList = [];
 	}
 
-	criarAlterarSalaSimplificada(ev) {
+	criarAlterarSalaSimplificada(ev:any) {
         ev.preventDefault();
         var loteSalasForm = jQuery('#salaSimplificadaForm')[0];
 		jQuery('#plda-disciplina').prop('readonly', false);
@@ -287,7 +288,7 @@ export class SalaSimplificadaComponent extends AbstractComponentChild implements
         
     }
 
-	preparaRestauracaoAutomatica (salaSimplificada) {
+	preparaRestauracaoAutomatica (salaSimplificada:any) {
 		this.editavel = false;
 		this.courseImportId = "";
 		this.salaSimplificadaService.getMacro(salaSimplificada.id)

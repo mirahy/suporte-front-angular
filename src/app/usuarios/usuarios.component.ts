@@ -13,7 +13,8 @@ export class UsuariosComponent extends AbstractComponent implements OnInit {
     
     criteria:string="";
 
-    usuarioTemp:Usuario;
+    usuarioTemp:Usuario|any;
+    salas: any;
 
     constructor(private usuarioService: UsuarioService) {
         super();
@@ -44,7 +45,7 @@ export class UsuariosComponent extends AbstractComponent implements OnInit {
     habilitarEdicao(usuario:Usuario) {
         this.usuarioTemp = usuario;
         setTimeout ( function () {
-            document.getElementById('selectPermissao').focus();
+            document.getElementById('selectPermissao')!.focus();
         },300);
     }
 

@@ -65,7 +65,7 @@
                         <tr *ngFor="let sala of (salas | filtroSalas:criteria)">
                             <td>{{sala.id | zeros:4}}</td>
                             <td class="celula-trunca-texto" title="{{sala.nome_professor}}">{{sala.nome_professor}}</td>
-                            <td title="{{sala.faculdade}}">{{sala.faculdade}}</td>
+                            <td title="{{sala.curso}}">{{sala.curso}}</td>
                             <td class="celula-trunca-texto" title="{{sala.curso}}">{{sala.curso}}</td>
                             <td class="celula-trunca-texto" title="{{sala.nome_sala}}">{{sala.nome_sala}}</td>
                             <td class="celula-trunca-texto" title="{{sala.observacao}}">{{sala.observacao}}</td>

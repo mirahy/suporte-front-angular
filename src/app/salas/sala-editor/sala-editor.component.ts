@@ -39,10 +39,10 @@ export class SalaEditorComponent extends AbstractComponentChild implements OnIni
     disciplinaSelecionadaId = "";
 
     plDisciplinasAcademicosTemp: PlDisciplinasAcademicos = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
-    filteredDisciplina = [];
+    filteredDisciplina:any = [];
 
     usuarios: Array<Usuario> = [];
-    filteredUsuarios = [];
+    filteredUsuarios:any = [];
     nome_professor_temp = "";
     
     get faculdades() {
@@ -102,7 +102,7 @@ export class SalaEditorComponent extends AbstractComponentChild implements OnIni
                     if (resetSala)
                         this.sala.nome_sala = "";
                     else {
-                        var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala,""))
+                        var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala,""))
                         if (plda)
                             this.disciplinaSelecionadaId = plda.disciplina;
                     }
@@ -115,26 +115,26 @@ export class SalaEditorComponent extends AbstractComponentChild implements OnIni
         }
     }
 
-    buscaDisciplina(event) {
+    buscaDisciplina(event:any) {
         this.filteredDisciplina = this.filterDisciplina(event.query, this.plDisciplinasAcademicosList);
     }
-    buscaUsuario(event) {
+    buscaUsuario(event:any) {
         if (event.query.length > 1)
             this.filteredUsuarios = this.filterUsuario(event.query, this.usuarios);
         else
         this.filteredUsuarios = [];
     }
-    selecionaUsuario(event) {
+    selecionaUsuario(event:any) {
         var id = event.substring(0,event.indexOf(' - ')) ;
         console.log(id);
         this.sala.solicitante_id = id;
         this.nome_professor_temp = event.substring(event.indexOf(' - ')+3) ;
     }
-    limpaUsuario(event) {
+    limpaUsuario(event:any) {
         this.sala.solicitante_id = "";
     }
 
-    private filterDisciplina(query, plcs: PlDisciplinasAcademicos[]):any[] {
+    private filterDisciplina(query:any, plcs: PlDisciplinasAcademicos[]):any[] {
         let filtered : string[] = [];
         for(let i = 0; i < plcs.length; i++) {
             let plc = plcs[i];
@@ -144,7 +144,7 @@ export class SalaEditorComponent extends AbstractComponentChild implements OnIni
         }
         return filtered;
     }
-    private filterUsuario(query, users: Usuario[]):any[] {
+    private filterUsuario(query:any, users: Usuario[]):any[] {
         let filtered : string[] = [];
         for(let i = 0; i < users.length; i++) {
             let u = users[i];
@@ -154,7 +154,7 @@ export class SalaEditorComponent extends AbstractComponentChild implements OnIni
         }
         return filtered;
     }
-    selecionaDisciplina(value) {
+    selecionaDisciplina(value:any) {
         //console.log(this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(value))
     }
 

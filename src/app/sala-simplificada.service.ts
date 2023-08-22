@@ -42,7 +42,7 @@ export class SalaSimplificadaService {
             });
     } 
 
-	create(salaSimplificadaPost:unknown) {
+	create(salaSimplificadaPost:any) {
         return this.http.post("/salas-simplificadas",salaSimplificadaPost)
             .toPromise()
             .then((response:any) => {

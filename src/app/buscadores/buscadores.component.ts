@@ -8,6 +8,7 @@ import { Buscador } from './buscador';
 @Component({
     selector: 'app-buscadores',
     templateUrl: './buscadores.component.html',
+    inputs: ['ancestral'],
     styleUrls: ['./buscadores.component.less']
 })
 export class BuscadoresComponent extends AbstractComponentChild implements OnInit {

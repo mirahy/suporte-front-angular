@@ -4,10 +4,10 @@ import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
 
 export class Macro {
     id: number;
-    nome:string|unknown;
-    arquivo: Arquivo|unknown;
-    periodo_letivo:PeriodoLetivo|number|unknown;
-    link_servidor_moodle:string|unknown;
+    nome:string|any;
+    arquivo: Arquivo|any;
+    periodo_letivo:PeriodoLetivo|number|any;
+    link_servidor_moodle:string|any;
     buscadores: Array<Buscador>;
 
     

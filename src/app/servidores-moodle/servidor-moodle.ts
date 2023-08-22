@@ -1,10 +1,10 @@
 export class ServidorMoodle {
     id: number;
-    nome:string;
-    url:string;
-    ativo: boolean;
+    nome:string|unknown;
+    url:string|unknown;
+    ativo: boolean|unknown;
     
-	constructor(id:(number|any), nome?:string, url?:string, ativo?:boolean) {
+	constructor(id:(number|any), nome?:string|unknown, url?:string|unknown, ativo?:boolean|unknown) {
         if (typeof id == "number") {
             this.id = id;
             this.nome = nome;

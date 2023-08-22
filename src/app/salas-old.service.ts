@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Status } from './status';
 import { SalaOld } from './salas-old/sala-old';
+import { Sala } from './salas/sala';
 
 @Injectable(
     //{ providedIn: 'root'}

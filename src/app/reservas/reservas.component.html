@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" title="{{recurso.descricao}}">Reservar: {{recurso.nome}}</div>
             <div class="panel-body" redimensionar="222">
-                <p-fullCalendar #fc [events]="events" [options]="options" (onSelect)="aee($event)"></p-fullCalendar>
+                <full-calendar #fc [events]="events" [options]="options" (onSelect)="aee($event)"></full-calendar>
             </div>
             <div class="panel-footer">
                 <table>

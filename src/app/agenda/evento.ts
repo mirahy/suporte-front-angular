@@ -14,8 +14,8 @@ export class EventoGerador {
     end:Date;
     title:string = "";
     backgroundColor:string = EventoGerador.COR;
-    borderColor:string
-    textColor:string
+    borderColor!: string;
+    textColor!: string;
 
     maisDay:boolean = false;
     repeticao:boolean = false;
@@ -73,7 +73,7 @@ export class EventoGerador {
         return eventApi;
     }
 
-    static obtemEvento(ev) {
+    static obtemEvento(ev:any) {
         var evento:EventoGerador = new EventoGerador();
         evento.id = ev.id ? parseInt(ev.id) : 0;
         evento.allDay = ev.allDay;
@@ -89,7 +89,7 @@ export class EventoGerador {
                 check.setDate(check.getDate()-1);
                 if (evento.horaStart.getTime() >= check.getTime() ) {
                     evento.maisDay = false;
-                    evento.end = null;
+                    evento.end = new Date(0);
                 }
                 else {
                     evento.maisDay = true;
@@ -99,7 +99,7 @@ export class EventoGerador {
             }
             else {
                 evento.maisDay = false;
-                evento.end = null;
+                evento.end = new Date(0);
             }
             // tornar "novo evento" com allDay setado false
             if (evento.id == 0)
@@ -159,7 +159,7 @@ export class EventoGerador {
             eventApi.backgroundColor = this.backgroundColor;
         return eventApi;
     }
-    static obtemEventoGet(ev) {
+    static obtemEventoGet(ev:any) {
         ev.id = parseInt(ev.id);
         if (!ev.allDay) {
             ev.start = new Date(ev.start + " GMT");

@@ -4,6 +4,7 @@ import { SalaOld } from './sala-old';
 import { AbstractComponent } from '../abstract-component';
 import { DadosService } from '../dados.service';
 import { Status } from '../status';
+import { Sala } from '../salas/sala';
 declare var jQuery: any;
 
 @Component({
@@ -44,7 +45,7 @@ export class SalasOldComponent extends AbstractComponent implements OnInit {
         return this.salasService.objetivosSalas;
     }
 
-    editarVisualizar(sala) {
+    editarVisualizar(sala:any) {
         this.sala = sala.clone();
         console.log(this.sala);
         this.aviso = "";
@@ -57,7 +58,7 @@ export class SalasOldComponent extends AbstractComponent implements OnInit {
         //window.location.href = ('/salas/' + sala.id + '/' + (sala.status.chave == STATUS_INICIAL_PADRAO ? 'edit' : ''));
     }
 
-    preparaSetStatusSala(sala:SalaOld, isConcluido:boolean) {
+    preparaSetStatusSala(sala:any, isConcluido:boolean) {
         this.sala = sala;
         this.editavel = true;
         this.mensagem = "";

@@ -52,10 +52,10 @@ export class SalasComponent extends AbstractComponent implements OnInit {
   disciplinaSelecionadaId = "";
 
   plDisciplinasAcademicosTemp: PlDisciplinasAcademicos = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
-  filteredDisciplina = [];
+  filteredDisciplina:any = [];
 
   usuarios: Array<Usuario> = [];
-  filteredUsuarios = [];
+  filteredUsuarios:any = [];
   nome_professor_temp = "";
   nome_sala_moodle = "";
   professor_sala_moodle = "";
@@ -66,13 +66,14 @@ export class SalasComponent extends AbstractComponent implements OnInit {
 
   permissao = "";
   toDisplay = false;
+  mensagemDialog: any;
 
   constructor(private salasService: SalasService, private dadosService: DadosService, private faculdadeService: FaculdadeService, private periodoLetivoService: PeriodoLetivosService
     , private usuarioService: UsuarioService, private plDisciplinasAcademicosService: PlDisciplinasAcademicosService, private macroService: MacroService, private cursosService: CursosService) {
     super();
   }
 
-  get salas(): Array<Sala> {
+  get salas(): Array<Sala>|any {
     return this.salasService.salas;
   }
 
@@ -104,7 +105,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     return this;
   }
 
-  editarVisualizar(sala, outrosDados = false) {
+  editarVisualizar(sala:Sala, outrosDados = false) {
     this.sala = sala.clone();
     this.estudantes = Estudante.converteJSONParaEstudantes(this.sala.estudantes);
     this.faculdadeTemp = this.sala.curso ? this.sala.curso.faculdade : Faculdade.generateFaculdade();
@@ -126,7 +127,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     this.mostraMais = false;
     this.plDisciplinasAcademicosService.getPlDisciplinasAcademicos(this.sala.periodo_letivo_id, this.sala.curso)
       .then(r => {
-        var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.sala.nome_sala)
+        var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.sala.nome_sala)
         if (plda)
           this.disciplinaSelecionadaId = plda.disciplina;
         else
@@ -184,12 +185,12 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     let link = this.sala.link_backup_moodle ? this.sala.link_backup_moodle.replace(/\s+/g, '') : "";
     this.salasService.validaLinkMoodle(link)
       .then(response =>{
-        let validaLink = response;
-        let id = this.salasService.getIdLinkMoodle(link);
+        let validaLink:any = response;
+        let id:any = this.salasService.getIdLinkMoodle(link);
         if (validaLink['status'].value && id['status'].value) {
           this.sala.estudantes = Estudante.converteEstudantesParaJSON(this.estudantes);
-          if (this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, "")))
-            this.salasService.aplicarPlDisciplina(this.sala, this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, "")))
+          if (this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, "")))
+            this.salasService.aplicarPlDisciplina(this.sala, this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, "")))
           else
             this.salasService.aplicarPlDisciplina(this.sala, PlDisciplinasAcademicos.generatePlDisciplinasAcademicos())
           this.salasService.atualizarSala(this.sala)
@@ -245,7 +246,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     if (confirm("Deseja remover todos os estudantes"))
       this.estudantes = [];
   }
-  lerAlunosCSV(event) {
+  lerAlunosCSV(event:any) {
     var fileExtension = /.*\.csv/;
     var fileTobeRead = event.target.files[0];
     if (fileTobeRead.name.toLowerCase().match(fileExtension)) {
@@ -262,7 +263,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
 
   }
   carregarEstudantes() {
-    this.plDisciplinasAcademicosTemp = this.disciplinaSelecionadaId ? this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.disciplinaSelecionadaId) : null;
+    this.plDisciplinasAcademicosTemp = this.disciplinaSelecionadaId ? this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.disciplinaSelecionadaId) : null;
     if (this.plDisciplinasAcademicosTemp && confirm("Confirmar carregamento de lista de Estudantes?")) {
       this.editavel = false;
       this.plDisciplinasAcademicosService.getEstudantes(this.plDisciplinasAcademicosTemp.id, true)
@@ -280,7 +281,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     }
   }
   carregarEstudantesSigecad() {
-    this.plDisciplinasAcademicosTemp = this.disciplinaSelecionadaId ? this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.disciplinaSelecionadaId) : null;
+    this.plDisciplinasAcademicosTemp = this.disciplinaSelecionadaId ? this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.disciplinaSelecionadaId) : null;
     if (this.plDisciplinasAcademicosTemp && confirm("Confirmar carregamento de lista de Estudantes do SIGECAD?")) {
       this.editavel = false;
       //this.plDisciplinasAcademicosService.getAcademicosDisciplinasSigecad(this.plDisciplinasAcademicosTemp.disciplina_key,this.sala.periodo_letivo_id,this.plDisciplinasAcademicosTemp.turma_id, this.sala.id)
@@ -302,7 +303,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     this.editarVisualizar(sala, true);
     this.erroAviso = false;
     jQuery('#saidaRestore').html('<div  style="text-align: center"><b>...</b></div>');
-    let id = this.salasService.getIdLinkMoodle(this.sala.link_backup_moodle);
+    let id:any = this.salasService.getIdLinkMoodle(this.sala.link_backup_moodle);
     this.courseImportId = id['id'].value;
     //this.editavel = true;
     this.blockAutoRestore = false;
@@ -322,7 +323,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
         jQuery('#saidaRestore').html('<span style="color: red;">' + this.aviso + "</span>");
       });
   }
-  exportarEstudantesMoodle(sala) {
+  exportarEstudantesMoodle(sala:Sala) {
     if (!confirm('confirmar exportação de estudantes para sala?'))
       return;
     //jQuery('#dialogRestore').modal('show');
@@ -370,7 +371,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
           if (resetSala)
             this.sala.nome_sala = "";
           else {
-            var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, ""))
+            var plda = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.sala.nome_sala.replace(" " + this.sufixoNomeSala, ""))
             if (plda)
               this.disciplinaSelecionadaId = plda.disciplina;
           }
@@ -383,25 +384,25 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  buscaDisciplina(event) {
+  buscaDisciplina(event:any) {
     this.filteredDisciplina = this.filterDisciplina(event.query, this.plDisciplinasAcademicosList);
   }
-  buscaUsuario(event) {
+  buscaUsuario(event:any) {
     if (event.query.length > 1)
       this.filteredUsuarios = this.filterUsuario(event.query, this.usuarios);
     else
       this.filteredUsuarios = [];
   }
-  selecionaUsuario(event) {
+  selecionaUsuario(event:any) {
     var id = event.substring(0, event.indexOf(' - '));
     this.sala.solicitante_id = id;
     this.nome_professor_temp = event.substring(event.indexOf(' - ') + 3);
   }
-  limpaUsuario(event) {
+  limpaUsuario(event:any) {
     this.sala.solicitante_id = "";
   }
 
-  private filterDisciplina(query, plcs: PlDisciplinasAcademicos[]): any[] {
+  private filterDisciplina(query:string, plcs: PlDisciplinasAcademicos[]): any[] {
     let filtered: string[] = [];
     for (let i = 0; i < plcs.length; i++) {
       let plc = plcs[i];
@@ -411,7 +412,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     }
     return filtered;
   }
-  private filterUsuario(query, users: Usuario[]): any[] {
+  private filterUsuario(query:string, users: Usuario[]): any[] {
     let filtered: string[] = [];
     for (let i = 0; i < users.length; i++) {
       let u = users[i];
@@ -422,7 +423,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     return filtered;
   }
 
-  selecionaDisciplina(value) {
+  selecionaDisciplina(value:any) {
     //console.log(this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(value))
   }
 
@@ -437,15 +438,15 @@ export class SalasComponent extends AbstractComponent implements OnInit {
     let link = this.sala.link_backup_moodle ? this.sala.link_backup_moodle.replace(/\s+/g, '') : "";
     this.salasService.validaLinkMoodle(link)
       .then(response =>{
-        let validaLink = response;
-        let id = this.salasService.getIdLinkMoodle(link);
+        let validaLink:any = response;
+        let id:any = this.salasService.getIdLinkMoodle(link);
           if (link !== "" && validaLink['status'].value && id['status'].value && this.sala.curso && this.sala.periodo_letivo_id) {
             this.salasService.getSalaMoodle(id['id'].value, this.sala)
-              .then(r => {
+              .then((r:any) => {
                 var result = r.json()
                 var salas = result.enrolledcourses;
                 if (salas != null)
-                  salas.forEach(element => {
+                  salas.forEach((element:any) => {
                     if (element.id == id['id'].value) {
                       this.nome_sala_moodle = element.fullname;
                     }
@@ -566,7 +567,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
       })
 
 
-    jQuery(".custom-file-input").on("change", function () {
+    jQuery(".custom-file-input").on("change",  () => {
       var fileName = jQuery(this).val().split("\\").pop();
       jQuery(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });

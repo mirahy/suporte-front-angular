@@ -14,6 +14,7 @@ declare var jQuery: any;
 @Component({
 	selector: 'app-obtem-plda',
 	templateUrl: './obtem-plda.component.html',
+    inputs: ['ancestral'],
 	styleUrls: ['./obtem-plda.component.less']
 })
 export class ObtemPldaComponent extends AbstractComponentChild implements OnInit {
@@ -138,10 +139,10 @@ export class ObtemPldaComponent extends AbstractComponentChild implements OnInit
             this.plDisciplinasAcademicosTempList = [];
             if (this.disciplinaSelecionadaNomes.length) 
                 for (var i in this.disciplinaSelecionadaNomes)
-                    this.plDisciplinasAcademicosTempList.push(this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.disciplinaSelecionadaNomes[i]));
+                    this.plDisciplinasAcademicosTempList.push(this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.disciplinaSelecionadaNomes[i]));
         }
         else if (this.disciplinaSelecionadaNome) 
-            this.plDisciplinasAcademicosTemp = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(this.disciplinaSelecionadaNome);
+            this.plDisciplinasAcademicosTemp = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(this.disciplinaSelecionadaNome);
         else 
             this.plDisciplinasAcademicosTemp = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
     }

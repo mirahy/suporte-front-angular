@@ -7,16 +7,16 @@ import { Sala } from '../salas/sala';
 
 export class LoteSalas {
     id: number;
-    descricao: string;
-    periodo_letivo: PeriodoLetivo|number;
-    faculdade: Faculdade|number;
-    curso: Curso|number;
-    is_salas_criadas: boolean;
-    is_estudantes_inseridos: boolean;
+    descricao: string|any;
+    periodo_letivo: PeriodoLetivo|number|any;
+    faculdade: Faculdade|number|any;
+    curso: Curso|number|any;
+    is_salas_criadas: boolean|any;
+    is_estudantes_inseridos: boolean|any;
     
     salas: Array<Sala> = [];
 
-	constructor(id:(number|any), descricao?:string, periodo_letivo?:PeriodoLetivo|number, faculdade?:Faculdade|number, curso?: Curso|number, is_salas_criadas?: boolean, is_estudantes_inseridos? :boolean) {
+	constructor(id:(number|any), descricao?:string|unknown, periodo_letivo?:PeriodoLetivo|number|unknown, faculdade?:Faculdade|number|unknown, curso?: Curso|number|unknown, is_salas_criadas?: boolean|unknown, is_estudantes_inseridos? :boolean|unknown) {
         if (typeof id == "number") {
             this.id = id;
             this.descricao = descricao;
@@ -37,7 +37,7 @@ export class LoteSalas {
         }
     }
     
-    static generateList(list, faculdade?:Faculdade) {
+    static generateList(list:any, faculdade?:Faculdade) {
         var loteSalasList:Array<LoteSalas> = [];
         for(var i = 0; i < list.length; i++) {
             var loteSalas = new LoteSalas(list[i]);
@@ -48,7 +48,7 @@ export class LoteSalas {
         return loteSalasList;
     }
 
-    static generateListPlus(list, periodoLetivoIndex:ArrayIndexador<PeriodoLetivo>, faculdadeIndex:ArrayIndexador<Faculdade>, cursoIndex:ArrayIndexador<Curso>) {
+    static generateListPlus(list:any, periodoLetivoIndex:ArrayIndexador<PeriodoLetivo>, faculdadeIndex:ArrayIndexador<Faculdade>, cursoIndex:ArrayIndexador<Curso>) {
         var loteSalasList:Array<LoteSalas> = [];
         for(var i = 0; i < list.length; i++) {
             loteSalasList.push(LoteSalas.generate(list[i], periodoLetivoIndex, faculdadeIndex, cursoIndex));
@@ -56,7 +56,7 @@ export class LoteSalas {
         return loteSalasList;
     }
 
-    static generate(dados?,  periodoLetivoIndex?:ArrayIndexador<PeriodoLetivo>, faculdadeIndex?:ArrayIndexador<Faculdade>, cursoIndex?:ArrayIndexador<Curso>) {
+    static generate(dados?:any,  periodoLetivoIndex?:ArrayIndexador<PeriodoLetivo>, faculdadeIndex?:ArrayIndexador<Faculdade>, cursoIndex?:ArrayIndexador<Curso>) {
         if (dados && periodoLetivoIndex && faculdadeIndex && cursoIndex) {
             var loteSalas = new LoteSalas(dados);
             loteSalas.periodo_letivo = periodoLetivoIndex.get(loteSalas.periodo_letivo);

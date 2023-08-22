@@ -21,21 +21,21 @@ export class EventoReserva {
     end:Date;
     title:string = "";
     backgroundColor:string = EventoReserva.COR;
-    borderColor:string
-    textColor:string
+    borderColor:string|any
+    textColor:string|any
 
     maisDay:boolean = false;
     repeticao:boolean = false;
     horaStart:Date;
     horaEnd:Date;
 
-    usuario:Usuario;
-    observacao:string;
-    justificativa:string;
+    usuario:Usuario|any;
+    observacao:string|any;
+    justificativa:string|any;
     status:Status = new Status(0,"","","");
 
-    created_at:Date;
-    updated_at:Date;
+    created_at:Date|any;
+    updated_at:Date|any;
     /*
     groupIdurl:string;
     classNames:Array<string> = []
@@ -88,8 +88,8 @@ export class EventoReserva {
         return eventApi;
     }
 
-    static obtemEvento(ev, evIndex) {
-        var evento:EventoReserva = new EventoReserva();
+    static obtemEvento(ev:any, evIndex:any) {
+        var evento:EventoReserva|any = new EventoReserva();
         evento.id = ev.id ? parseInt(ev.id) : 0;
         evento.allDay = ev.allDay;
         if (ev.allDay) {
@@ -186,7 +186,7 @@ export class EventoReserva {
             eventApi.backgroundColor = this.backgroundColor;
         return eventApi;
     }
-    static obtemEventoGet(ev, usuarioLogado:Usuario) {
+    static obtemEventoGet(ev:any, usuarioLogado:Usuario) {
         ev.id = parseInt(ev.id);
         if (!ev.allDay) {
             ev.start = new Date(ev.start + " GMT");

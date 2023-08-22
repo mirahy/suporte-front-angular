@@ -30,7 +30,7 @@ export class PeriodoLetivosComponent extends AbstractComponent implements OnInit
         this.carregarListaSigecad();
     }
 
-    criaAlteraPeriodoLetivo(ev){
+    criaAlteraPeriodoLetivo(ev:any){
         ev.preventDefault();
         var periodoLetivoForm = jQuery('#periodoLetivoForm')[0];
 		if (periodoLetivoForm.reportValidity()) {

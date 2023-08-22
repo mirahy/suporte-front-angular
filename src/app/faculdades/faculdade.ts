@@ -2,7 +2,7 @@ import { Curso } from '../cursos/curso';
 import { Persistente } from '../persistente';
 
 export class Faculdade implements Persistente{
-    id: number;
+    id: number|any;
     sigla:string;
     nome:string;
     auto_increment_ref:number|null;

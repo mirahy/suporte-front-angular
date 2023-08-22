@@ -5,10 +5,10 @@ import { SuperMacro } from "../super-macro/super-macro";
 export class GrupoLotesSimplificado {
 
     id: number;
-    descricao:string;
-    auto_export_estudantes:boolean;
+    descricao:string|unknown;
+    auto_export_estudantes:boolean|unknown;
     
-	constructor(id:(number|any), descricao?:string, auto_export_estudantes?:boolean) {
+	constructor(id:(number|any), descricao?:string|unknown, auto_export_estudantes?:boolean|unknown) {
         if (typeof id == "number") {
             this.id = id;
             this.descricao = descricao;
@@ -33,7 +33,7 @@ export class GrupoLotesSimplificado {
         return new GrupoLotesSimplificado(0, "", false);
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var lotes:Array<GrupoLotesSimplificado> = [];
         for(var i = 0; i < list.length; i++) {
             var lote = new GrupoLotesSimplificado(list[i]);

@@ -179,7 +179,7 @@
                         <tr *ngFor="let sala of salas">
                             <td *ngIf="COLUNAS.id">{{sala.id | zeros:4}}</td>
                             <td *ngIf="COLUNAS.periodo_letivo_id">{{sala.periodo_letivo_key}}</td>
-                            <td *ngIf="COLUNAS.periodo_letivo_key">{{getPeriodoLetivo(sala.periodo_letivo_id)?.nome}}</td>
+                            <td *ngIf="COLUNAS.periodo_letivo_key">{{getPeriodoLetivo(sala.periodo_letivo_id).nome}}</td>
                             <td *ngIf="COLUNAS.username_professor" class="celula-trunca-texto" title="{{sala.username_professor}}">{{sala.username_professor}}</td>
                             <td *ngIf="COLUNAS.cpf_professor" class="celula-trunca-texto" title="{{sala.cpf_professor}}">{{sala.cpf_professor}}</td>
                             <td *ngIf="COLUNAS.nome_professor" class="celula-trunca-texto" title="{{sala.nome_professor}}">{{sala.nome_professor}}</td>
@@ -200,7 +200,7 @@
                                     </select>
                                 </ng-container>
                                 <ng-container *ngIf="statusTemp != STATUS_INICIAL_PADRAO">
-                                    <select class="form-control form-control-micro" name="macroId" [disabled]="!editavel || loteSalas.is_salas_criadas" [(ngModel)]="sala.macro_id" (change)="alteraMacro(sala,$event.target.value)">   
+                                    <select class="form-control form-control-micro" name="macroId" [disabled]="!editavel || loteSalas.is_salas_criadas" [(ngModel)]="sala.macro_id" (change)="alteraMacro(sala,$event.target)">   
                                         <option hidden disabled selected value> -- Selecione -- </option>    
                                         <ng-container *ngFor="let m of macros">
                                             <option  [value]="m.id">{{m.nome}}</option>
@@ -284,9 +284,9 @@
                             <tr *ngFor="let ls of lotesSalasList">
                                 <td>{{ls.id | zeros:3}}</td>
                                 <td class="celula-trunca-texto" title="{{ls.descricao}}">{{ls.descricao}}</td>
-                                <td>{{ls.periodo_letivo?.nome}}</td>
-                                <td>{{ls.faculdade?.sigla}}</td>
-                                <td class="celula-trunca-texto" title="{{ls.curso?.nome}}">{{ls.curso?.nome}}</td>
+                                <td>{{ls.periodo_letivo.nome}}</td>
+                                <td>{{ls.faculdade.sigla}}</td>
+                                <td class="celula-trunca-texto" title="{{ls.curso.nome}}">{{ls.curso.nome}}</td>
                                 <td style="text-align: center;">
                                     <button style="text-align: center; margin-left: -2px;" title="Vizualizar" type="button" class="btn btn-info botao-reduzido" (click)="selecionaLoteSalas(ls)">
                                         <span class="span-icon-button"><i class="bi bi-check2-square"></i></span>

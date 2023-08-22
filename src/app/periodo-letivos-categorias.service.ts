@@ -22,7 +22,7 @@ export class PeriodoLetivosCategoriasService {
             });
     }
 
-    setCategoriaId(periodoLetivoId:string, cursoId:string, categoriaId:string) {
+    setCategoriaId(periodoLetivoId:string|number, cursoId:string|number, categoriaId:string|number|undefined) {
         return this.http.post("/periodo-letivos-categorias",{'periodo_letivo_id': periodoLetivoId, 'curso_id': cursoId, 'categoria_id': categoriaId}).toPromise()
             .then(response => {
                 this.periodoLetivosCategoriasIndex.get(cursoId).categoria_id = categoriaId;

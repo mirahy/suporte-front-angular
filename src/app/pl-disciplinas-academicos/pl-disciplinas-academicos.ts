@@ -5,10 +5,10 @@ import { Estudante } from './estudante';
 
 export class PlDisciplinasAcademicos {
     id: number;
-    curso:Curso|number;
-    periodo_letivo:PeriodoLetivo|number;
-    disciplina:string;
-    estudantes:string|Array<Estudante> = [];
+    curso:Curso|number|any;
+    periodo_letivo:PeriodoLetivo|number|any;
+    disciplina:string|any;
+    estudantes:string|Array<Estudante>|any = [];
     disciplina_key;
 
     carga_horaria_total_disciplina;
@@ -18,10 +18,10 @@ export class PlDisciplinasAcademicos {
     avaliacao;
     
     cpf_professor;
-    periodo_letivo_key:number;
+    periodo_letivo_key:number|any;
     
-    constructor(id:(number|any), curso?:Curso|number, periodo_letivo?:PeriodoLetivo|number, disciplina?:string, estudantes?: string|Array<Estudante>, disciplina_key?,
-            carga_horaria_total_disciplina?, grupo?: string, turma_nome?: string, turma_id?, avaliacao?: string, cpf_professor?: string, periodo_letivo_key?: number) {
+    constructor(id:(number|any), curso?:Curso|number, periodo_letivo?:PeriodoLetivo|number, disciplina?:string, estudantes?: string|Array<Estudante>, disciplina_key?:any,
+            carga_horaria_total_disciplina?:any, grupo?: string|any, turma_nome?: string, turma_id?:any, avaliacao?: string, cpf_professor?: string|any, periodo_letivo_key?: number|any) {
         if (typeof id == "number") {
             this.id = id;
             this.curso = curso;
@@ -69,7 +69,7 @@ export class PlDisciplinasAcademicos {
         }
     }
     
-    static generateList(list):Array<PlDisciplinasAcademicos> {
+    static generateList(list:any):Array<PlDisciplinasAcademicos> {
         var plDisciplinasAcademicos:Array<PlDisciplinasAcademicos> = [];
         for(var i = 0; i < list.length; i++) {
             var plda = new PlDisciplinasAcademicos(list[i]);
@@ -78,7 +78,7 @@ export class PlDisciplinasAcademicos {
         return plDisciplinasAcademicos;
     }
 
-    static generateListPlus(list, cursosKeyIndex:ArrayIndexador<Curso>, periodoLetivosNomeIndex:ArrayIndexador<PeriodoLetivo>):Array<PlDisciplinasAcademicos> {
+    static generateListPlus(list:any, cursosKeyIndex:ArrayIndexador<Curso>, periodoLetivosNomeIndex:ArrayIndexador<PeriodoLetivo>):Array<PlDisciplinasAcademicos> {
         var plDisciplinasAcademicos:Array<PlDisciplinasAcademicos> = [];
         for(var i = 0; i < list.length; i++) {
             if (cursosKeyIndex)

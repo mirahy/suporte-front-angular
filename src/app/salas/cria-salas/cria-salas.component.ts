@@ -6,7 +6,7 @@ import { Status } from 'src/app/status';
 import { FaculdadeService } from 'src/app/faculdade.service';
 import { Faculdade } from 'src/app/faculdades/faculdade';
 import { CursosService } from 'src/app/cursos.service';
-import { PlDisciplinasAcademicos } from 'src/app/pl-disciplinas-academicos/pl-disciplinas-academicos.js';
+import { PlDisciplinasAcademicos } from 'src/app/pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { PlDisciplinasAcademicosService } from 'src/app/pl-disciplinas-academicos.service';
 import { UsuarioService } from 'src/app/usuario.service';
 import { Usuario } from 'src/app/usuarios/usuario';
@@ -50,10 +50,10 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
   //faculdadesOptions = [];
 
   plDisciplinasAcademicosTemp: PlDisciplinasAcademicos = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
-  filteredDisciplina = [];
+  filteredDisciplina:any = [];
 
   usuarios: Array<Usuario> = [];
-  filteredUsuarios = [];
+  filteredUsuarios:any = [];
   nome_professor_temp = "";
   nome_sala_moodle = "";
   professor_sala_moodle = "";
@@ -74,7 +74,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     return this.periodoLetivoService.periodoLetivos;
   }
 
-  criaSala(ev) {
+  criaSala(ev:any) {
     ev.preventDefault();
     var salaForm = jQuery('#salaForm')[0];
     // removendo todos os espaços em branco
@@ -82,8 +82,8 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     this.editavel = false;
     this.salasService.validaLinkMoodle(link)
       .then(response => {
-        let validaLink = response;
-        let id = this.salasService.getIdLinkMoodle(link);
+        let validaLink:any = response;
+        let id:any = this.salasService.getIdLinkMoodle(link);
         if (link && !this.salaMoodle) {
           this.getSalaMoodle()
         }
@@ -159,17 +159,17 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     let link = this.sala.link_backup_moodle ? this.sala.link_backup_moodle.replace(/\s+/g, '') : "";
     this.salasService.validaLinkMoodle(link)
       .then(response => {
-        let validaLink = response;
-        let id = this.salasService.getIdLinkMoodle(link);
+        let validaLink:any = response;
+        let id:any = this.salasService.getIdLinkMoodle(link);
         if (link !== "" && validaLink['status'].value && id['status'].value && this.sala.curso && this.sala.periodo_letivo_id) {
           jQuery('#dialogMensagem').modal('show');
           this.mensagemDialog = "Buscando dados no moodle..."
           this.salasService.getSalaMoodle(id['id'].value, this.sala)
-            .then(r => {
+            .then((r:any) => {
               var result = r.json()
               var salas = result.enrolledcourses;
               if (salas != null)
-                salas.forEach(element => {
+                salas.forEach((element:any) => {
                   if (element.id == id['id'].value) {
                     this.nome_sala_moodle = element.fullname;
                   }
@@ -239,9 +239,9 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
           this.editavel = true;
           this.filteredDisciplina = this.filterDisciplina("", this.plDisciplinasAcademicosList);
           if (disciplinaPrevia) {
-            var pl = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(disciplinaPrevia);
+            var pl = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(disciplinaPrevia);
             if (!pl)
-              pl = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(disciplinaPrevia + " - " + this.sala.turma_nome);
+              pl = this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex!.get(disciplinaPrevia + " - " + this.sala.turma_nome);
             this.sala.nome_sala = pl ? pl.disciplina : "";
           }
           else {
@@ -261,26 +261,26 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  buscaDisciplina(event) {
+  buscaDisciplina(event:any) {
     this.filteredDisciplina = this.filterDisciplina(event.query, this.plDisciplinasAcademicosList);
   }
-  buscaUsuario(event) {
+  buscaUsuario(event:any) {
     if (event.query.length > 1)
       this.filteredUsuarios = this.filterUsuario(event.query, this.usuarios);
     else
       this.filteredUsuarios = [];
   }
-  selecionaUsuario(event) {
+  selecionaUsuario(event:any) {
     var id = event.substring(0, event.indexOf(' - '));
     console.log(id);
     this.sala.solicitante_id = id;
     this.nome_professor_temp = event.substring(event.indexOf(' - ') + 3);
   }
-  limpaUsuario(event) {
+  limpaUsuario(event:any) {
     this.sala.solicitante_id = "";
   }
 
-  private filterDisciplina(query, plcs: PlDisciplinasAcademicos[]): any[] {
+  private filterDisciplina(query:any, plcs: PlDisciplinasAcademicos[]): any[] {
     let filtered: string[] = [];
     for (let i = 0; i < plcs.length; i++) {
       let plc = plcs[i];
@@ -290,7 +290,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     }
     return filtered;
   }
-  private filterUsuario(query, users: Usuario[]): any[] {
+  private filterUsuario(query:any, users: Usuario[]): any[] {
     let filtered: string[] = [];
     for (let i = 0; i < users.length; i++) {
       let u = users[i];
@@ -301,7 +301,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
     return filtered;
   }
 
-  selecionaDisciplina(value) {
+  selecionaDisciplina(value:any) {
     //console.log(this.plDisciplinasAcademicosService.plDisciplinasAcademicosNameIndex.get(value))
   }
 
@@ -325,6 +325,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
         pars = p;
         return pars;
       }
+      return;
     });
     return pars;
   }
@@ -347,7 +348,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
                             this.sala = r;
                             this.nome_professor_temp = this.sala.nome_professor;
                             //this.preparaOptions();
-                            var chargeParams = this.checaIfChargedSala();
+                            var chargeParams:any = this.checaIfChargedSala();
                             if (chargeParams) {
                               this.salasService.chargeSala(this.sala, chargeParams.periodoLetivoKey, chargeParams.codigoCurso, chargeParams.codigoDisciplina, chargeParams.salaTurma)
                                 .then(r => {

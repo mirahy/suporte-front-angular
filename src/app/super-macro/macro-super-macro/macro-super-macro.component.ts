@@ -9,6 +9,7 @@ import { MacroSuperMacro } from './macro-super-macro';
 @Component({
 	selector: 'app-macro-super-macro',
 	templateUrl: './macro-super-macro.component.html',
+	inputs: ['ancestral'],
 	styleUrls: ['./macro-super-macro.component.less']
 })
 export class MacroSuperMacroComponent extends AbstractComponentChild implements OnInit {
@@ -112,7 +113,7 @@ export class MacroSuperMacroComponent extends AbstractComponentChild implements 
        
     }
 
-	changeOrder(ord1, ord2) {
+	changeOrder(ord1:number|MacroSuperMacro, ord2:number|MacroSuperMacro) {
 		this.editavel = false;
 		this.macroSuperMacroService.order(ord1, ord2, this.superMacro)
             .then (response => {

@@ -24,8 +24,11 @@ export class UnidadeOrganizacionalComponent extends AbstractComponent implements
     get ouDirRoot() {
         return this.unidadeOrganizacionalService.ouDirRoot;
     }
+	set ouDirRoot(ou:string) {
+         this.unidadeOrganizacionalService.ouDirRoot;
+    }
 
-	criaAlteraOU(ev){
+	criaAlteraOU(ev:any){
         ev.preventDefault();
         var ouForm = jQuery('#ouForm')[0];
 		if (ouForm.reportValidity()) {

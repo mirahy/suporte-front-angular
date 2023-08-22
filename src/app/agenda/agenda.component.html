@@ -2,8 +2,8 @@
     <div class="col-md-14">
         <div class="panel panel-default">
             <div class="panel-heading">Agenda</div>
-            <div class="panel-body" redimensionar="222">
-                <p-fullCalendar #fc [events]="events" [options]="options" (onSelect)="aee($event)"></p-fullCalendar>
+            <div class="panel-body" redimensionar!="222">
+                <full-calendar #fc [events]="events" [options]="options" (onSelect)="aee($event)"></full-calendar>
             </div>
             <div class="panel-footer">
                 <table>
@@ -62,7 +62,7 @@
                     <tr>
                         <td>
                             <label>Data</label><br>
-                            <p-calendar [locale]="pt" [(ngModel)]="evento.start" [maxDate]="evento.maisDay ? evento.end : null" dateFormat="dd/mm/yy" [showIcon]="true"  [disabled]="!editavel"></p-calendar>
+                            <p-calendar [locale]="pt" [(ngModel)]="evento.start" [maxDate]!="evento.maisDay ? evento.end : null" dateFormat="dd/mm/yy" [showIcon]="true"  [disabled]="!editavel"></p-calendar>
                         </td>
                         <td style="width: 10px;"></td>
                         <td *ngIf="evento.maisDay">
@@ -90,7 +90,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary botao-barra" (click)="addEvent()" [disabled]="!editavel">{{evento.id == 0 ? "Criar" : "Editar"}}</button>
-                <button type="button" class="btn btn-danger botao-barra" (click)="delEvent()" [disabled]="!editavel || evento.id == 0">Excluir</button>
+                <button type="button" class="btn btn-danger botao-barra" (click)="delEvent(evento)" [disabled]="!editavel || evento.id == 0">Excluir</button>
                 <button type="button" class="btn btn-secondary botao-barra" data-dismiss="modal" (click)="resetEvento()">Fechar</button>
             </div>
         </div>

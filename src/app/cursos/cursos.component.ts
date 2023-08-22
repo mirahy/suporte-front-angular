@@ -8,6 +8,7 @@ declare var jQuery: any;
 @Component({
     selector: 'app-cursos',
     templateUrl: './cursos.component.html',
+    inputs: ['ancestral'],
     styleUrls: ['./cursos.component.less']
 })
 export class CursosComponent extends AbstractComponentChild implements OnInit {

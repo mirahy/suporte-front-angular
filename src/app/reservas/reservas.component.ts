@@ -6,7 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 //import { Theme } from './theme';
-import { FullCalendar } from 'primeng/fullcalendar';
+import { FullCalendarModule } from '@fullcalendar/angular';
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import { Redimensionavel } from '../redimensionavel';
 import { DadosService } from '../dados.service';
@@ -32,7 +32,7 @@ export class ReservasComponent extends AbstractComponent implements OnInit {
     readonly STATUS_INICIAL_PADRAO = Status.CHAVES.ANALISE;
     readonly STATUS_TERMINADO = Status.CHAVES.DEFERIDO;
 
-    selectedTheme: Theme;
+    selectedTheme: Theme|any;
     data: Date = new Date();
     rangeDates: any = new Date();
     temas: SelectItem[] = [];
@@ -46,7 +46,7 @@ export class ReservasComponent extends AbstractComponent implements OnInit {
     tamanho: number = 500;
 
     @ViewChild('fc')
-    fc: FullCalendar;
+    fc: FullCalendarModule|any;
 
 
     constructor(private themeService: ThemeService, private dadosService: DadosService, private reservasService: ReservasService) {
@@ -118,7 +118,7 @@ export class ReservasComponent extends AbstractComponent implements OnInit {
             })
 
         // Alterando o texto "Compromissos" para "Lista"
-        ptBrLocale.buttonText.list = "Lista";
+        ptBrLocale.buttonText!['list'] = "Lista";
         this.options = {
             plugins: [timeGridPlugin, dayGridPlugin, interactionPlugin, listPlugin],
             defaultDate: new Date(),
@@ -210,7 +210,7 @@ export class ReservasComponent extends AbstractComponent implements OnInit {
     addEvent() {
         if (!this.evento.title) {
             alert("Insira um Título");
-            document.getElementById('tituloInput').focus();
+            document.getElementById('tituloInput')!.focus();
             return;
         }
         if ((this.evento.end ? this.evento.start.getTime() > this.evento.end.getTime() : false) || (this.evento.horaEnd ? this.evento.horaStart.getTime() > this.evento.horaEnd.getTime() : false)) {
@@ -322,7 +322,7 @@ export class ReservasComponent extends AbstractComponent implements OnInit {
         }
         //this.evento = new EventoReserva();
         setTimeout(function () {
-            document.getElementById('tituloInput').focus();
+            document.getElementById('tituloInput')!.focus();
         }, 500);
     }
     resize() {

@@ -69,7 +69,7 @@
 			<tr *ngFor="let s of salasSimplificadas" class="clickable-row" (click)="selecionar(s)" [ngClass]="{'linha-selecionada': s.id == salaSimplificadaTemp.id}">
 				<ng-container>
 					<td *ngIf="COLUNAS.id">{{s.id}}</td>
-					<td *ngIf="COLUNAS.periodo_letivo">{{s.periodo_letivo?.nome}}</td>
+					<td *ngIf="COLUNAS.periodo_letivo">{{s.periodo_letivo.nome}}</td>
 					<td *ngIf="COLUNAS.nome_professor" class="celula-trunca-texto" title="{{s.professor?.name}}">{{s.professor?.name}}</td>
 					<td *ngIf="COLUNAS.faculdade" title="{{s.curso?.faculdade?.sigla}}">{{s.curso?.faculdade?.sigla}}</td>
 					<td *ngIf="COLUNAS.curso_key" title="{{s.curso?.curso_key}}">{{s.curso?.curso_key}}</td>

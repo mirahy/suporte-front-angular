@@ -7,20 +7,20 @@ import { Usuario } from "../usuarios/usuario";
 
 export class SalaSimplificada {
     
-    id: number;
-    nome_sala:string;
-    professor: Usuario|string;
-    curso: Curso|number;
-    periodo_letivo_key: number;
-    disciplina_key: string;
-    periodo_letivo: PeriodoLetivo|number;
-    turma_id: string;
-    turma_nome: string;
-    carga_horaria_total_disciplina: string;
-    avaliacao: string;
-    sala_moodle_id: number;
-    link_moodle:string;
-    lote: LoteSalasSimplificado|number;
+    id: number|any;
+    nome_sala:string|any;
+    professor: Usuario|string|any;
+    curso: Curso|number|any;
+    periodo_letivo_key: number|any;
+    disciplina_key: string|any;
+    periodo_letivo: PeriodoLetivo|number|any;
+    turma_id: string|any;
+    turma_nome: string|any;
+    carga_horaria_total_disciplina: string|any;
+    avaliacao: string|any;
+    sala_moodle_id: number|any;
+    link_moodle:string|any;
+    lote: LoteSalasSimplificado|number|any;
 
     
 	constructor(id:(number|any), nome_sala?:string, professor?:Usuario|string, curso?: Curso|number, periodo_letivo_key?: number,
@@ -96,7 +96,7 @@ export class SalaSimplificada {
         return salas;
     }
 
-    static generatePostSalaSimplificada (id:number, plda: PlDisciplinasAcademicos, sala_moodle_id, periodo_letivo:PeriodoLetivo, lote_id:number, professor?: Usuario, link_moodle?:string) {
+    static generatePostSalaSimplificada (id:number, plda: PlDisciplinasAcademicos, sala_moodle_id:any, periodo_letivo:PeriodoLetivo, lote_id:number, professor?: Usuario|any, link_moodle?:string) {
         var periodo_letivo_key = plda.periodo_letivo_key;
         if (!periodo_letivo_key)
             periodo_letivo_key = plda.periodo_letivo instanceof PeriodoLetivo ? plda.periodo_letivo.id_sigecad : (typeof plda.periodo_letivo == 'number' ? plda.periodo_letivo : null);

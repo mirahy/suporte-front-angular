@@ -19,7 +19,7 @@ export class MacroComponent extends AbstractComponent implements OnInit {
         super();
     }
 
-    periodoLetivoTempIndex:number = 0;
+    periodoLetivoTempIndex:number|string = 0;
 
     linksMoodles = [];
 
@@ -83,7 +83,7 @@ export class MacroComponent extends AbstractComponent implements OnInit {
                 });
     }
     
-    selecionarMacro(macro: Macro) {
+    selecionarMacro(macro: Macro|any) {
         if (macro == null){
             this.macroService.resetMacroSelecionada();
             this.periodoLetivoTempIndex = 0;

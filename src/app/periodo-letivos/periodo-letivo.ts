@@ -1,13 +1,13 @@
 export class PeriodoLetivo {
-    id: number;
+    id: number|any;
     nome:string;
     id_sigecad;
-    descricao:string;
-    sufixo:string;
-    inicio_auto_increment:number;
-    ativo: boolean;
+    descricao:string|unknown;
+    sufixo:string|unknown;
+    inicio_auto_increment:number|unknown;
+    ativo: boolean|unknown;
     
-	constructor(id:(number|any), nome?:string, id_sigecad?, descricao?:string, sufixo?:string, inicio_auto_increment?:number, ativo?:boolean) {
+	constructor(id:(number|any), nome?:string|any, id_sigecad?:any, descricao?:string|unknown, sufixo?:string|unknown, inicio_auto_increment?:number|unknown, ativo?:boolean|unknown) {
         if (typeof id == "number") {
             this.id = id;
             this.nome = nome;

@@ -22,7 +22,7 @@ export class LoteSalasSimplificadoService {
 		return this.http.get("/lote-salas-simplificados/all/" + this.grupoLotesSelecionado.id)
 			.toPromise()
 			.then((response:any) => {
-				this.loteSalasSimplificados = LoteSalasSimplificado.generateListPlus(response.json(), this.superMacrosService.superMacrosIndex, this.servidoresMoodleService.servidoresMoodleIndex);
+				this.loteSalasSimplificados = LoteSalasSimplificado.generateListPlus(response.json(), this.superMacrosService.superMacrosIndex!, this.servidoresMoodleService.servidoresMoodleIndex);
 				this.loteSalasSimplificadosIndex = new ArrayIndexador<LoteSalasSimplificado>(this.loteSalasSimplificados);
 				return this.loteSalasSimplificados;
 			});

@@ -1,13 +1,13 @@
 import { Usuario } from '../usuarios/usuario';
 
 export class Recurso {
-    id:number;
-    nome:string;
-    descricao:string;
+    id:number|any;
+    nome:string|any;
+    descricao:string|any;
 
     gestores:Array<Usuario>
 
-    constructor (id:number|object, nome?:string, descricao?:string) {
+    constructor (id:number|object|any, nome?:string|any, descricao?:string|any) {
         if (typeof id == "object") {
             this.id = id['id'];
             this.nome = id['nome'];

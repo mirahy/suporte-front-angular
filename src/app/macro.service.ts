@@ -11,7 +11,7 @@ export class MacroService {
 
     ENTRADAS:Array<string> = []
 
-    macroSelecionada!:Macro;
+    macroSelecionada:Macro|any;
 
     files:Array<Arquivo> = [];
     filesIndex: {}|any = {};
@@ -95,7 +95,7 @@ export class MacroService {
         
     }
 
-    onFileUpload(data: { files: File }|any): Promise<string> | unknown{
+    onFileUpload(data: { files: File }|any): Promise<string> | any{
         const formData: FormData = new FormData();
         const file = data.files[0];
         if (file) {

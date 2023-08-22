@@ -89,6 +89,7 @@ import { FormularioPessoasEstatusLotacaoComponent } from './usuarios/formulario-
 import { PessoasEstatusLotacaoService } from './pessoas-estatus-lotacao.service';
 import { RolesComponent } from './roles/roles.component';
 import { RolesService } from './roles.service';
+import { CommonModule } from '@angular/common';
 
 
 const appRoutes: Routes = [
@@ -193,7 +194,8 @@ const appRoutes: Routes = [
         FullCalendarModule,
         RadioButtonModule,
         FileUploadModule,
-        ScrollingModule
+        ScrollingModule,
+        CommonModule
     ],
     providers: [
         SalasService,
@@ -224,6 +226,9 @@ const appRoutes: Routes = [
     ],
     bootstrap: [
         AppComponent
-    ]
+    ],
+    exports: [
+        AutoCompleteModule
+      ],
 })
 export class AppModule { }

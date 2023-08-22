@@ -4,15 +4,16 @@ import { SuperMacro } from "../super-macro/super-macro";
 
 export class LoteSalasSimplificado {
     id: number;
-    grupo_id:number;
-    descricao:string;
-    sala_provao_id:any;
-    super_macro:SuperMacro;
-    servidor_moodle: ServidorMoodle;
-    sufixo:string;
+    grupo_id:number|unknown;
+    descricao:string|unknown;
+    sala_provao_id:any|unknown;
+    super_macro:SuperMacro|any;
+    servidor_moodle: ServidorMoodle|any;
+    sufixo:string|unknown;
 
     
-	constructor(id:(number|any), grupo_id?:number, descricao?:string, sala_provao_id?:any, super_macro?:SuperMacro, servidor_moodle?: ServidorMoodle, sufixo?:string) {
+	constructor(id:(number|any), grupo_id?:number|unknown, descricao?:string|unknown, sala_provao_id?:any|unknown, super_macro?:SuperMacro|unknown,
+                 servidor_moodle?: ServidorMoodle|unknown, sufixo?:string|unknown) {
         if (typeof id == "number") {
             this.id = id;
             this.grupo_id = grupo_id;
@@ -49,7 +50,7 @@ export class LoteSalasSimplificado {
         return new LoteSalasSimplificado(0, 0, "", "", null, null, null);
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var lotes:Array<LoteSalasSimplificado> = [];
         for(var i = 0; i < list.length; i++) {
             var lote = new LoteSalasSimplificado(list[i]);
@@ -58,7 +59,7 @@ export class LoteSalasSimplificado {
         return lotes;
     }
 
-    static generateListPlus(list, superMacrosIndex:ArrayIndexador<SuperMacro>, servidoresMoodleIndex:ArrayIndexador<ServidorMoodle>) {
+    static generateListPlus(list:any, superMacrosIndex:ArrayIndexador<SuperMacro>, servidoresMoodleIndex:ArrayIndexador<ServidorMoodle>) {
         var lotes:Array<LoteSalasSimplificado> = [];
         for(var i = 0; i < list.length; i++) {
             list[i]['super_macro_id'] = superMacrosIndex.get (list[i]['super_macro_id']);

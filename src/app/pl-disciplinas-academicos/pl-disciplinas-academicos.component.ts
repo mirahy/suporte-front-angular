@@ -41,9 +41,9 @@ export class PlDisciplinasAcademicosComponent extends AbstractComponent implemen
     ]
     tipoImportFiltro = "";
 
-    fileTemp = null;
-    @ViewChild('uploador') 
-    uploador:FileUpload;
+    fileTemp:any = null;
+    @ViewChild('uploador')
+    uploador!: FileUpload;
 
     get periodoLetivos() {
         return this.periodoLetivosService.periodoLetivos;
@@ -93,7 +93,7 @@ export class PlDisciplinasAcademicosComponent extends AbstractComponent implemen
     }
     selecionaDisciplina() {
         if (this.disciplinaSelecionadaId) {
-            this.plDisciplinasAcademicosTemp = this.plDisciplinasAcademicosService.plDisciplinasAcademicosIndex.get(this.disciplinaSelecionadaId);
+            this.plDisciplinasAcademicosTemp = this.plDisciplinasAcademicosService.plDisciplinasAcademicosIndex!.get(this.disciplinaSelecionadaId);
             this.editavel = false;
             this.plDisciplinasAcademicosService.getEstudantes(this.disciplinaSelecionadaId, false)
                 .then(est => {
@@ -222,7 +222,7 @@ export class PlDisciplinasAcademicosComponent extends AbstractComponent implemen
     uploadArquivoEstudantes() {
         if (confirm ("Esta ação irá substituir todos os atuais dados de Estudantes neste Período Letivo,\ndeseja confirmar?")) {
             this.editavel = false;
-            this.plDisciplinasAcademicosService.uploadFileEstudantes(this.periodoLetivoSelecionadoId, this.fileTemp) 
+            this.plDisciplinasAcademicosService.uploadFileEstudantes(this.periodoLetivoSelecionadoId, this.fileTemp)! 
                 .then((r : any) => {
                     this.editavel = true;
                     this.selecionaPeriodoLetivo();

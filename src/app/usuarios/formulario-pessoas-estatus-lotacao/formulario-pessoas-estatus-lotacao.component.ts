@@ -23,13 +23,13 @@ export class FormularioPessoasEstatusLotacaoComponent extends AbstractComponent 
 
 	faculdadeTemp = "";
 	cursoTemp = "";
-	lotacoesTrees: Arvore[] = [null];
+	lotacoesTrees: Arvore[]|any = [null];
 	lotacoesSelected: Array<number|string> = [""];
 
 	get estatusList () {
 		return this.pessoasEstatusLotacaoService.estatusList;
 	}
-	set estatusList (estatusList) {
+	set estatusList (estatusList:any) {
 		this.pessoasEstatusLotacaoService.estatusList = estatusList
 	}
     /*get faculdades() {
@@ -128,7 +128,7 @@ export class FormularioPessoasEstatusLotacaoComponent extends AbstractComponent 
         }
     }
 
-	selecionaLotacao (paiId, index) {
+	selecionaLotacao (paiId:any, index:any) {
 		var nodoIndex = this.lotacoesSelected[index];
         var nodo = null;
         if (nodoIndex)
@@ -171,14 +171,14 @@ export class FormularioPessoasEstatusLotacaoComponent extends AbstractComponent 
         }
 	}
 	
-	obterDadosAcademicos(ev) {
+	obterDadosAcademicos(ev:any) {
 		ev.preventDefault();
 		if (!this.faculdadeTemp && !this.cursoTemp && !confirm("Deseja obter dados de todas as pessoas da categoria '"+this.estatusSelecionadoEstatus+"' da instituição?"))
 			return;
 		var formDadosAcademicos = jQuery('#formDadosAcademicos');
 		formDadosAcademicos.submit();
 	}
-	obterDadosFuncionarios(ev) {
+	obterDadosFuncionarios(ev:any) {
 		ev.preventDefault();
 		if (!this.lotacaoTemp && !confirm("Deseja obter dados de todas as pessoas da categoria '"+this.estatusSelecionadoEstatus+"' da instituição?"))
 			return;
@@ -186,7 +186,7 @@ export class FormularioPessoasEstatusLotacaoComponent extends AbstractComponent 
 		formDadosFuncionarios.submit();
 	}
 
-	getDescLotacaoNodo(lotacaoNodo) {
+	getDescLotacaoNodo(lotacaoNodo:any) {
 		if (lotacaoNodo.dado) {
 			if (lotacaoNodo.dado.sigla) 
 				return lotacaoNodo.dado.nome ? lotacaoNodo.dado.sigla + " - " + lotacaoNodo.dado.nome : lotacaoNodo.dado.sigla;

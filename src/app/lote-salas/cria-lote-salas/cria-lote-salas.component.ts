@@ -67,11 +67,11 @@ export class CriaLoteSalasComponent extends AbstractComponent implements OnInit 
         sala_moodle_id: false,
     }
 
-    get salas(): Array<Sala> {
+    get salas(): Array<Sala> | any {
         return this.salasService.salas;
     }
 
-    set salas(salas: Array<Sala>) {
+    set salas(salas: Array<Sala> | any) {
         this.salasService.salas = salas;
     }
 

@@ -1,12 +1,12 @@
 export class Usuario {
     
-	id:number;
-    name:string;
-    email:string;
-    permissao:string;
-    gestor:boolean;
+	id:number|any;
+    name:string|any;
+    email:string|any;
+    permissao:string|any;
+    gestor:boolean|any;
 
-    constructor (id:number|object,name?:string,email?:string,permissao?:string,gestor?:boolean) {
+    constructor (id:number|object|any,name?:string|any,email?:string|any,permissao?:string|any,gestor?:boolean|any) {
         if (typeof id == 'number') {
             this.id = id;
             this.name = name;

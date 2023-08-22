@@ -182,7 +182,7 @@ export class SalasService {
   }
 
   //converte dados brutos da sala do sigecad para Sala da view
-  convertChargedSala(s:any, sala?: Sala, status?: Status) {
+  convertChargedSala(s:any, sala?: Sala|any, status?: Status) {
     if (!sala)
       sala = Sala.geraNovaSala();
     //sala.id = s.id;

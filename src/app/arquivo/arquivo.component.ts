@@ -7,6 +7,7 @@ import { MacroComponent } from '../macro/macro.component';
 @Component({
     selector: 'app-arquivo',
     templateUrl: './arquivo.component.html',
+    inputs: ['ancestral'],
     styleUrls: ['./arquivo.component.less']
 })
 export class ArquivoComponent extends AbstractComponentChild implements OnInit {
@@ -33,16 +34,16 @@ export class ArquivoComponent extends AbstractComponentChild implements OnInit {
     get files() {
         return this.macroService.files;
     }
-    set files(files) {
+    set files(files:any) {
         this.macroService.files = files;
     }
 
     get arquivoSelecionadoRadio () {
         return this.macroService.macroSelecionada.arquivo ? this.macroService.macroSelecionada.arquivo.name : null;
     }
-    /*set arquivoSelecionadoRadio (arquivo) {
+    set arquivoSelecionadoRadio (arquivo) {
         this.macroService.macroSelecionada.arquivo.name = arquivo
-    }*/
+    }
 
     changeArquivo(arquivo:Arquivo) {
         if (this.editavelChild) {
@@ -60,7 +61,7 @@ export class ArquivoComponent extends AbstractComponentChild implements OnInit {
 
     onFileUpload(event : any) {
         this.macroService.onFileUpload(event)
-            .then(nomeArquivo => {
+            .then((nomeArquivo:any) => {
                 if (this.ancestral instanceof MacroComponent) {
                     return (<MacroComponent> this.ancestral).carregarLista()
                         .then(r => {
@@ -75,7 +76,7 @@ export class ArquivoComponent extends AbstractComponentChild implements OnInit {
                 }
                 return 0;
             })
-            .catch(r => {
+            .catch((r:any) => {
                 this.erroHttp(r);
             })
           

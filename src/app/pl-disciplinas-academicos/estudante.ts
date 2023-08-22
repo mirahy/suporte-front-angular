@@ -5,7 +5,7 @@ export class Estudante {
     is_professor = false;
     senha;
 
-    constructor (username, email, fullname, is_professor?, senha?) {
+    constructor (username:any, email:any, fullname:any, is_professor?:any, senha?:any) {
         this.username = username;
         this.email = email;
         this.fullname = fullname;
@@ -23,7 +23,7 @@ export class Estudante {
             this.senha == estudante.senha;
     }
     
-    static processaCSV(allText):Array<Estudante> {
+    static processaCSV(allText:any):Array<Estudante> {
         var allTextLines = allText.split(/\r\n|\n/);
         var headers = allTextLines[0].split(',');
         var linhas:Array<Estudante> = [];
@@ -59,7 +59,7 @@ export class Estudante {
         return linhas;
     }
 
-    static processaCSVcomSenha(allText):Array<Estudante> {
+    static processaCSVcomSenha(allText:any):Array<Estudante> {
         var allTextLines = allText.split(/\r\n|\n|\r/);
         var headers = allTextLines[0].split(',');
         var linhas:Array<Estudante> = [];
@@ -99,7 +99,7 @@ export class Estudante {
         return linhas;
     }
 
-    static converteObjectParaEstudantesComSenha (estudantesObj) {
+    static converteObjectParaEstudantesComSenha (estudantesObj:any) {
         var estudantes : Estudante[] = [];
         for (var i = 0; i < estudantesObj.length; i++) {
             estudantes.push(new Estudante(estudantesObj[i].username, estudantesObj[i].email, estudantesObj[i].fullname, estudantesObj[i].is_professor, estudantesObj[i].senha));

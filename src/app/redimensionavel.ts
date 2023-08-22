@@ -1,7 +1,7 @@
 export class Redimensionavel {
 
         elemento:any;
-        base:number;
+        base:number|any;
         min:number|unknown;
         max:number|unknown;
         personalizado:any; // {funcao, parametros }

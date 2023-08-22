@@ -28,7 +28,7 @@ export class ServidoresMoodleComponent extends AbstractComponent implements OnIn
 		//this.carregarListaSigecad();
 	}
 
-	criaAlteraServidorMoodle(ev) {
+	criaAlteraServidorMoodle(ev:any) {
 		ev.preventDefault();
 		var servidoresMoodleForm = jQuery('#servidoresMoodleForm')[0];
 		if (servidoresMoodleForm.reportValidity()) {

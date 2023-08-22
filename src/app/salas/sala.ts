@@ -37,9 +37,10 @@ export class Sala {
     cpf_professor = "";
 
     created_at: Date;
+    nome: any;
 
-    public constructor (id: number, curso, email: string, mensagem: string, nome_professor: string, nome_sala: string, modalidade: string, objetivo_sala: string,
-        observacao: string, link_backup_moodle :string, senha_aluno: string, status: Status, estudantes: string, periodo_letivo_id, macro_id, sala_moodle_id, created_at: Date){
+    public constructor (id: number, curso:any, email: string, mensagem: string, nome_professor: string, nome_sala: string, modalidade: string, objetivo_sala: string,
+        observacao: string, link_backup_moodle :string, senha_aluno: string, status: Status, estudantes: string, periodo_letivo_id:any, macro_id:any, sala_moodle_id:any, created_at: Date){
 
         this.id = id;
         this.curso = curso;
@@ -77,7 +78,7 @@ export class Sala {
         });
         return salaList;
     };
-    public static generateSala (salaAny):Sala {
+    public static generateSala (salaAny:any):Sala {
         var sala = new Sala(salaAny.id,
             salaAny.curso,
             salaAny.email,

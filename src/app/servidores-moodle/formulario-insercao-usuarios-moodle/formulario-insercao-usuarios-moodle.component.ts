@@ -72,7 +72,7 @@ export class FormularioInsercaoUsuariosMoodleComponent extends AbstractComponent
         if (confirm ("Deseja remover todos os estudantes"))
             this.estudantes = [];
     }
-	lerAlunosCSV (event) {
+	lerAlunosCSV (event:any) {
         var fileExtension = /.*\.csv/;
         var fileTobeRead = event.target.files[0];
         if (fileTobeRead.name.toLowerCase().match(fileExtension)) {

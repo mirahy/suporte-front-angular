@@ -1,8 +1,8 @@
 export class UnidadeOrganizacional {
 
-    id: number;
-    nome:string;
-    valor:string;
+    id: number|any;
+    nome:string|any;
+    valor:string|any;
 
     
 	constructor(id:(number|any), nome?:string, valor?:string) {
@@ -22,7 +22,7 @@ export class UnidadeOrganizacional {
         return new UnidadeOrganizacional(0, "", "");
     }
 
-    static generateList(list) {
+    static generateList(list:any) {
         var unidadesOrganizacionais:Array<UnidadeOrganizacional> = [];
         for(var i = 0; i < list.length; i++) {
             var ou = new UnidadeOrganizacional(list[i]);

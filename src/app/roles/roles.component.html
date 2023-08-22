@@ -30,9 +30,9 @@
                       <!--col width="130px"/-->
                   </colgroup>
                   <tbody>
-                      <tr  class="clickable-row" (click)="selecionarPeriodoLetivo(pl)" [ngClass]="">
+                      <tr  class="clickable-row"  [ngClass]="">
                           <td></td>
-                          <td class="celula-trunca-texto" title="{{pl.nome}}"></td>
+                          <td class="celula-trunca-texto" title=""></td>
                           <!--td class="celula-trunca-texto" title="{{pl.}}">{{pl.}}</td-->
                       </tr>
                   </tbody>
@@ -64,7 +64,7 @@
                           <table>
                               <tr>
                                   <td class="col-md-1"><label for="filtro" class="col-md-1 control-label">Buscar:</label></td>
-                                  <td class="col-md-7"><input id="filtro" type="text" class="form-control" name="filtro" [(ngModel)]="criteria"></td>
+                                  <td class="col-md-7"><input id="filtro" type="text" class="form-control" name="filtro" ></td>
                               </tr>
                           </table>
                       </caption>
@@ -107,27 +107,27 @@
                                   <ng-container >
                                       <td></td>
                                       <td class="celula-trunca-texto" title="Editar">
-                                          <button style="text-align: center; margin-left: 2px;" title="Editar" type="button" class="btn btn-info botao-reduzido" (click)="selecionarCurso(curso)" [disabled]="!editavel || periodoLetivo.id == 0">
+                                          <button style="text-align: center; margin-left: 2px;" title="Editar" type="button" class="btn btn-info botao-reduzido"  >
                                               <span class="span-icon-button"><i class="bi bi-pencil"></i></span>
                                           </button>
                                       </td>
                                       <td class="celula-trunca-texto" title="Anular">
-                                          <button style="text-align: center; margin-left: 2px;" title="Anular" type="button" class="btn btn-danger botao-reduzido" (click)="anularCategoria(curso)" [disabled]="!editavel || periodoLetivo.id == 0">
+                                          <button style="text-align: center; margin-left: 2px;" title="Anular" type="button" class="btn btn-danger botao-reduzido" >
                                               <span class="span-icon-button"><i class="bi bi-x-lg"></i></span>
                                           </button>
                                       </td>
                                   </ng-container>
                                   <ng-container >
                                       <td>
-                                          <input id="categoriaIdInput" class="form-control form-control-micro" [(ngModel)]="categoriaIdTemp">
+                                          <input id="categoriaIdInput" class="form-control form-control-micro" >
                                       </td>
                                       <td class="celula-trunca-texto" title="Concluir Edição" style="text-align: center;">
-                                          <button style="text-align: center; margin-left: 2px;" title="Concluir Edição" type="button" class="btn btn-success botao-reduzido" (click)="concluirEdicaoCategoria(curso)" [disabled]="!editavel || periodoLetivo.id == 0">
+                                          <button style="text-align: center; margin-left: 2px;" title="Concluir Edição" type="button" class="btn btn-success botao-reduzido" >
                                               <span class="span-icon-button" ><i class="bi bi-check2" style="-webkit-text-stroke-width: 0.2rem;"></i></span>
                                           </button>
                                       </td>
                                       <td class="celula-trunca-texto" title="Cancelar" style="text-align: center;">
-                                          <button style="text-align: center; margin-left: 2px;" title="Cancelar" type="button" class="btn btn-secondary botao-reduzido" (click)="resetCursoSelecionado()" [disabled]="!editavel || periodoLetivo.id == 0">
+                                          <button style="text-align: center; margin-left: 2px;" title="Cancelar" type="button" class="btn btn-secondary botao-reduzido" >
                                               <span class="span-icon-button"><i class="bi bi-arrow-repeat"></i></span>
                                           </button>
                                       </td>
