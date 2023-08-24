@@ -90,6 +90,9 @@ import { PessoasEstatusLotacaoService } from './pessoas-estatus-lotacao.service'
 import { RolesComponent } from './roles/roles.component';
 import { RolesService } from './roles.service';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
+import { HomeService } from './home.service';
 
 
 const appRoutes: Routes = [
@@ -166,6 +169,8 @@ const appRoutes: Routes = [
         FormularioAlteracaoUsuarioComponent,
         FormularioPessoasEstatusLotacaoComponent,
         RolesComponent,
+        HomeComponent,
+        NavComponent,
     ],
     imports: [
         BrowserModule,
@@ -222,7 +227,8 @@ const appRoutes: Routes = [
         UnidadeOrganizacionalService,
         PessoasEstatusLotacaoService,
         LogsService,
-        RolesService
+        RolesService,
+        HomeService
     ],
     bootstrap: [
         AppComponent

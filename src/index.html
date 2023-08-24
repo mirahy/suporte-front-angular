@@ -1,16 +1,72 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Front</title>
-  <base href="/">
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Suporte</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- CSRF Token -->
+    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+
+    <!-- styles -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="assets/css/codigo-barras.css" rel="stylesheet" />
+    <link href="assets/css/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/css/app.css" rel="stylesheet" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- scripts -->
+    <script type="text/javascript" src="assets/js/browser-detect.js"></script>
+    <script type="text/javascript" src="assets/js/pre-scrips.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    ></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script -->
+  </head>
+  <body>
+    <!-- @inject('resources', 'App\Services\ResourcesService') 
+        @inject('nameUser','App\Services\NameUserService') -->
+
+    <app-root>
+      <div class="loading">
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+    </div>
+    </app-root>
+
+    <div id="theme-container" class="theme-container shadow-dark">
+      <img id="themeIcon" src="assets/img/moon.svg" alt="Alterar tema" />
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© EAD - UFGD 2023</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/post-scrips.js"></script>
+    <script src="assets/js/util.js"></script>
+  </body>
 </html>

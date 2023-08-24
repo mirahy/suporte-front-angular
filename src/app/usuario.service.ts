@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './usuarios/usuario';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -51,8 +52,15 @@ export class UsuarioService {
     }
 
     usuarioLogado(): Promise<Usuario> {
-        return this.http.get("/logado") .toPromise()
+
+        const requestOptions = {                                                                                                                                                                                 
+            headers: new HttpHeaders({'Access-Control-Allow-Origin': 'http://localhost:8080/api/logado',
+                                      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE, OPTIONS'}), 
+          };
+          
+        return this.http.get(environment.api_url + "logado", requestOptions) .toPromise()
             .then ((response:any) => {
+                console.log(response)
                 var u = new Usuario(response.json())
                 return u;
             }); 

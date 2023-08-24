@@ -7,6 +7,7 @@ import { PlDisciplinasAcademicos } from './pl-disciplinas-academicos/pl-discipli
 import { PeriodoLetivo } from './periodo-letivos/periodo-letivo';
 import { PeriodoLetivosService } from './periodo-letivos.service';
 import { ServidoresMoodleService } from './servidores-moodle.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable()
@@ -21,7 +22,7 @@ export class SalasService {
     private servidoresMoodleService: ServidoresMoodleService) { }
 
   atualizarSala(sala: Sala): Promise<boolean> {
-    return this.http.post('salas/' + sala.id, sala)
+    return this.http.post(environment.api_url + 'salas/' + sala.id, sala)
       .toPromise()
       .then(response => {
         this.salas = this.salas!.slice(0);
