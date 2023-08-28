@@ -33,45 +33,37 @@
 
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Left Side Of Navbar -->
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" >
           <!-- @if(isset($resources->permissao) && ($resources->permissao != 'INATIVO')) -->
-          <li class="dropdown">
-            <a
-              href="#"
-              class="dropdown-toggle"
-              data-toggle="dropdown"
-              role="button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              v-pre
-            >
+          <li class="dropdown" *ngIf="permissao && permissao != 'INATIVO' ">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre >
               Solicitações <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <!-- @if($resources->permissao == 'USUARIO' || $resources->permissao == 'ADMINISTRADOR') -->
-              <li>
+              <li *ngIf="permissao == 'USUARIO' || permissao == 'ADMINISTRADOR'">
                 <a href="/salas/create/"> Nova Solicitação de Sala </a>
               </li>
               <!-- @endif -->
               <!-- @if($resources->permissao == 'ADMINISTRADOR') -->
-              <li>
+              <li *ngIf="permissao == 'ADMINISTRADOR'">
                 <a href="/lote-salas"> Lote de Solicitações de Sala </a>
               </li>
               <!-- @endif -->
               <!-- @if($resources->permissao == 'ADMINISTRADOR') -->
-              <li>
+              <li *ngIf="permissao == 'ADMINISTRADOR'">
                 <a href="/lote-salas-simplificados">
                   Lote de Solicitações de Salas Simplificadas
                 </a>
               </li>
               <!-- @endif -->
               <!-- @if($resources->permissao == 'USUARIO' || $resources->permissao == 'ADMINISTRADOR') -->
-              <li>
+              <li *ngIf="permissao == 'USUARIO' || permissao == 'ADMINISTRADOR'">
                 <a href="/salas/"> Lista de Solicitações </a>
               </li>
               <!-- @endif -->
               <!-- @if($resources->permissao == 'ADMINISTRADOR') -->
-              <li>
+              <li *ngIf="permissao == 'ADMINISTRADOR'">
                 <a href="/salas-old/"> Lista de Solicitações (Antiga) </a>
               </li>
               <!-- @endif -->
@@ -79,16 +71,8 @@
           </li>
           <!-- @endif -->
           <!-- @if(isset($resources->permissao) && ($resources->permissao == 'ADMINISTRADOR')) -->
-          <li class="dropdown">
-            <a
-              href="#"
-              class="dropdown-toggle"
-              data-toggle="dropdown"
-              role="button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              v-pre
-            >
+          <li class="dropdown" *ngIf="permissao && permissao == 'ADMINISTRADOR'">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre >
               Universidade <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -117,7 +101,7 @@
           </li>
           <!-- @endif -->
           <!-- @if(isset($resources->permissao) && ($resources->permissao == 'ADMINISTRADOR')) -->
-          <li class="dropdown">
+          <li class="dropdown" *ngIf="permissao && permissao == 'ADMINISTRADOR'">
             <a
               href="#"
               class="dropdown-toggle"
@@ -152,7 +136,7 @@
           </li>
           <!-- @endif -->
           <!-- @if(isset($resources->permissao) && ($resources->permissao == 'ADMINISTRADOR')) -->
-          <li class="dropdown">
+          <li class="dropdown" *ngIf="permissao && permissao == 'ADMINISTRADOR'">
             <a
               href="#"
               class="dropdown-toggle"
@@ -213,7 +197,7 @@
               v-pre
             >
               <i class="bi bi-person-circle"></i>
-              <!-- <span class="name-person">{{ $nameUser->name }}</span> -->
+              <span class="name-person">{{ nomeSobrenome }}</span>
             </a>
 
             <ul class="dropdown-menu">

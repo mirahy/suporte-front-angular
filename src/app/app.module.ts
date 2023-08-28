@@ -40,6 +40,10 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // from <p-fullCalen
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { UsuarioService } from './usuario.service';
 import { SalasService } from './SalasService';
@@ -93,6 +97,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeService } from './home.service';
+import { CardComponent } from './card/card.component';
 
 
 const appRoutes: Routes = [
@@ -125,7 +130,7 @@ const appRoutes: Routes = [
       redirectTo: '/',
       pathMatch: 'full'
     },*/
-    { path: '**', component: UsuariosComponent }
+    { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
@@ -171,6 +176,7 @@ const appRoutes: Routes = [
         RolesComponent,
         HomeComponent,
         NavComponent,
+        CardComponent,
     ],
     imports: [
         BrowserModule,
@@ -200,7 +206,11 @@ const appRoutes: Routes = [
         RadioButtonModule,
         FileUploadModule,
         ScrollingModule,
-        CommonModule
+        CommonModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatButtonModule,
+        MatDividerModule
     ],
     providers: [
         SalasService,

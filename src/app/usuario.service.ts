@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './usuarios/usuario';
 import { environment } from 'src/environments/environment';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -51,17 +52,10 @@ export class UsuarioService {
             })
     }
 
-    usuarioLogado(): Promise<Usuario> {
-
-        const requestOptions = {                                                                                                                                                                                 
-            headers: new HttpHeaders({'Access-Control-Allow-Origin': 'http://localhost:8080/api/logado',
-                                      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE, OPTIONS'}), 
-          };
-          
-        return this.http.get(environment.api_url + "logado", requestOptions) .toPromise()
+    async usuarioLogado(): Promise<Usuario> {
+        return await firstValueFrom( this.http.get(environment.api_url + "logado"))
             .then ((response:any) => {
-                console.log(response)
-                var u = new Usuario(response.json())
+                var u = new Usuario(response)
                 return u;
             }); 
     }

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { HomeService } from '../home.service';
 import { UsuarioService } from '../usuario.service';
 import { AbstractComponent } from '../abstract-component';
+import { CardComponent } from '../card/card.component';
+import {MatCardModule} from '@angular/material/card'
+
 
 declare var jQuery: any;
 
@@ -12,14 +15,15 @@ declare var jQuery: any;
 })
 export class HomeComponent extends AbstractComponent implements OnInit {
   constructor(private homeservice: HomeService,
-              private usuarioService: UsuarioService ) {
+              private usuarioService: UsuarioService) {
     super();
   }
+
   
   permissao = '';
 
   clickToogle() {
-    this.homeservice.clickToogle();
+    this.homeservice.clickToogle()
   }
 
   ngOnInit(): void {
