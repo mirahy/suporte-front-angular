@@ -24,10 +24,14 @@
       "dom"
     ]
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "cypress.config.ts", "cypress"]
 }
