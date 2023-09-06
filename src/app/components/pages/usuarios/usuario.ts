@@ -5,14 +5,16 @@ export class Usuario {
     email:string|any;
     permissao:string|any;
     gestor:boolean|any;
+    password:string|any
 
-    constructor (id:number|object|any,name?:string|any,email?:string|any,permissao?:string|any,gestor?:boolean|any) {
+    constructor (id:number|object|any,name?:string|any,email?:string|any,permissao?:string|any,gestor?:boolean|any, password?:string|any) {
         if (typeof id == 'number') {
             this.id = id;
             this.name = name;
             this.email = email;
             this.permissao = permissao;
             this.gestor = gestor;
+            this.password = password;
         }
         else {
             this.id = parseInt(id['id']);
@@ -20,6 +22,7 @@ export class Usuario {
             this.email = id['email'];
             this.permissao = id['permissao'];
             this.gestor = id['gestor'];
+            this.password = id['password'];
         }
     }
 

@@ -182,11 +182,9 @@
         <!-- Right Side Of Navbar -->
         <ul class="nav navbar-nav navbar-right">
           <!-- Authentication Links -->
-          <!-- @guest -->
-          <li><a href="/login">Login</a></li>
+          <li *ngIf="!permissao"><a href="/login">Login</a></li>
           <!--li><a href="{{ route('register') }}">Cadastrar</a></li-->
-          <!-- @else -->
-          <li class="dropdown drop-user">
+          <li class="dropdown drop-user" *ngIf="permissao">
             <a
               href="#"
               class="dropdown-toggle"
@@ -196,16 +194,14 @@
               aria-haspopup="true"
               v-pre
             >
-              <i class="bi bi-person-circle"></i>
+              <i class="bi bi-person-circle" ></i>
               <span class="name-person">{{ nomeSobrenome }}</span>
             </a>
 
             <ul class="dropdown-menu">
               <li>
                 <a
-                  href="/logout"
-                  onclick="event.preventDefault();
-                                                      document.getElementById('logout-form').submit();"
+                  (click)="deslogar()"
                 >
                   Logout
                 </a>
@@ -221,7 +217,6 @@
               </li>
             </ul>
           </li>
-          <!-- @endguest -->
         </ul>
       </div>
     </div>

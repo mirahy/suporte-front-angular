@@ -5,20 +5,17 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/login">
+                    <form class="form-horizontal"  [formGroup]="formLogin" novalidate>
                         <!-- {{ csrf_field() }} -->
 
                         <div class="form-group">
                             <label for="email" class="col-md-4 control-label">Login</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="email" value="" required (focus)="true">
+                                <input id="email" type="text" class="form-control" name="email" value="" required (focus)="true" formControlName="email">
 
-                                <!-- @if ($errors->has('email')) -->
-                                    <span class="help-block">
-                                        <strong></strong>
+                                    <span class="help-block" id="emailerror" style="color: red;">
                                     </span>
-                                <!-- @endif -->
                             </div>
                         </div>
 
@@ -26,13 +23,10 @@
                             <label for="password" class="col-md-4 control-label">Senha</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required formControlName="password">
 
-                                <!-- @if ($errors->has('password')) -->
-                                    <span class="help-block">
-                                        <strong></strong>
+                                    <span class="help-block" id="passworderror" style="color: red;">
                                     </span>
-                                <!-- @endif -->
                             </div>
                         </div>
 
@@ -48,7 +42,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success" (click)="logar()">
                                     Entrar
                                 </button>
 

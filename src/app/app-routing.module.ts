@@ -25,36 +25,46 @@ import { FormularioPessoasEstatusLotacaoComponent } from './components/pages/usu
 import { LogsComponent } from './components/pages/logs/logs.component';
 import { RolesComponent } from './components/pages/roles/roles.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { usuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
+import { usuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
 
 const routes: Routes = [
-  { path: 'salas', component: SalasComponent },
-    { path: 'salas/create', component: CriaSalasComponent },
-    { path: 'salas/create/:periodoLetivoKey/:codigoCurso/:codigoDisciplina/:salaTurma', component: CriaSalasComponent },
-    { path: 'salas-old', component: SalasOldComponent },
-    { path: 'lote-salas', component: LoteSalasComponent },
-    { path: 'lote-salas-simplificados', component: LoteSalasSimplificadoComponent },
-    { path: 'periodo-letivos', component: PeriodoLetivosComponent },
-    { path: 'periodo-letivos-categorias', component: PeriodoLetivosCategoriasComponent },
-    { path: 'pl-disciplinas-academicos', component: PlDisciplinasAcademicosComponent},
-    { path: 'faculdades', component: FaculdadesComponent },
-    { path: 'usuarios', component: UsuariosComponent },
-    { path: 'servidores-moodle', component: ServidoresMoodleComponent },
-    { path: 'formulario-insere-usuarios', component: FormularioInsercaoUsuariosMoodleComponent },
-    { path: 'agenda', component: AgendaComponent },
-    { path: 'reservas', component: ReservasComponent },
-    { path: 'recursos', component: RecursoComponent },
-    { path: 'calendario', component: CalendarioComponent },
-    { path: 'macro', component: MacroComponent },
-    { path: 'super-macro', component: SuperMacroComponent },
-    { path: 'unidade-organizacional', component: UnidadeOrganizacionalComponent },
-    { path: 'formulario-insere-ad', component: FormularioInsercaoUsuariosAdComponent },
-    { path: 'formulario-altera-usuario', component: FormularioAlteracaoUsuarioComponent },
-    { path: 'formulario-pessoas-estatus-lotacao', component: FormularioPessoasEstatusLotacaoComponent },
-    { path: 'logs', component: LogsComponent },
-    { path: 'roles', component: RolesComponent },
-    { path: 'login', component: LoginComponent },
-    { path:'', redirectTo:'login', pathMatch:'full' },
-    { path: '**', component: LoginComponent }
+      { 
+        path:'', canActivate: [usuarioAutenticadoGuard],
+        children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full'},
+          { path: 'salas', component: SalasComponent },
+          { path: 'salas/create', component: CriaSalasComponent },
+          { path: 'salas/create/:periodoLetivoKey/:codigoCurso/:codigoDisciplina/:salaTurma', component: CriaSalasComponent },
+          { path: 'salas-old', component: SalasOldComponent },
+          { path: 'lote-salas', component: LoteSalasComponent },
+          { path: 'lote-salas-simplificados', component: LoteSalasSimplificadoComponent },
+          { path: 'periodo-letivos', component: PeriodoLetivosComponent },
+          { path: 'periodo-letivos-categorias', component: PeriodoLetivosCategoriasComponent },
+          { path: 'pl-disciplinas-academicos', component: PlDisciplinasAcademicosComponent},
+          { path: 'faculdades', component: FaculdadesComponent },
+          { path: 'usuarios', component: UsuariosComponent },
+          { path: 'servidores-moodle', component: ServidoresMoodleComponent },
+          { path: 'formulario-insere-usuarios', component: FormularioInsercaoUsuariosMoodleComponent },
+          { path: 'agenda', component: AgendaComponent },
+          { path: 'reservas', component: ReservasComponent },
+          { path: 'recursos', component: RecursoComponent },
+          { path: 'calendario', component: CalendarioComponent },
+          { path: 'macro', component: MacroComponent },
+          { path: 'super-macro', component: SuperMacroComponent },
+          { path: 'unidade-organizacional', component: UnidadeOrganizacionalComponent },
+          { path: 'formulario-insere-ad', component: FormularioInsercaoUsuariosAdComponent },
+          { path: 'formulario-altera-usuario', component: FormularioAlteracaoUsuarioComponent },
+          { path: 'formulario-pessoas-estatus-lotacao', component: FormularioPessoasEstatusLotacaoComponent },
+          { path: 'logs', component: LogsComponent },
+          { path: 'roles', component: RolesComponent },
+          { path: 'home', component: HomeComponent },
+        ]
+    },
+    
+    { path: 'login', component: LoginComponent , canActivate: [usuarioNaoAutenticadoGuard]},
+    { path: '**', component: LoginComponent, canActivate: [usuarioNaoAutenticadoGuard] }
 ];
 
 @NgModule({

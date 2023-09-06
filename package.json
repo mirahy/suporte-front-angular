@@ -31,6 +31,7 @@
     "@fullcalendar/interaction": "^6.1.8",
     "@fullcalendar/list": "^6.1.8",
     "@fullcalendar/timegrid": "^6.1.8",
+    "axios": "^1.5.0",
     "core-js": "^3.32.1",
     "cors": "^2.8.5",
     "hammerjs": "^2.0.8",

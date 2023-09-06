@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -97,6 +98,7 @@ import { HomeService } from './services/home.service';
 import { CardComponent } from './components/layouts/card/card.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-editor.component';
+import { ApiRequestsService } from './services/api-requests.service';
 
 
 @NgModule({
@@ -144,7 +146,7 @@ import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-e
         NavComponent,
         CardComponent,
         LoginComponent,
-        SalaEditorComponent
+        SalaEditorComponent,
     ],
     imports: [
         BrowserModule,
@@ -170,7 +172,8 @@ import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-e
         MatCardModule,
         MatProgressBarModule,
         MatButtonModule,
-        MatDividerModule
+        MatDividerModule,
+        ReactiveFormsModule,
     ],
     providers: [
         SalasService,
@@ -198,7 +201,9 @@ import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-e
         PessoasEstatusLotacaoService,
         LogsService,
         RolesService,
-        HomeService
+        HomeService,
+        ApiRequestsService,
+        NavComponent,
     ],
     bootstrap: [
         AppComponent

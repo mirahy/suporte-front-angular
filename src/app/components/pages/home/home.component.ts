@@ -25,14 +25,8 @@ export class HomeComponent extends AbstractComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.usuarioService.usuarioLogado()
-    .then((response:any) => {
-      this.permissao = response.permissao
-    })
-    .catch((response: any) => {
-      this.status = this.ERROR;
-      console.log(response)
-    });
+    const user = this.usuarioService.logado ? this.usuarioService.obterUsuarioLogado : null
+    this.permissao = user ? user.permissao : '';
 }
 
 

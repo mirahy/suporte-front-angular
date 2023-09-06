@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { HomeService } from '../../../services/home.service';
 import { AbstractComponent } from '../../../shared/components/abstract-component';
+import { Usuario } from '../../pages/usuarios/usuario';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,31 +14,40 @@ import { AbstractComponent } from '../../../shared/components/abstract-component
 export class NavComponent extends AbstractComponent implements OnInit {
   constructor(
     private HomeService: HomeService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router
   ) {
     super();
   }
 
-  permissao = '';
-  nomeSobrenome = "";
+  permissao = null;
+  nomeSobrenome :any;
 
   clickToogleNav() {
     this.HomeService.clickToogleNav();
   }
 
+  deslogar(){
+    this.usuarioService.logout()
+    .then(response => {
+      this.router.navigate(['login']);
+      this.checkPermissao()
+    })
+    .catch(response =>{
+      this.router.navigate(['login']);
+      this.checkPermissao()
+    });
+    
+  }
+
+  checkPermissao(){
+            const user = this.usuarioService.logado ? this.usuarioService.obterUsuarioLogado : null
+            this.permissao = user ? user.permissao : '';
+  }
+
   ngOnInit(): void {
-    this.usuarioService
-      .usuarioLogado()
-      .then((response) => {
-        const nomeCompleto = response.name
-        const nome = nomeCompleto.split(" ")[0]
-        const sobreNome = nomeCompleto.split(" ")[(nomeCompleto.split(" ").length)-1]
-        this.nomeSobrenome = nome +" "+sobreNome
-        this.permissao = response.permissao;
-      })
-      .catch((response) => {
-        this.status = this.ERROR;
-        console.log(response);
-      });
+  
+            this.nomeSobrenome = this.usuarioService.firstLastNameUser
+            this.checkPermissao()
   }
 }
