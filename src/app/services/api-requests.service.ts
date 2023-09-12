@@ -26,6 +26,19 @@ export class ApiRequestsService {
     });
   }
 
+  put(param: string, data: any) {
+    return axios.put(environment.api_url + param, data, {
+      headers: this.headers,
+    });
+  }
+
+  delete(param: string){
+    return axios.delete(environment.api_url + param, {
+      headers: this.headers,
+    });
+  }
+
+  
   getUrl(url: string) {
     return axios.get(environment.web_url + url);
   }
