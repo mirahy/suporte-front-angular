@@ -12,21 +12,20 @@ declare const jQuery: any;
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent extends AbstractComponent implements OnInit {
+  permissao:string = '';
+
   constructor(private homeservice: HomeService,
               private usuarioService: UsuarioService) {
     super();
   }
 
-  
-  permissao = '';
 
   clickToogle() {
     this.homeservice.clickToogleHome()
   }
 
   ngOnInit(): void {
-    const user = this.usuarioService.logado ? this.usuarioService.obterUsuarioLogado : null
-    this.permissao = user ? user.permissao : '';
+    this.permissao = this.usuarioService.permissao;
 }
 
 
