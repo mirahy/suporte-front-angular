@@ -31,13 +31,6 @@ export class NavComponent extends AbstractComponent implements OnInit {
 
   deslogar(){
     this.usuarioService.logout()
-    .then(response => {
-      this.router.navigate(['login']);
-    })
-    .catch(response =>{
-      this.router.navigate(['login']);
-    });
-    
   }
 
 
