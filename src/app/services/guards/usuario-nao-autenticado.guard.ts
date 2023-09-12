@@ -7,7 +7,7 @@ export const usuarioNaoAutenticadoGuard: CanActivateFn = (route, state) => {
   const usuarioService: UsuarioService = inject(UsuarioService)
   const router: Router = inject(Router)
   if (usuarioService.logado) {
-    router.navigate(['home']);
+    router.navigate(['']);
     return false;
   }
   return true;

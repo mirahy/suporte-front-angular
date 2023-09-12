@@ -6,24 +6,27 @@ import { environment } from 'src/environments/environment';
 export class ApiRequestsService {
   constructor() {}
 
-  token = localStorage.getItem('token')
-  ? JSON.parse(atob(localStorage.getItem('token')!))
-  : null;
-  
+  token = localStorage.getItem(environment.storage_token)
+    ? JSON.parse(atob(localStorage.getItem(environment.storage_token)!))
+    : null;
+
   headers = {
-  'Authorization': 'Bearer '+ this.token,
-  }
+    Authorization: 'Bearer ' + this.token,
+  };
 
   get(param: string) {
-    console.log(this.token)
     return axios.get(environment.api_url + param, {
-      headers: this.headers
-  });
+      headers: this.headers,
+    });
   }
 
-  post(param: string, data:any) {
+  post(param: string, data: any) {
     return axios.post(environment.api_url + param, data, {
-      headers: this.headers
+      headers: this.headers,
     });
+  }
+
+  getUrl(url: string) {
+    return axios.get(environment.web_url + url);
   }
 }

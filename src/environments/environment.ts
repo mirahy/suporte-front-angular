@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   VERSION_FILES: 1,
-  api_url: 'http://localhost:8088/api/'
+  api_url: 'http://localhost:8088/api/',
+  web_url: 'http://localhost:8088/',
+  storage_user: 'user_data',
+  storage_token: 'user_token',
 };
 
 /*

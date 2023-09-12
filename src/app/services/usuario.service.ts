@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../components/pages/usuarios/usuario';
 import { ApiRequestsService } from './api-requests.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,56 +10,58 @@ import { ApiRequestsService } from './api-requests.service';
 export class UsuarioService {
   usuarios: Array<Usuario> = [];
 
+
   constructor(
     private http: HttpClient,
     private api: ApiRequestsService,
   ) {}
 
   async login(data: any) {
-    return await this.api.post('login', data).then((response: any) => {
-        console.log(response.data)
-        if(!response.data.error){
-            localStorage.setItem('token',btoa(JSON.stringify(response.data.token.plainTextToken)));
-            localStorage.setItem('usuario', btoa(JSON.stringify(response.data.user)));
-        }else{
+    try {
+      const csrf = await this.api.getUrl('sanctum/csrf-cookie')
+      const response = await  this.api.post('login', data)
+          if(!response.data.error){
+              localStorage.setItem(environment.storage_token, btoa(JSON.stringify(response.data.token.plainTextToken)));
+              localStorage.setItem(environment.storage_user, btoa(JSON.stringify(response.data.user))); 
+          }else{
             return response.data
-        }
-    });
+          } 
+    } catch (error) {
+      return error
+    }
   }
 
-  logout() {
-      
-    return this.api.get('logout').then((response) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('usuario');
+  async logout() {   
+    try {
+      const response = await this.api.get('logout');
+      localStorage.removeItem(environment.storage_token);
+      localStorage.removeItem(environment.storage_user);
       return true;
-    })
-    .catch((reponse) =>{
-      localStorage.removeItem('token');
-      localStorage.removeItem('usuario');
-      return true
-    })
-    ;
+    } catch (response) {
+      localStorage.removeItem(environment.storage_token);
+      localStorage.removeItem(environment.storage_user);
+      return true;
+    }
     
   }
 
   get obterUsuarioLogado(): Usuario {
-    return localStorage.getItem('usuario')
-      ? JSON.parse(atob(localStorage.getItem('usuario')!))
+    return localStorage.getItem(environment.storage_user)
+      ? JSON.parse(atob(localStorage.getItem(environment.storage_user)!))
       : null;
   }
   get obterIdUsuarioLogado(): string {
-    return localStorage.getItem('usuario')
-      ? (JSON.parse(atob(localStorage.getItem('usuario')!)) as Usuario).id
+    return localStorage.getItem(environment.storage_user)
+      ? (JSON.parse(atob(localStorage.getItem(environment.storage_user)!)) as Usuario).id
       : null;
   }
   get obterTokenUsuario(): string {
-    return localStorage.getItem('token')
-      ? JSON.parse(atob(localStorage.getItem('token')!))
+    return localStorage.getItem(environment.storage_token)
+      ? JSON.parse(atob(localStorage.getItem(environment.storage_token)!))
       : null;
   }
   get logado(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    return localStorage.getItem(environment.storage_token) ? true : false;
   }
 
   get firstLastNameUser() {
@@ -72,20 +75,31 @@ export class UsuarioService {
     return ''; 
   }
 
-  async listaUsuarios(): Promise<Array<Usuario>> {
-    const response: any = await this.http.get('usuarios/lista').toPromise();
-    this.usuarios = Usuario.generateList(response.json());
-    return this.usuarios;
+  get permissao(){
+        const user = this.logado ? this.obterUsuarioLogado : null
+        return user ? user.permissao : ''; 
   }
 
-  listaUsuariosCriaSala(): Promise<Array<Usuario>> {
-    return this.http
-      .get('salas/usuarios')
-      .toPromise()
-      .then((response: any) => {
-        this.usuarios = Usuario.generateList(response.json());
-        return this.usuarios;
-      });
+  async listaUsuarios() : Promise<Array<Usuario>>{
+    try {
+      const response = await this.api.get('usuarios/lista')
+      this.usuarios = Usuario.generateList(response.data);
+      return this.usuarios;  
+    } catch (error:any) {
+      return error
+    }
+ 
+    
+  }
+
+  async listaUsuariosCriaSala(): Promise<Array<Usuario>>{
+    try {
+      const response = await this.api.get('salas/usuarios');
+      this.usuarios = Usuario.generateList(response.data);
+      return this.usuarios;    
+    } catch (error:any) {
+      return error
+    }
   }
 
   novoUsuario(usuario: Usuario) {
