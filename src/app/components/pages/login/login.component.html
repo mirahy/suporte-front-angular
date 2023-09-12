@@ -9,13 +9,16 @@
                         <!-- {{ csrf_field() }} -->
 
                         <div class="form-group">
+                            <span class="help-block col-md-12 text-center" id="msgerror" style="color: red;">
+                            </span>
+                        </div>
+                        <div class="form-group">
+        
                             <label for="email" class="col-md-4 control-label">Login</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control" name="email" value="" required (focus)="true" formControlName="email">
 
-                                    <span class="help-block" id="emailerror" style="color: red;">
-                                    </span>
                             </div>
                         </div>
 
@@ -25,8 +28,6 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required formControlName="password">
 
-                                    <span class="help-block" id="passworderror" style="color: red;">
-                                    </span>
                             </div>
                         </div>
 

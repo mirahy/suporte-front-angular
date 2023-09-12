@@ -23,23 +23,29 @@ export class LoginComponent implements OnInit {
   
 
   logar(){
+    jQuery("#msgerror").html('');
 
     if(this.formLogin.invalid) return;
 
     var usuario = this.formLogin.getRawValue() as Usuario;
     this.usuarioService.login(usuario)
     .then(response=>{
-      const array:any  =[response];
-      if(array.includes('error_description')){
-        if(array['error_description']['email']){
-          jQuery("#emailerror").html('<strong >' + array['error_description']['email'] + "</strong>");
+      try {
+        if(!!response.error_description){
+          if(response.error_description.email !== undefined){
+            jQuery("#msgerror").html('<strong >' + response.error_description.email + "</strong>");
+          }
+          if(response.error_description.password !== undefined){
+            jQuery("#msgerror").html('<strong >' + response.error_description.password + "</strong>");
+          }
         }
-        if(array['error_description']['password']){
-          jQuery("#passworderror").html('<strong >' + array['error_description']['password'] + "</strong>");
-        }
+      } catch (error) {
+        //...
       }
-      this.nav.checkPermissao()
-      this.router.navigate(['']);
+      if(this.usuarioService.logado){
+        this.nav.ngOnInit()
+        this.router.navigate(['home']);
+      }
     })
 
   }
