@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UsuarioService } from '../../../services/usuario.service';
 import { HomeService } from '../../../services/home.service';
 import { AbstractComponent } from '../../../shared/components/abstract-component';
-import { Usuario } from '../../pages/usuarios/usuario';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -12,16 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent extends AbstractComponent implements OnInit {
+  permissao:string = '';
+  nomeSobrenome :any;
+  mostrarNavbar: boolean = false;
+
   constructor(
     private HomeService: HomeService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
   ) {
     super();
   }
 
-  permissao = null;
-  nomeSobrenome :any;
+
 
   clickToogleNav() {
     this.HomeService.clickToogleNav();
@@ -31,23 +33,23 @@ export class NavComponent extends AbstractComponent implements OnInit {
     this.usuarioService.logout()
     .then(response => {
       this.router.navigate(['login']);
-      this.checkPermissao()
     })
     .catch(response =>{
       this.router.navigate(['login']);
-      this.checkPermissao()
     });
     
   }
 
-  checkPermissao(){
-            const user = this.usuarioService.logado ? this.usuarioService.obterUsuarioLogado : null
-            this.permissao = user ? user.permissao : '';
-  }
 
-  ngOnInit(): void {
-  
-            this.nomeSobrenome = this.usuarioService.firstLastNameUser
-            this.checkPermissao()
+  ngOnInit(): void { 
+    
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Verifique se existe usuário logado
+        this.mostrarNavbar = this.usuarioService.logado
+      }
+    });
+            this.permissao = this.usuarioService.permissao
+            this.nomeSobrenome = this.usuarioService.firstLastNameUser       
   }
 }
