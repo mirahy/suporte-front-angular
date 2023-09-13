@@ -40,9 +40,10 @@ export class NavComponent extends AbstractComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // Verifique se existe usuário logado
         this.mostrarNavbar = this.usuarioService.logado
+        this.permissao = this.usuarioService.permissao
+        this.nomeSobrenome = this.usuarioService.firstLastNameUser 
       }
     });
-            this.permissao = this.usuarioService.permissao
-            this.nomeSobrenome = this.usuarioService.firstLastNameUser       
+     
   }
 }
