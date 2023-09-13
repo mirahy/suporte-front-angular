@@ -4,6 +4,7 @@ import { Usuario } from '../components/pages/usuarios/usuario';
 import { ApiRequestsService } from './api-requests.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { MessagesSweetalertService } from './messages-sweetalert.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class UsuarioService {
 
   constructor(private http: HttpClient, 
               private api: ApiRequestsService,
-              private router: Router,) {}
+              private router: Router,
+              private msg: MessagesSweetalertService) {}
 
   async login(data: any) {
     try {
@@ -36,17 +38,22 @@ export class UsuarioService {
     }
   }
 
-  logout() {
-    try { 
-      localStorage.removeItem(environment.storage_token);
-      localStorage.removeItem(environment.storage_user);
-      const response = localStorage.getItem(environment.storage_token) ? true : false;
-      this.router.navigate(['login']);
-    } catch (response:any) {
-      localStorage.removeItem(environment.storage_token);
-      localStorage.removeItem(environment.storage_user);
-      this.router.navigate(['login']);
-    }
+   logout() {
+    let token = this.obterTokenUsuario
+    console.log(token)
+      this.api.get('logout', token)
+      .then(response =>{
+        localStorage.removeItem(environment.storage_token);
+        localStorage.removeItem(environment.storage_user);
+        this.router.navigate(['login']);
+        this.msg.msgHttp(response)
+      })
+      .catch(response => {
+        localStorage.removeItem(environment.storage_token);
+        localStorage.removeItem(environment.storage_user);
+        this.router.navigate(['login']);
+        this.msg.msgHttp(response.response)
+      })
   }
 
   get obterUsuarioLogado(): Usuario {
