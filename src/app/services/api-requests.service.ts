@@ -9,32 +9,43 @@ export class ApiRequestsService {
   token = localStorage.getItem(environment.storage_token)
     ? JSON.parse(atob(localStorage.getItem(environment.storage_token)!))
     : null;
-
   headers = {
     Authorization: 'Bearer ' + this.token,
   };
 
-  get(param: string) {
+  get(param: string, token?:string) {
+    let headers = {
+        Authorization: 'Bearer ' + token,
+      };
     return axios.get(environment.api_url + param, {
-      headers: this.headers,
+      headers: token ? headers : this.headers,
     });
   }
 
-  post(param: string, data: any) {
+  post(param: string, data: any, token?:string) {
+    let headers = {
+      Authorization: 'Bearer ' + token,
+    };
     return axios.post(environment.api_url + param, data, {
-      headers: this.headers,
+      headers: token ? headers : this.headers,
     });
   }
 
-  put(param: string, data: any) {
+  put(param: string, data: any, token?:string) {
+    let headers = {
+      Authorization: 'Bearer ' + token,
+    };
     return axios.put(environment.api_url + param, data, {
-      headers: this.headers,
+      headers: token ? headers : this.headers,
     });
   }
 
-  delete(param: string){
+  delete(param: string, token?:string){
+    let headers = {
+      Authorization: 'Bearer ' + token,
+    };
     return axios.delete(environment.api_url + param, {
-      headers: this.headers,
+      headers: token ? headers : this.headers,
     });
   }
 
