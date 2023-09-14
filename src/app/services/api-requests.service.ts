@@ -11,11 +11,13 @@ export class ApiRequestsService {
     : null;
   headers = {
     Authorization: 'Bearer ' + this.token,
+    Accept: 'application/json',
   };
 
   get(param: string, token?:string) {
     let headers = {
         Authorization: 'Bearer ' + token,
+        Accept: 'application/json',
       };
     return axios.get(environment.api_url + param, {
       headers: token ? headers : this.headers,
@@ -25,6 +27,7 @@ export class ApiRequestsService {
   post(param: string, data: any, token?:string) {
     let headers = {
       Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
     };
     return axios.post(environment.api_url + param, data, {
       headers: token ? headers : this.headers,
@@ -34,6 +37,7 @@ export class ApiRequestsService {
   put(param: string, data: any, token?:string) {
     let headers = {
       Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
     };
     return axios.put(environment.api_url + param, data, {
       headers: token ? headers : this.headers,
@@ -43,6 +47,7 @@ export class ApiRequestsService {
   delete(param: string, token?:string){
     let headers = {
       Authorization: 'Bearer ' + token,
+      Accept: 'application/json',
     };
     return axios.delete(environment.api_url + param, {
       headers: token ? headers : this.headers,
