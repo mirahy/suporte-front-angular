@@ -99,6 +99,8 @@ import { CardComponent } from './components/layouts/card/card.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-editor.component';
 import { ApiRequestsService } from './services/api-requests.service';
+import { MeusCursosComponent } from './components/meus-cursos/meus-cursos.component';
+import { TdCursosComponent } from './components/td-cursos/td-cursos.component';
 
 
 @NgModule({
@@ -147,6 +149,8 @@ import { ApiRequestsService } from './services/api-requests.service';
         CardComponent,
         LoginComponent,
         SalaEditorComponent,
+        MeusCursosComponent,
+        TdCursosComponent,
     ],
     imports: [
         BrowserModule,

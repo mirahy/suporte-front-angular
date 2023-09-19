@@ -29,6 +29,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { usuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
 import { usuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
 import { sessionUserGuard } from './services/guards/session-user.guard';
+import { MeusCursosComponent } from './components/meus-cursos/meus-cursos.component';
+import { TdCursosComponent } from './components/td-cursos/td-cursos.component';
 
 const routes: Routes = [
       { 
@@ -61,6 +63,8 @@ const routes: Routes = [
           { path: 'logs', component: LogsComponent },
           { path: 'roles', component: RolesComponent },
           { path: 'home', component: HomeComponent },
+          { path: 'meus-cursos', component: MeusCursosComponent },
+          { path: 'td-cursos', component: TdCursosComponent },
         ]
     },
     
