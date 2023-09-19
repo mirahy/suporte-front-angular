@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AxiosError } from 'axios';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -7,22 +8,28 @@ import Swal from 'sweetalert2';
 })
 export class MessagesSweetalertService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   successMsg(msg:string, msg2?:string) {
     Swal.fire(
       msg,
       msg2,
-      'success'
+      'success',
     )
   }
 
-  errorMsg(title?:string, msg?:string, link?:string, textLink?:string) {
+  errorMsg(title?:string, msg?:string, link?:string, textLink?:string,
+           allowOutsideClick:boolean = true, allowEscapeKey: boolean = true, allowEnterKey: boolean = true,
+           confirmButtonText:string = 'OK') {
     Swal.fire({
       icon: 'error',
       title: title + '!',
       text: msg,
-      footer: '<a href="' + link + '">' + textLink + '</a>'
+      footer: textLink ? '<a href="' + link + '">' + textLink + '</a>' : '',
+      allowOutsideClick: allowOutsideClick,
+      allowEscapeKey: allowEscapeKey,
+      allowEnterKey: allowEnterKey,
+      confirmButtonText: confirmButtonText,
     })
   }
 
@@ -41,9 +48,12 @@ export class MessagesSweetalertService {
         break;
 
       case 401:
-        let msg401_1 = "Sem Acesso!!"
-        let msg401_2 = msg ? msg : "Usuário não autorizado!, code: 401"
-        this.errorMsg(msg401_1, msg401_2, 'login', 'Login')
+        let msg401_1 = "Sessão expirada!!"
+        let msg401_2 = msg ? msg : "Sessão do usuário expirada!, code: 401"
+        this.errorMsg(msg401_1, msg401_2, '', '', false, false, true)
+        localStorage.removeItem(environment.storage_token);
+        localStorage.removeItem(environment.storage_user);
+        this.router.navigate(['login']);
         break;
 
       case 404:

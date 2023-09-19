@@ -28,6 +28,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { usuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
 import { usuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
+import { sessionUserGuard } from './services/guards/session-user.guard';
 
 const routes: Routes = [
       { 
@@ -64,7 +65,7 @@ const routes: Routes = [
     },
     
     { path: 'login', component: LoginComponent , canActivate: [usuarioNaoAutenticadoGuard]},
-    { path: '**', component: LoginComponent, canActivate: [usuarioNaoAutenticadoGuard] }
+    { path: '**', component: LoginComponent, canActivate: [usuarioNaoAutenticadoGuard]}
 ];
 
 @NgModule({

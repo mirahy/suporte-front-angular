@@ -40,7 +40,6 @@ export class UsuarioService {
 
    logout() {
     let token = this.obterTokenUsuario
-    console.log(token)
       this.api.get('logout', token)
       .then(response =>{
         localStorage.removeItem(environment.storage_token);
@@ -96,13 +95,13 @@ export class UsuarioService {
     return user ? user.permissao : '';
   }
 
-  async listaUsuarios(): Promise<Array<Usuario>> {
+  async listaUsuarios() {
     try {
       const response = await this.api.get('usuarios/lista');
       this.usuarios = Usuario.generateList(response.data);
       return this.usuarios;
     } catch (error: any) {
-      return error;
+      return this.msg.msgHttp(error.response)
     }
   }
 
@@ -137,8 +136,13 @@ export class UsuarioService {
   }
 
   async usuarioLogado() {
-    const response = await this.api.get('logado');
-    const u = new Usuario(response);
-    return u;
+    try {
+      const response = await this.api.get('logado');
+      const u = new Usuario(response.data);
+      return u;
+    } catch (error:any) {
+      this.msg.msgHttp(error.response)
+      return false
+    }
   }
 }

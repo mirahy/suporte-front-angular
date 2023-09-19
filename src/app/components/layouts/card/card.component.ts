@@ -11,8 +11,10 @@ import { AbstractComponent } from '../../../shared/components/abstract-component
 export class CardComponent extends AbstractComponent{
 @Input() title: any;
 @Input() link: any;
+@Input() titleOver: any;
 @Input() classCard: any;
 @Input() classIcon: any;
 @Input() classLink: any;
+
 
 }

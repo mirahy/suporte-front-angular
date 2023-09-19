@@ -1,5 +1,5 @@
     <div class="table-row">
-        <ng-container *ngIf="permissao && permissao == 'USUARIO' || permissao == 'ADMINISTRADOR'">
+        <ng-container *ngIf="permissao && permissao != 'USUARIO'">
             <button class="btn btn-secondary btn-dropmain" type="button" data-toggle="collapse" data-target="#solicitacoes"
              aria-expanded="true" aria-controls="multiCollapseExample2"  (click)="clickToogle()">
                 Solicitações
@@ -7,11 +7,11 @@
             </button>
             <div class="collapse in multi-collapse delay-1" id="solicitacoes">
                 <div class="card card-body delay-2">
-                    <app-card *ngIf="permissao && permissao == 'USUARIO' || permissao == 'ADMINISTRADOR'" link='/salas/create/' title='Nova Solicitação de Sala' classIcon='bi bi-file-earmark-plus'></app-card>
+                    <app-card *ngIf="permissao && permissao == 'SERVIDOR' || permissao == 'ADMINISTRADOR'" link='/salas/create/' title='Nova Solicitação de Sala' classIcon='bi bi-file-earmark-plus'></app-card>
                     <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/lote-salas' title='Lote de Solicitações de Sala' classIcon='bi bi-database-add'></app-card>
                     <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/lote-salas-simplificados' title='Lotes Simplificados' classIcon='bi bi-database-add'></app-card>
-                    <app-card *ngIf="permissao && permissao == 'USUARIO' || permissao == 'ADMINISTRADOR'" link='/salas/' title='Lista de Solicitações' classIcon='bi bi-list-check'></app-card>
-                    <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/salas/' title='Lista de Solicitações (Antiga)' classIcon='bi bi-list-check'></app-card>
+                    <app-card *ngIf="permissao && permissao == 'SERVIDOR' || permissao == 'ADMINISTRADOR'" link='/salas/' title='Lista de Solicitações' classIcon='bi bi-list-check'></app-card>
+                    <!-- <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/salas/' title='Lista de Solicitações (Antiga)' classIcon='bi bi-list-check'></app-card> -->
                 </div>
             </div>
         </ng-container>
@@ -64,6 +64,21 @@
                 <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/formulario-pessoas-estatus-lotacao/' title='Lista de Pessoas Por Lotação' classIcon='bi bi-person-down'></app-card>
                </div>
            </div>
+       </ng-container>
+       <ng-container *ngIf="permissao && permissao != 'INATIVO'">
+           <button class="btn btn-secondary btn-dropmain" type="button" data-toggle="collapse" data-target="#cursos"
+            aria-expanded="false" aria-controls="multiCollapseExample2" (click)="clickToogle()">
+                Cursos
+               <i class="bi bi-caret-down-fill" id="imgcursos"></i>
+           </button>
+           <div class="collapse {{permissao && permissao == 'USUARIO' ? 'in' : ''}} multi-collapse delay-1" id="cursos" >
+            <div class="card card-body delay-2">
+                <app-card link='#' title='Meus Cursos' titleOver='Acesse aqui os cursos que você está matriculado!!' classIcon='bi bi-journal'></app-card>
+                <app-card link='#' title='Todos os Cursos' titleOver='Lista todos os cursos da UFGD.' classIcon='bi bi-journals'></app-card>
+                <app-card link='http://webmail.academico.ufgd.edu.br/' title='Webmail UFGD Acadêmico' titleOver='Acesse seu e-mail acadêmico.' classIcon='bi bi-envelope-at'></app-card>
+                <app-card link='https://portal.ead.ufgd.edu.br/tutoriais' title='Orientações e Tutoriais' titleOver='Dicas, orientações e tutoriais!' classIcon='bi bi-question-lg'></app-card>
+            </div>
+          </div>
        </ng-container>
     </div>
 <!-- @endsection -->

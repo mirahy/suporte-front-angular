@@ -11,6 +11,7 @@ export class HomeService {
       'universidade',
       'administracao',
       'gestaoUsuarios',
+      'cursos',
     ];
     // ocultar guia aberta ao abrir outra
     jQuery('div').removeClass('in');

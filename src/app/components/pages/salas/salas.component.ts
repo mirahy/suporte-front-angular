@@ -490,9 +490,7 @@ export class SalasComponent extends AbstractComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usuarioService.usuarioLogado()
-    .then(response => {
-      this.permissao = response.permissao
+    
         this.dadosService.statusList()
           .then(response => {
             this.periodoLetivoService.getPeriodoLetivos()
@@ -550,12 +548,9 @@ export class SalasComponent extends AbstractComponent implements OnInit {
           .catch(response => {
             this.status = this.ERROR;
             console.log(response)
-          })
-      })
-      .catch(response => {
-        this.status = this.ERROR;
-        console.log(response)
-      });
+          });
+
+          this.permissao = this.usuarioService.permissao
 
 
     this.salasService.getSufixoNomeSala()

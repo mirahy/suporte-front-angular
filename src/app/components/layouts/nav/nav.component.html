@@ -34,7 +34,7 @@
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
         <!-- Left Side Of Navbar -->
         <ul class="nav navbar-nav">
-          <li class="dropdown" *ngIf="permissao && permissao !== 'INATIVO'">
+          <li class="dropdown" *ngIf="permissao && permissao !== 'USUARIO'">
             <a
               href="#"
               class="dropdown-toggle"
@@ -48,7 +48,7 @@
             </a>
             <ul class="dropdown-menu">
               <li
-                *ngIf="permissao === 'USUARIO' || permissao === 'ADMINISTRADOR'"
+                *ngIf="permissao === 'SERVIDOR' || permissao === 'ADMINISTRADOR'"
               >
                 <a href="/salas/create/"> Nova Solicitação de Sala </a>
               </li>
@@ -61,13 +61,13 @@
                 </a>
               </li>
               <li
-                *ngIf="permissao === 'USUARIO' || permissao === 'ADMINISTRADOR'"
+                *ngIf="permissao === 'SERVIDOR' || permissao === 'ADMINISTRADOR'"
               >
                 <a href="/salas/"> Lista de Solicitações </a>
               </li>
-              <li *ngIf="permissao === 'ADMINISTRADOR'">
+              <!-- <li *ngIf="permissao === 'ADMINISTRADOR'">
                 <a href="/salas-old/"> Lista de Solicitações (Antiga) </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li
@@ -184,6 +184,33 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="dropdown" *ngIf="permissao && permissao != 'INATIVO'">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                  Cursos <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li>
+                      <a href="#">
+                          Meus Cursos
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#">
+                          Todos os Cursos
+                      </a>
+                  </li>
+                  <li>
+                      <a href="http://webmail.academico.ufgd.edu.br/">
+                          Webmail UFGD Acadêmico
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://portal.ead.ufgd.edu.br/tutoriais">
+                          Orientações e Tutoriais
+                      </a>
+                  </li>
+              </ul>
           </li>
           &nbsp;
         </ul>
