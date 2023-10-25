@@ -12,7 +12,8 @@ declare var jQuery: any;
   styleUrls: ["./meus-cursos.component.css"],
 })
 export class MeusCursosComponent extends AbstractComponent implements OnInit {
-  moodles:any = '';
+  moodles:any = [];
+  emptyCursos = false;
   constructor(private cursosMoodleService: CursosMoodleService, private router: Router) {
     super();
   }
@@ -28,10 +29,24 @@ export class MeusCursosComponent extends AbstractComponent implements OnInit {
     this.cursosMoodleService.functionCollapse(id);
   }
 
+  removeLoading(){
+    jQuery('.loading')
+      .remove()
+  }
 
   ngOnInit() {
     this.cursosMoodleService.getMoodlesComCursos(6).then((response) => {
       this.moodles = response ;
+      let i = 0;
+      this.moodles.forEach((element:any) => {
+        
+          if(element.cursos.length !== 0){
+            i++
+          }
+      });
+      if(!i){
+        this.emptyCursos = true
+      } 
     });
   }
 }

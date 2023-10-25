@@ -30,6 +30,11 @@ export class TdCursosComponent extends AbstractComponent implements OnInit, Afte
        .removeClass('rowfinal')
   }
 
+  removeLoading(){
+    jQuery('.loading')
+      .remove()
+  }
+
 
   goMoodle(idMoodle:string, IdCurso:string){
     this.cursosMoodleService.goMoodle(idMoodle, IdCurso).then((response) => {
