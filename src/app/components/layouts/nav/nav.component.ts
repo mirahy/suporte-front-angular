@@ -12,6 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NavComponent extends AbstractComponent implements OnInit {
   permissao:string = '';
+  keepuser:boolean = false;
   nomeSobrenome :any;
   mostrarNavbar: boolean = false;
 
@@ -41,6 +42,7 @@ export class NavComponent extends AbstractComponent implements OnInit {
         // Verifique se existe usuário logado
         this.mostrarNavbar = this.usuarioService.logado
         this.permissao = this.usuarioService.permissao
+        this.keepuser = this.usuarioService.keepUser;
         this.nomeSobrenome = this.usuarioService.firstLastNameUser 
       }
     });

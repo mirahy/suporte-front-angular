@@ -13,7 +13,7 @@ declare const jQuery: any;
 })
 export class HomeComponent extends AbstractComponent implements OnInit {
   permissao:string = '';
-
+  keepuser:boolean = false;
   constructor(private homeservice: HomeService,
               private usuarioService: UsuarioService) {
     super();
@@ -26,6 +26,7 @@ export class HomeComponent extends AbstractComponent implements OnInit {
 
   ngOnInit(): void {
     this.permissao = this.usuarioService.permissao;
+    this.keepuser = this.usuarioService.keepUser;
 }
 
 

@@ -48,7 +48,7 @@
                </div>
            </div>
        </ng-container>
-       <ng-container *ngIf="permissao && permissao == 'ADMINISTRADOR'">
+       <ng-container *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true">
            <button class="btn btn-secondary btn-dropmain" type="button" data-toggle="collapse" data-target="#gestaoUsuarios"
             aria-expanded="false" aria-controls="multiCollapseExample2" (click)="clickToogle()">
                Gestão Usuários
@@ -56,12 +56,12 @@
            </button>
            <div class="collapse multi-collapse delay-1" id="gestaoUsuarios">
                <div class="card card-body delay-2">
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/formulario-insere-usuarios/' title='Inserir Usuários Moodle' classIcon='bi bi-person-add'></app-card>
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/formulario-insere-ad/' title='Inserir Usuários AD' classIcon='bi bi-person-add'></app-card>
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/formulario-altera-usuario/' title='Alterar Senha Usuários AD' classIcon='bi bi-person-lock'></app-card>
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/usuarios/' title='Lista de Usuários' classIcon='bi bi-person-lines-fill'></app-card>
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/roles/' title='Perfis - Acessos' classIcon='bi bi-shield-lock'></app-card>
-                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR'" link='/formulario-pessoas-estatus-lotacao/' title='Lista de Pessoas Por Lotação' classIcon='bi bi-person-down'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/formulario-insere-usuarios/' title='Inserir Usuários Moodle' classIcon='bi bi-person-add'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/formulario-insere-ad/' title='Inserir Usuários AD' classIcon='bi bi-person-add'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/formulario-altera-usuario/' title='Alterar Senha Usuários AD' classIcon='bi bi-person-lock'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/usuarios/' title='Lista de Usuários' classIcon='bi bi-person-lines-fill'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/roles/' title='Perfis - Acessos' classIcon='bi bi-shield-lock'></app-card>
+                <app-card *ngIf="permissao && permissao == 'ADMINISTRADOR' && keepuser === true" link='/formulario-pessoas-estatus-lotacao/' title='Lista de Pessoas Por Lotação' classIcon='bi bi-person-down'></app-card>
                </div>
            </div>
        </ng-container>

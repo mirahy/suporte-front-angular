@@ -95,6 +95,11 @@ export class UsuarioService {
     return user ? user.permissao : '';
   }
 
+  get keepUser() {
+    const user = this.logado ? this.obterUsuarioLogado : null;
+    return user ? user.keepUser : '';
+  }
+
   async listaUsuarios() {
     try {
       const response = await this.api.get('usuarios/lista');
