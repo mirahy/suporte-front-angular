@@ -99,8 +99,9 @@ import { CardComponent } from './components/layouts/card/card.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { SalaEditorComponent } from './components/pages/salas/sala-editor/sala-editor.component';
 import { ApiRequestsService } from './services/api-requests.service';
-import { MeusCursosComponent } from './components/meus-cursos/meus-cursos.component';
-import { TdCursosComponent } from './components/td-cursos/td-cursos.component';
+import { MeusCursosComponent } from './components/pages/meus-cursos/meus-cursos.component';
+import { TdCursosComponent } from './components/pages/td-cursos/td-cursos.component';
+import { CursosMoodleService } from './services/cursos-moodle.service';
 
 
 @NgModule({
@@ -178,6 +179,7 @@ import { TdCursosComponent } from './components/td-cursos/td-cursos.component';
         MatButtonModule,
         MatDividerModule,
         ReactiveFormsModule,
+        CommonModule,
     ],
     providers: [
         SalasService,
@@ -208,6 +210,7 @@ import { TdCursosComponent } from './components/td-cursos/td-cursos.component';
         HomeService,
         ApiRequestsService,
         NavComponent,
+        CursosMoodleService,
     ],
     bootstrap: [
         AppComponent
