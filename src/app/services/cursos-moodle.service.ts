@@ -19,7 +19,7 @@ export class CursosMoodleService {
       });
   }
 
-  async getMoodlesComCursos(paramMeses = 6) {
+  async getMoodlesComCursos(paramMeses: Number) {
     let meses  = {'ultimosMeses' : paramMeses}
     return this.api
       .post("get-meus-cursos", meses)

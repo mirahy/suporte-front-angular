@@ -30,7 +30,7 @@ export class MeusCursosComponent extends AbstractComponent implements OnInit {
 
 
   ngOnInit() {
-    this.cursosMoodleService.getMoodlesComCursos().then((response) => {
+    this.cursosMoodleService.getMoodlesComCursos(6).then((response) => {
       this.moodles = response ;
     });
   }
