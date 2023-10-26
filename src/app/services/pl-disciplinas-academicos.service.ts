@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { PlDisciplinasAcademicos } from '../components/pages/pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { ArrayIndexador } from '../shared/array-indexador';
-import { Estudante } from '../components/pages/pl-disciplinas-academicos/estudante';
+import { Estudante } from '../models/estudante';
 import { HttpClient } from '@angular/common/http';
-import { Curso } from '../components/pages/cursos/curso';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
+import { Curso } from '../models/curso';
+import { PeriodoLetivo } from '../models/periodo-letivo';
+import { TempWebRequestsService } from './temp-web-requests.service';
 
 @Injectable()
 export class PlDisciplinasAcademicosService {
@@ -14,15 +15,16 @@ export class PlDisciplinasAcademicosService {
     plDisciplinasAcademicosNameIndex:ArrayIndexador<PlDisciplinasAcademicos> | undefined;
     //plDisciplinasAcademicosCodigoIndex:ArrayIndexador<PlDisciplinasAcademicos> = null;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private web:TempWebRequestsService) { }
 
     getPlDisciplinasAcademicos(periodoLetivoId:unknown, cursoId:unknown, cursosKeyIndex?:ArrayIndexador<Curso>, periodoLetivosNomeIndex?:ArrayIndexador<PeriodoLetivo>|any) {
-        return this.http.get("/pl-disciplinas-academicos/find/" + periodoLetivoId + "/" + cursoId).toPromise()
+        return this.web.get("pl-disciplinas-academicos/find/" + periodoLetivoId + "/" + cursoId)
+        // return this.http.get("/pl-disciplinas-academicos/find/" + periodoLetivoId + "/" + cursoId).toPromise()
             .then((response:any) => {
                 if (cursosKeyIndex)
-                    this.plDisciplinasAcademicos = PlDisciplinasAcademicos.generateListPlus(response.json(), cursosKeyIndex, periodoLetivosNomeIndex);
+                    this.plDisciplinasAcademicos = PlDisciplinasAcademicos.generateListPlus(response.data, cursosKeyIndex, periodoLetivosNomeIndex);
                 else 
-                    this.plDisciplinasAcademicos = PlDisciplinasAcademicos.generateList(response.json());
+                    this.plDisciplinasAcademicos = PlDisciplinasAcademicos.generateList(response.data);
                 this.plDisciplinasAcademicos = this.difereTurmas(this.plDisciplinasAcademicos);
                 this.plDisciplinasAcademicosNameIndex = new ArrayIndexador<PlDisciplinasAcademicos>(this.plDisciplinasAcademicos,"disciplina");
                 //this.plDisciplinasAcademicosNameIndex = new ArrayIndexador<PlDisciplinasAcademicos>(this.plDisciplinasAcademicos,"disciplina_key");

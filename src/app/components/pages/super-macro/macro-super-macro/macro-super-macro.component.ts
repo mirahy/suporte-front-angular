@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponentChild } from 'src/app/shared/components/abstract-component-child';
 import { MacroSuperMacroService } from 'src/app/services/macro-super-macro.service';
 import { MacroService } from 'src/app/services/macro.service';
-import { Macro } from '../../macro/macro';
+import { Macro } from '../../../../models/macro';
 import { SuperMacroService } from 'src/app/services/super-macro.service';
-import { MacroSuperMacro } from './macro-super-macro';
+import { MacroSuperMacro } from '../../../../models/macro-super-macro';
 
 @Component({
 	selector: 'app-macro-super-macro',

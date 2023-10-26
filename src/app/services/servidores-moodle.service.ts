@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ServidorMoodle } from '../components/pages/servidores-moodle/servidor-moodle';
+import { ServidorMoodle } from '../models/servidor-moodle';
 import { ArrayIndexador } from '../shared/array-indexador';
-import { Estudante } from '../components/pages/pl-disciplinas-academicos/estudante';
+import { Estudante } from '../models/estudante';
 import { HttpClient } from '@angular/common/http';
+import { TempWebRequestsService } from './temp-web-requests.service';
 
 @Injectable()
 export class ServidoresMoodleService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private web:TempWebRequestsService) { }
 
     servidoresMoodle: Array<ServidorMoodle> = [];
     servidoresMoodleIndex: ArrayIndexador<ServidorMoodle> = new ArrayIndexador([]);
@@ -28,9 +29,10 @@ export class ServidoresMoodleService {
     }
 
     getLinksServidoresMoodle () {
-        return this.http.get("/servidores-moodle/links").toPromise()
+        return this.web.get("servidores-moodle/links")
+        // return this.http.get("/servidores-moodle/links").toPromise()
             .then((response:any) => {
-                return response.json();
+                return response.data;
             });
     }
 

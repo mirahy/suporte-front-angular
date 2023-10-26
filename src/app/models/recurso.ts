@@ -1,4 +1,4 @@
-import { Usuario } from '../usuarios/usuario';
+import { Usuario } from './usuario';
 
 export class Recurso {
     id:number|any;

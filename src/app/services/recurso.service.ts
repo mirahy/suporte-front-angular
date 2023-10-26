@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Recurso } from '../components/pages/recurso/recurso';
-import { Usuario } from '../components/pages/usuarios/usuario';
+import { Recurso } from '../models/recurso';
+import { Usuario } from '../models/usuario';
 
 @Injectable()
 export class RecursoService {

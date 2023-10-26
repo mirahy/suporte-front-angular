@@ -1,6 +1,6 @@
 import { ArrayIndexador } from 'src/app/shared/array-indexador';
-import { Macro } from '../../macro/macro';
-import { SuperMacro } from '../super-macro';
+import { Macro } from './macro';
+import { SuperMacro } from './super-macro';
 
 export class MacroSuperMacro {
     id: number|any;

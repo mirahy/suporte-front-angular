@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../components/pages/usuarios/usuario';
+import { Usuario } from '../models/usuario';
 import { ApiRequestsService } from './api-requests.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';

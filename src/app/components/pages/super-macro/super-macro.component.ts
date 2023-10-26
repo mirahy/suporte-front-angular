@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { MacroSuperMacroService } from 'src/app/services/macro-super-macro.service';
 import { MacroService } from 'src/app/services/macro.service';
-import { Macro } from '../macro/macro';
+import { Macro } from '../../../models/macro';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { SuperMacroService } from 'src/app/services/super-macro.service';
-import { SuperMacro } from './super-macro';
+import { SuperMacro } from '../../../models/super-macro';
 declare var jQuery: any;
 
 @Component({

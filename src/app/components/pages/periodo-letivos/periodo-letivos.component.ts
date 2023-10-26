@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
-import { PeriodoLetivo } from './periodo-letivo';
+import { PeriodoLetivo } from '../../../models/periodo-letivo';
 declare var jQuery: any;
 
 @Component({

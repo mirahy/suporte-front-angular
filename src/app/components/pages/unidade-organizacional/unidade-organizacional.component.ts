@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { UnidadeOrganizacionalService } from 'src/app/services/unidade-organizacional.service';
-import { UnidadeOrganizacional } from './unidade-organizacional';
+import { UnidadeOrganizacional } from '../../../models/unidade-organizacional';
 declare var jQuery: any;
 
 @Component({

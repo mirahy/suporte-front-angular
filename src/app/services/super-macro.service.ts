@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ArrayIndexador } from '../shared/array-indexador';
 import { MacroService } from './macro.service';
 import { PeriodoLetivosService } from './periodo-letivos.service';
-import { SuperMacro } from '../components/pages/super-macro/super-macro';
+import { SuperMacro } from '../models/super-macro';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

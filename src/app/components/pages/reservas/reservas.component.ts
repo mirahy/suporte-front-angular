@@ -9,12 +9,12 @@ import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import { Redimensionavel } from 'src/app/shared/redimensionavel';
 import { DadosService } from 'src/app/services/dados.service';
 import { ThemeService } from 'src/app/services/theme.service';
-import { Theme } from '../agenda/theme';
+import { Theme } from '../../../models/theme';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
-import { EventoReserva } from './evento';
+import { EventoReserva } from '../../../models/evento-reserva';
 import { ReservasService } from 'src/app/services/reservas.service';
-import { Usuario } from '../usuarios/usuario';
-import { Recurso } from '../recurso/recurso';
+import { Usuario } from '../../../models/usuario';
+import { Recurso } from '../../../models/recurso';
 import { Status } from 'src/app/shared/status';
 declare var jQuery: any;
 

@@ -7,7 +7,7 @@ import { SalaSimplificadaService } from 'src/app/services/sala-simplificada.serv
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 import { SuperMacroService } from 'src/app/services/super-macro.service';
 import { GrupoLotesSimplificado } from './grupo-lotes-simplificado';
-import { LoteSalasSimplificado } from './lote-salas-simplificado';
+import { LoteSalasSimplificado } from '../../../models/lote-salas-simplificado';
 declare var jQuery: any;
 
 @Component({

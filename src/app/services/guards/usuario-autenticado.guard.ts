@@ -10,7 +10,7 @@ export const usuarioAutenticadoGuard: CanActivateFn = (route, state) => {
   const router: Router = inject(Router)
   if(usuarioService.logado){
     if(!environment.production)
-        console.log(usuarioService.obterTokenUsuario)
+        // console.log(usuarioService.obterTokenUsuario)
     return true;
   }
   router.navigate(['login'])

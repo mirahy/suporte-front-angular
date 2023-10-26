@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { AbstractPLDAComponentInterface } from 'src/app/shared/components/abstract-plda-component-interface';
 import { Arvore } from 'src/app/shared/arvore';
-import { Estudante } from '../../pl-disciplinas-academicos/estudante';
+import { Estudante } from '../../../../models/estudante';
 import { PlDisciplinasAcademicos } from '../../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 import { UnidadeOrganizacionalService } from 'src/app/services/unidade-organizacional.service';

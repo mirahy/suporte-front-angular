@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SalaOld } from '../components/pages/salas-old/sala-old';
+import { SalaOld } from '../models/sala-old';
 
 
 @Injectable(

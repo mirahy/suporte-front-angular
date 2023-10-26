@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { PeriodoLetivosCategoriasService } from 'src/app/services/periodo-letivos-categorias.service';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../../../models/periodo-letivo';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
 import { CursosService } from 'src/app/services/cursos.service';
-import { Curso } from '../cursos/curso';
+import { Curso } from '../../../models/curso';
 
 @Component({
     selector: 'app-periodo-letivos-categorias',

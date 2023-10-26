@@ -3,8 +3,8 @@ import { ArrayIndexador } from '../shared/array-indexador';
 import { MacroService } from './macro.service';
 import { PeriodoLetivosService } from './periodo-letivos.service';
 import { SuperMacroService } from './super-macro.service';
-import { MacroSuperMacro } from '../components/pages/super-macro/macro-super-macro/macro-super-macro';
-import { SuperMacro } from '../components/pages/super-macro/super-macro';
+import { MacroSuperMacro } from '../models/macro-super-macro';
+import { SuperMacro } from '../models/super-macro';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

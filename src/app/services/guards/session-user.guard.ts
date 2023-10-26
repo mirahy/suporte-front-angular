@@ -3,7 +3,7 @@ import { UsuarioService } from '../usuario.service';
 import { environment } from 'src/environments/environment';
 import { inject } from '@angular/core';
 import { MessagesSweetalertService } from '../messages-sweetalert.service';
-import { Usuario } from 'src/app/components/pages/usuarios/usuario';
+import { Usuario } from 'src/app/models/usuario';
 
 export const sessionUserGuard: CanActivateFn = (route, state) => {
   

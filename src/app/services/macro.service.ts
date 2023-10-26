@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Arquivo } from '../components/pages/arquivo/arquivo';
-import { Macro } from '../components/pages/macro/macro';
-import { Buscador } from '../components/pages/buscadores/buscador';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
+import { Arquivo } from '../models/arquivo';
+import { Macro } from '../models/macro';
+import { Buscador } from '../models/buscador';
+import { PeriodoLetivo } from '../models/periodo-letivo';
 import { PeriodoLetivosService } from './periodo-letivos.service';
 
 @Injectable()

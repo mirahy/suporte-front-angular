@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MacroService } from 'src/app/services/macro.service';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
-import { Macro } from './macro';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
+import { Macro } from '../../../models/macro';
+import { PeriodoLetivo } from '../../../models/periodo-letivo';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 declare var jQuery: any;

@@ -3,16 +3,16 @@ import { AbstractComponent } from 'src/app/shared/components/abstract-component'
 import { CursosService } from 'src/app/services/cursos.service';
 import { DadosService } from 'src/app/services/dados.service';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
-import { Faculdade } from '../../faculdades/faculdade';
+import { Faculdade } from '../../../../models/faculdade';
 import { MacroService } from 'src/app/services/macro.service';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
-import { PeriodoLetivo } from '../../periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../../../../models/periodo-letivo';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
-import { Estudante } from '../../pl-disciplinas-academicos/estudante';
+import { Estudante } from '../../../../models/estudante';
 import { SalasService } from 'src/app/services/SalasService';
-import { Sala } from '../../salas/sala';
+import { Sala } from '../../../../models/sala';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from '../../usuarios/usuario';
+import { Usuario } from '../../../../models/usuario';
 
 @Component({
     selector: 'app-cria-lote-salas',

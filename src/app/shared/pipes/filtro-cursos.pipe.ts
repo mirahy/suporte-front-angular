@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Faculdade } from 'src/app/components/pages/faculdades/faculdade';
-import { Curso } from 'src/app/components/pages/cursos/curso';
+import { Faculdade } from 'src/app/models/faculdade';
+import { Curso } from 'src/app/models/curso';
 
 @Pipe({
     name: 'filtroCursos'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { RecursoService } from 'src/app/services/recurso.service';
-import { Recurso } from './recurso';
+import { Recurso } from '../../../models/recurso';
 
 @Component({
     selector: 'app-recurso',

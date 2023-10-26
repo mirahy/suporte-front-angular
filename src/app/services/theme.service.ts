@@ -1,7 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Theme } from '../components/pages/agenda/theme';
+import { Theme } from '../models/theme';
 import { Subject, Observable } from 'rxjs';
 
 

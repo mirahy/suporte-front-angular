@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Faculdade } from '../faculdades/faculdade';
+import { Faculdade } from '../../../models/faculdade';
 import { CursosService } from '../../../services/cursos.service';
 import { AbstractComponentChild } from '../../../shared/components/abstract-component-child';
-import { Curso } from './curso';
+import { Curso } from '../../../models/curso';
 declare var jQuery: any;
 
 @Component({

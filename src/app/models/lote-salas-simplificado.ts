@@ -1,6 +1,6 @@
 import { ArrayIndexador } from "src/app/shared/array-indexador";
-import { ServidorMoodle } from "../servidores-moodle/servidor-moodle";
-import { SuperMacro } from "../super-macro/super-macro";
+import { ServidorMoodle } from "./servidor-moodle";
+import { SuperMacro } from "./super-macro";
 
 export class LoteSalasSimplificado {
     id: number;

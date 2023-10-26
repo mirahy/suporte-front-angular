@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Curso } from '../components/pages/cursos/curso';
+import { Curso } from '../models/curso';
 import { ArrayIndexador } from '../shared/array-indexador';
-import { Faculdade } from '../components/pages/faculdades/faculdade';
+import { Faculdade } from '../models/faculdade';
 import { HttpClient } from '@angular/common/http';
 
 

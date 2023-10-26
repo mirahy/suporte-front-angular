@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponentChild } from 'src/app/shared/components/abstract-component-child';
 import { DadosService } from 'src/app/services/dados.service';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
-import { Faculdade } from '../../faculdades/faculdade';
+import { Faculdade } from '../../../../models/faculdade';
 import { MacroService } from 'src/app/services/macro.service';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
-import { PeriodoLetivo } from '../../periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../../../../models/periodo-letivo';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
 import { PlDisciplinasAcademicos } from '../../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { SalasService } from 'src/app/services/SalasService';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from '../../usuarios/usuario';
-import { Sala } from '../sala';
+import { Usuario } from '../../../../models/usuario';
+import { Sala } from '../../../../models/sala';
 declare var jQuery: any;
 
 @Component({

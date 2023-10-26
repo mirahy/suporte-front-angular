@@ -1,4 +1,4 @@
-import { Usuario } from '../usuarios/usuario';
+import { Usuario } from './usuario';
 import { Status } from 'src/app/shared/status';
 
 export class EventoReserva {

@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { SalasService } from 'src/app/services/SalasService';
-import { Sala } from '../sala';
+import { Sala } from '../../../../models/sala';
 import { Status } from 'src/app/shared/status';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
-import { Faculdade } from '../../faculdades/faculdade';
+import { Faculdade } from '../../../../models/faculdade';
 import { CursosService } from 'src/app/services/cursos.service';
 import { PlDisciplinasAcademicos } from '../../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from '../../usuarios/usuario';
-import { PeriodoLetivo } from '../../periodo-letivos/periodo-letivo';
+import { Usuario } from '../../../../models/usuario';
+import { PeriodoLetivo } from '../../../../models/periodo-letivo';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { ActivatedRoute } from '@angular/router';
-import { Curso } from '../../cursos/curso';
+import { Curso } from '../../../../models/curso';
 declare var jQuery: any;
 
 const Swal = require('sweetalert2')
@@ -164,7 +164,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
           this.mensagemDialog = "Buscando dados no moodle..."
           this.salasService.getSalaMoodle(id['id'].value, this.sala)
             .then((r:any) => {
-              var result = r.json()
+              var result = r.data
               var salas = result.enrolledcourses;
               if (salas != null)
                 salas.forEach((element:any) => {
@@ -349,7 +349,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
                             var chargeParams:any = this.checaIfChargedSala();
                             if (chargeParams) {
                               this.salasService.chargeSala(this.sala, chargeParams.periodoLetivoKey, chargeParams.codigoCurso, chargeParams.codigoDisciplina, chargeParams.salaTurma)
-                                .then(r => {
+                                .then(r => {  
                                   //jQuery('#dialogMensagem').modal('hide');
                                   if (this.sala.curso) {
                                     this.faculdadeSelecionadaId = (<Faculdade>(<Curso>this.sala.curso).faculdade).id.toString();
@@ -359,7 +359,7 @@ export class CriaSalasComponent extends AbstractComponent implements OnInit {
                                   }
                                   else
                                     jQuery('#dialogMensagem').modal('hide');
-                                  this.editavel = true;
+                                  this.editavel = true;       
                                 }).catch(response => {
                                   Swal.fire({
                                     icon: 'error',

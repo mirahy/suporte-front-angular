@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalasOldService } from 'src/app/services/salas-old.service';
-import { SalaOld } from './sala-old';
+import { SalaOld } from '../../../models/sala-old';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { DadosService } from 'src/app/services/dados.service';
 import { Status } from 'src/app/shared/status';

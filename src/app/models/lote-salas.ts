@@ -1,8 +1,8 @@
 import { ArrayIndexador } from 'src/app/shared/array-indexador';
-import { Curso } from '../cursos/curso';
-import { Faculdade } from '../faculdades/faculdade';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
-import { Sala } from '../salas/sala';
+import { Curso } from './curso';
+import { Faculdade } from './faculdade';
+import { PeriodoLetivo } from './periodo-letivo';
+import { Sala } from './sala';
 
 export class LoteSalas {
     id: number;

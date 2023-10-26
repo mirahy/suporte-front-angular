@@ -1,7 +1,7 @@
 import { ArrayIndexador } from 'src/app/shared/array-indexador';
-import { Curso } from '../cursos/curso';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
-import { Estudante } from './estudante';
+import { Curso } from '../../../models/curso';
+import { PeriodoLetivo } from '../../../models/periodo-letivo';
+import { Estudante } from '../../../models/estudante';
 
 export class PlDisciplinasAcademicos {
     id: number;

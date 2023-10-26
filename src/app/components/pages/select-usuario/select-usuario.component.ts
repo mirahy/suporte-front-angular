@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
-import { Usuario } from '../usuarios/usuario';
+import { Usuario } from '../../../models/usuario';
 import { RecursoService } from 'src/app/services/recurso.service';
 
 

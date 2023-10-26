@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PeriodoLetivoCategoria } from '../components/pages/periodo-letivos-categorias/periodo-letivo-categoria';
+import { PeriodoLetivoCategoria } from '../models/periodo-letivo-categoria';
 import { ArrayIndexador } from '../shared/array-indexador';
 
 @Injectable()

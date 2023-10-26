@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { ArrayIndexador } from '../shared/array-indexador';
 import { CursosService } from './cursos.service';
 import { LoteSalasSimplificadoService } from './lote-salas-simplificado.service';
-import { LoteSalasSimplificado } from '../components/pages/lote-salas-simplificado/lote-salas-simplificado';
+import { LoteSalasSimplificado } from '../models/lote-salas-simplificado';
 import { PeriodoLetivosService } from './periodo-letivos.service';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../models/periodo-letivo';
 import { PlDisciplinasAcademicos } from '../components/pages/pl-disciplinas-academicos/pl-disciplinas-academicos';
-import { SalaSimplificada } from '../components/pages/sala-simplificada/sala-simplificada';
+import { SalaSimplificada } from '../models/sala-simplificada';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

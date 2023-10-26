@@ -3,10 +3,10 @@ import { AbstractComponentChild } from 'src/app/shared/components/abstract-compo
 import { AbstractPLDAComponentInterface } from 'src/app/shared/components/abstract-plda-component-interface';
 import { CursosService } from 'src/app/services/cursos.service';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
-import { Faculdade } from '../../faculdades/faculdade';
+import { Faculdade } from '../../../../models/faculdade';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
-import { Estudante } from '../estudante';
+import { Estudante } from '../../../../models/estudante';
 import { PlDisciplinasAcademicos } from '../pl-disciplinas-academicos';
 declare var jQuery: any;
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ArrayIndexador } from '../shared/array-indexador';
 import { Arvore } from '../shared/arvore';
-import { Estudante } from '../components/pages/pl-disciplinas-academicos/estudante';
-import { UnidadeOrganizacional } from '../components/pages/unidade-organizacional/unidade-organizacional';
+import { Estudante } from '../models/estudante';
+import { UnidadeOrganizacional } from '../models/unidade-organizacional';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

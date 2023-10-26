@@ -12,9 +12,9 @@ import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import { Redimensionavel } from 'src/app/shared/redimensionavel';
 import { DadosService } from 'src/app/services/dados.service';
 import { ThemeService } from 'src/app/services/theme.service';
-import { Theme } from './theme';
+import { Theme } from '../../../models/theme';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
-import { EventoGerador } from './evento';
+import { EventoGerador } from '../../../models/evento-gerador';
 import { AgendaService } from 'src/app/services/agenda.service';
 declare const jQuery: any;
 

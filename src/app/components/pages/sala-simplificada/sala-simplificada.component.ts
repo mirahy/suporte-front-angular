@@ -4,12 +4,12 @@ import { CursosService } from 'src/app/services/cursos.service';
 import { LoteSalasSimplificadoService } from 'src/app/services/lote-salas-simplificado.service';
 import { MacroService } from 'src/app/services/macro.service';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../../../models/periodo-letivo';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
 import { PlDisciplinasAcademicos } from '../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { SalaSimplificadaService } from 'src/app/services/sala-simplificada.service';
-import { Usuario } from '../usuarios/usuario';
-import { SalaSimplificada } from './sala-simplificada';
+import { Usuario } from '../../../models/usuario';
+import { SalaSimplificada } from '../../../models/sala-simplificada';
 import { AbstractComponentChild } from 'src/app/shared/components/abstract-component-child';
 declare var jQuery: any;
 

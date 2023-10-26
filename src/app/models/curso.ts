@@ -1,4 +1,4 @@
-import { Faculdade } from '../faculdades/faculdade';
+import { Faculdade } from './faculdade';
 
 export class Curso {
     id: number;

@@ -1,5 +1,5 @@
-import { Curso } from '../cursos/curso';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
+import { Curso } from './curso';
+import { PeriodoLetivo } from './periodo-letivo';
 
 export class PeriodoLetivoCategoria {
     id: number;

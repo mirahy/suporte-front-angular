@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { AbstractPLDAComponentInterface } from 'src/app/shared/components/abstract-plda-component-interface';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
-import { Estudante } from '../../pl-disciplinas-academicos/estudante';
+import { Estudante } from '../../../../models/estudante';
 import { PlDisciplinasAcademicos } from '../../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 declare var jQuery: any;

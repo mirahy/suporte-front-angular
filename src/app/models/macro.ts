@@ -1,6 +1,6 @@
-import { Arquivo } from '../arquivo/arquivo';
-import { Buscador } from '../buscadores/buscador';
-import { PeriodoLetivo } from '../periodo-letivos/periodo-letivo';
+import { Arquivo } from './arquivo';
+import { Buscador } from './buscador';
+import { PeriodoLetivo } from './periodo-letivo';
 
 export class Macro {
     id: number;

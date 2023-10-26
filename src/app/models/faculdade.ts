@@ -1,4 +1,4 @@
-import { Curso } from '../cursos/curso';
+import { Curso } from './curso';
 import { Persistente } from 'src/app/shared/persistente';
 
 export class Faculdade implements Persistente{

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Status } from '../shared/status';
-import { Sala } from '../components/pages/salas/sala';
+import { Sala } from '../models/sala';
 import { CursosService } from './cursos.service';
 import { PlDisciplinasAcademicos } from '../components/pages/pl-disciplinas-academicos/pl-disciplinas-academicos';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../models/periodo-letivo';
 import { PeriodoLetivosService } from './periodo-letivos.service';
 import { ServidoresMoodleService } from './servidores-moodle.service';
 import { environment } from 'src/environments/environment';
+import { TempWebRequestsService } from './temp-web-requests.service';
 
+const Swal = require('sweetalert2')
 
 @Injectable()
 export class SalasService {
@@ -19,7 +21,7 @@ export class SalasService {
 
 
   constructor(private http: HttpClient, private cursosService: CursosService, private periodoLetivoService: PeriodoLetivosService,
-    private servidoresMoodleService: ServidoresMoodleService) { }
+    private servidoresMoodleService: ServidoresMoodleService, private web:TempWebRequestsService) { }
 
   atualizarSala(sala: Sala): Promise<boolean> {
     return this.http.post(environment.api_url + 'salas/' + sala.id, sala)
@@ -69,13 +71,19 @@ export class SalasService {
 
   getSalaMoodle(id:unknown, sala:unknown) {
 
-    return this.http.post("/salas/sala-moodle/" + id, sala)
-      .toPromise()
+    return this.web.post("salas/sala-moodle/" + id, sala)
       .then(response => {
         return response;
+      }).catch(response => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro!',
+          text: response.response.data.message,
+          confirmButtonColor: '#025310',
+        });
       });
 
-  }
+}
 
   statusSala(sala: Sala, status: string, mensagem: string): Promise<any> {
     return this.http.patch('/salas/status/' + sala.id, { status: status, mensagem: mensagem })
@@ -90,9 +98,10 @@ export class SalasService {
       });
   }
   preparaCreate() {
-    return this.http.get("/salas/preparacreate").toPromise()
+    return this.web.get('salas/preparacreate')
+    // return this.http.get("/salas/preparacreate").toPromise()
       .then((response:any) => {
-        var r = response.json();
+        var r = response.data;
         var s = Sala.geraNovaSala();
         s.nome_professor = r.nome_professor;
         s.email = r.email;
@@ -135,17 +144,19 @@ export class SalasService {
       });
   }
   getModalidades() {
-    return this.http.get('/salas/modalidades').toPromise()
+    return this.web.get('salas/modalidades')
+    // return this.http.get('/salas/modalidades').toPromise()
       .then((response:any) => {
-        var m = response.json();
+        var m = response.data;
         this.modalidades = m;
         return m;
       });
   }
   getObjetivosSalas() {
-    return this.http.get('/salas/objetivos').toPromise()
+    return this.web.get('salas/objetivos')
+    // return this.http.get('/salas/objetivos').toPromise()
       .then((response:any) => {
-        var o = response.json();
+        var o = response.data;
         this.objetivosSalas = o;
         return o;
       });
@@ -218,10 +229,13 @@ export class SalasService {
     return sala;
   }
   chargeSala(sala: Sala, plKey:unknown, codigoCurso:unknown, codigoDiscoplina:unknown, salaTurma:unknown) {
-    return this.http.get('/salas/charge/' + plKey + "/" + codigoCurso + "/" + codigoDiscoplina + "/" + salaTurma).toPromise()
+    console.log('/salas/charge/' + plKey + "/" + codigoCurso + "/" + codigoDiscoplina + "/" + salaTurma)
+    return this.web.get('/salas/charge/' + plKey + "/" + codigoCurso + "/" + codigoDiscoplina + "/" + salaTurma)
+    // return this.http.get('/salas/charge/' + plKey + "/" + codigoCurso + "/" + codigoDiscoplina + "/" + salaTurma).toPromise()
       .then((response:any) => {
-        if (response.text()) {
-          var s = response.json();
+        if (response) {
+          console.log(response)
+          var s = response.data;
           this.convertChargedSala(s, sala);
         }
         return sala;

@@ -1,5 +1,5 @@
 import { Status } from 'src/app/shared/status';
-import { Curso } from '../cursos/curso';
+import { Curso } from './curso';
 import { ArrayIndexador } from 'src/app/shared/array-indexador';
 
 export class Sala {

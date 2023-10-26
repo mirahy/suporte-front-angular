@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ArrayIndexador } from '../shared/array-indexador';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
+import { PeriodoLetivo } from '../models/periodo-letivo';
 import { ApiRequestsService } from './api-requests.service';
 import { MessagesSweetalertService } from './messages-sweetalert.service';
 import { AxiosResponse } from 'axios';
@@ -22,7 +22,6 @@ export class PeriodoLetivosService {
     async getPeriodoLetivos() {
         try {
             const response =  await this.api.get("periodo-letivos/all")
-            console.log(response)
             var pls = response.data;
             this.periodoLetivos = [];
             this.periodoLetivosIndex = {};

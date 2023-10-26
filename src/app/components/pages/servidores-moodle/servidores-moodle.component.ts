@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
-import { ServidorMoodle } from './servidor-moodle';
+import { ServidorMoodle } from '../../../models/servidor-moodle';
 declare var jQuery: any;
 
 @Component({

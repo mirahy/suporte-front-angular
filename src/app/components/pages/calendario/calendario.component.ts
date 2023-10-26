@@ -13,8 +13,8 @@ import { DadosService } from 'src/app/services/dados.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { AgendaService } from 'src/app/services/agenda.service';
-import { Theme } from '../agenda/theme';
-import { EventoGerador } from '../agenda/evento';
+import { Theme } from '../../../models/theme';
+import { EventoGerador } from '../../../models/evento-gerador';
 declare var jQuery: any;
 
 @Component({

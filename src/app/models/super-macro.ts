@@ -1,4 +1,4 @@
-import { Macro } from '../macro/macro';
+import { Macro } from './macro';
 
 export class SuperMacro {
     id: number;

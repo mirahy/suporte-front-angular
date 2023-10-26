@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { EventoReserva } from '../components/pages/reservas/evento';
+import { EventoReserva } from '../models/evento-reserva';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../components/pages/usuarios/usuario';
+import { Usuario } from '../models/usuario';
 import { DadosService } from './dados.service';
-import { Recurso } from '../components/pages/recurso/recurso';
+import { Recurso } from '../models/recurso';
 
 @Injectable()
 export class ReservasService {

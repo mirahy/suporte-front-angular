@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ArrayIndexador } from '../shared/array-indexador';
 import { GrupoLotesSimplificado } from '../components/pages/lote-salas-simplificado/grupo-lotes-simplificado';
-import { LoteSalasSimplificado } from '../components/pages/lote-salas-simplificado/lote-salas-simplificado';
+import { LoteSalasSimplificado } from '../models/lote-salas-simplificado';
 import { ServidoresMoodleService } from './servidores-moodle.service';
 import { SuperMacroService } from './super-macro.service';
 import { HttpClient } from '@angular/common/http';

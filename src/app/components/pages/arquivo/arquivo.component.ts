@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MacroService } from 'src/app/services/macro.service';
 import { AbstractComponentChild } from 'src/app/shared/components/abstract-component-child';
-import { Arquivo } from './arquivo';
+import { Arquivo } from '../../../models/arquivo';
 import { MacroComponent } from '../macro/macro.component';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ArrayIndexador } from '../shared/array-indexador';
-import { Curso } from '../components/pages/cursos/curso';
-import { Faculdade } from '../components/pages/faculdades/faculdade';
-import { LoteSalas } from '../components/pages/lote-salas/lote-salas';
-import { PeriodoLetivo } from '../components/pages/periodo-letivos/periodo-letivo';
-import { Sala } from '../components/pages/salas/sala';
+import { Curso } from '../models/curso';
+import { Faculdade } from '../models/faculdade';
+import { LoteSalas } from '../models/lote-salas';
+import { PeriodoLetivo } from '../models/periodo-letivo';
+import { Sala } from '../models/sala';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

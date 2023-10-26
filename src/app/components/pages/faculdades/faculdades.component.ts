@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CursosService } from 'src/app/services/cursos.service';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
-import { Faculdade } from './faculdade';
+import { Faculdade } from '../../../models/faculdade';
 declare var jQuery: any;
 
 @Component({

@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Faculdade } from '../components/pages/faculdades/faculdade';
+import { Faculdade } from '../models/faculdade';
 import { ArrayIndexador } from '../shared/array-indexador';
 import { CursosService } from './cursos.service';
 import { HttpClient } from '@angular/common/http';
+import { TempWebRequestsService } from './temp-web-requests.service';
 
 @Injectable()
 export class FaculdadeService {
 
     faculdades:Array<Faculdade> = [];
     faculdadesIndex!: ArrayIndexador<Faculdade>;
-    constructor(private http: HttpClient, private cursosService:CursosService) { }
+    constructor(private http: HttpClient, private cursosService:CursosService, private web:TempWebRequestsService) { }
 
     listar() {
-        return this.http.get("/faculdades/all")
-            .toPromise()
+
+        return this.web.get("faculdades/all")
+        // return this.http.get("/faculdades/all")
+        //     .toPromise()
             .then((response:any) => {
-                this.faculdades = Faculdade.generateList(response.json());
+                this.faculdades = Faculdade.generateList(response.data);
                 this.faculdadesIndex = new ArrayIndexador<Faculdade>(this.faculdades);
                 this.cursosService.obterCursos(this.faculdades);
                 return this.faculdades;

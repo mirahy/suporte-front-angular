@@ -1,9 +1,9 @@
 import { ArrayIndexador } from "src/app/shared/array-indexador";
-import { Curso } from "../cursos/curso";
-import { LoteSalasSimplificado } from "../lote-salas-simplificado/lote-salas-simplificado";
-import { PeriodoLetivo } from "../periodo-letivos/periodo-letivo";
-import { PlDisciplinasAcademicos } from "../pl-disciplinas-academicos/pl-disciplinas-academicos";
-import { Usuario } from "../usuarios/usuario";
+import { Curso } from "./curso";
+import { LoteSalasSimplificado } from "./lote-salas-simplificado";
+import { PeriodoLetivo } from "./periodo-letivo";
+import { PlDisciplinasAcademicos } from "../components/pages/pl-disciplinas-academicos/pl-disciplinas-academicos";
+import { Usuario } from "./usuario";
 
 export class SalaSimplificada {
     

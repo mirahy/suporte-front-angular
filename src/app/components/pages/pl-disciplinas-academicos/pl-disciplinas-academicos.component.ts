@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Estudante } from './estudante';
+import { Estudante } from '../../../models/estudante';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { PeriodoLetivosService } from 'src/app/services/periodo-letivos.service';
 import { FaculdadeService } from 'src/app/services/faculdade.service';
 import { CursosService } from 'src/app/services/cursos.service';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
-import { Faculdade } from '../faculdades/faculdade';
+import { Faculdade } from '../../../models/faculdade';
 import { PlDisciplinasAcademicos } from './pl-disciplinas-academicos';
 import { FileUpload } from 'primeng/fileupload';
 declare var jQuery: any;

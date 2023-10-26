@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EventoGerador } from '../components/pages/agenda/evento';
+import { EventoGerador } from '../models/evento-gerador';
 
 @Injectable()
 export class AgendaService {

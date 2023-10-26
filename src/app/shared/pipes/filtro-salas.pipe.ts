@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Sala } from 'src/app/components/pages/salas/sala';
-import { SalaOld } from 'src/app/components/pages/salas-old/sala-old';
+import { Sala } from 'src/app/models/sala';
+import { SalaOld } from 'src/app/models/sala-old';
 
 @Pipe({
     name: 'filtroSalas'
