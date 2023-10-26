@@ -117,7 +117,7 @@ export class FormularioAlteracaoUsuarioComponent extends AbstractComponent imple
     carregarEstudantesSigecad() {
         if (this.plDisciplinasAcademicosTemp && confirm("Confirmar carregamento de lista de Estudantes do SIGECAD?")) {
             this.editavel = false;
-            this.servidoresMoodleService.getAcademicosDisciplinasSigecad(this.plDisciplinasAcademicosTemp.disciplina_key,this.periodoLetivoSelecionadoId,this.plDisciplinasAcademicosTemp.turma_id, this.plDisciplinasAcademicosTemp.turma_nome)
+            this.servidoresMoodleService.getAcademicosDisciplinasSigecadToAd(this.plDisciplinasAcademicosTemp.disciplina_key,this.periodoLetivoSelecionadoId,this.plDisciplinasAcademicosTemp.turma_id, this.plDisciplinasAcademicosTemp.turma_nome)
                 .then(est => {
                     this.plDisciplinasAcademicosTemp.estudantes = est;
                     this.estudantes = est;

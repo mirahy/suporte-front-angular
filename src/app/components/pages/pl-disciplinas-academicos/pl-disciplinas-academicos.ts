@@ -1,14 +1,14 @@
 import { ArrayIndexador } from 'src/app/shared/array-indexador';
 import { Curso } from '../../../models/curso';
 import { PeriodoLetivo } from '../../../models/periodo-letivo';
-import { Estudante } from '../../../models/estudante';
+import { EstudanteMoodle } from 'src/app/models/estudante-moodle';
 
 export class PlDisciplinasAcademicos {
     id: number;
     curso:Curso|number|any;
     periodo_letivo:PeriodoLetivo|number|any;
     disciplina:string|any;
-    estudantes:string|Array<Estudante>|any = [];
+    estudantes:string|Array<EstudanteMoodle>|any = [];
     disciplina_key;
 
     carga_horaria_total_disciplina;
@@ -20,7 +20,7 @@ export class PlDisciplinasAcademicos {
     cpf_professor;
     periodo_letivo_key:number|any;
     
-    constructor(id:(number|any), curso?:Curso|number, periodo_letivo?:PeriodoLetivo|number, disciplina?:string, estudantes?: string|Array<Estudante>, disciplina_key?:any,
+    constructor(id:(number|any), curso?:Curso|number, periodo_letivo?:PeriodoLetivo|number, disciplina?:string, estudantes?: string|Array<EstudanteMoodle>, disciplina_key?:any,
             carga_horaria_total_disciplina?:any, grupo?: string|any, turma_nome?: string, turma_id?:any, avaliacao?: string, cpf_professor?: string|any, periodo_letivo_key?: number|any) {
         if (typeof id == "number") {
             this.id = id;
@@ -57,7 +57,7 @@ export class PlDisciplinasAcademicos {
             this.curso = id['curso_id'];
             this.periodo_letivo = pl;
             this.disciplina = id['disciplina'] ? id['disciplina'] : id['nome_disciplina'];
-            this.estudantes = id['estudantes'] ? Estudante.converteJSONParaEstudantes (id['estudantes']) : [];
+            this.estudantes = id['estudantes'] ? EstudanteMoodle.converteJSONParaEstudantes (id['estudantes']) : [];
             this.disciplina_key = id['disciplina_key'] ? id['disciplina_key'] : (id['codigo_disciplina'] ? id['codigo_disciplina'] : 0);
             this.carga_horaria_total_disciplina = id['carga_horaria_total_disciplina'];
             this.grupo = id['grupo'];

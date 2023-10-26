@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ServidorMoodle } from '../models/servidor-moodle';
 import { ArrayIndexador } from '../shared/array-indexador';
+import { EstudanteMoodle } from '../models/estudante-moodle';
 import { Estudante } from '../models/estudante';
 import { HttpClient } from '@angular/common/http';
 import { TempWebRequestsService } from './temp-web-requests.service';
@@ -69,6 +70,15 @@ export class ServidoresMoodleService {
     }
 
     getAcademicosDisciplinasSigecad(codDisciplina:unknown, periodoLetivoIdSigecad:unknown, turmaId:unknown, turmaNome:unknown){
+        return this.http.get("/pl-disciplinas-academicos/academicos-disciplinas-sigecad/" + codDisciplina + "/" + periodoLetivoIdSigecad + "/" + turmaId + "/" + turmaNome).toPromise()
+            .then((response:any) => {
+                //return response.json();
+                var estudantes = EstudanteMoodle.converteJSONParaEstudantesComSenha( EstudanteMoodle.converteEstudantesParaJSON( response.json() ) );
+                return estudantes;
+            });
+    }
+
+    getAcademicosDisciplinasSigecadToAd(codDisciplina:unknown, periodoLetivoIdSigecad:unknown, turmaId:unknown, turmaNome:unknown){
         return this.http.get("/pl-disciplinas-academicos/academicos-disciplinas-sigecad/" + codDisciplina + "/" + periodoLetivoIdSigecad + "/" + turmaId + "/" + turmaNome).toPromise()
             .then((response:any) => {
                 //return response.json();

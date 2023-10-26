@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/shared/components/abstract-component';
 import { AbstractPLDAComponentInterface } from 'src/app/shared/components/abstract-plda-component-interface';
 import { PlDisciplinasAcademicosService } from 'src/app/services/pl-disciplinas-academicos.service';
-import { Estudante } from '../../../../models/estudante';
+import { EstudanteMoodle } from 'src/app/models/estudante-moodle';
 import { PlDisciplinasAcademicos } from '../../pl-disciplinas-academicos/pl-disciplinas-academicos';
 import { ServidoresMoodleService } from 'src/app/services/servidores-moodle.service';
 declare var jQuery: any;
@@ -18,8 +18,8 @@ export class FormularioInsercaoUsuariosMoodleComponent extends AbstractComponent
 		super();
 	}
 
-	estudantes:Array<Estudante> = [];
-	estudanteTemp = Estudante.generateEstudante();
+	estudantes:Array<EstudanteMoodle> = [];
+	estudanteTemp = EstudanteMoodle.generateEstudante();
 
     linkServidorMoodleExportar:string = "";
     linksMoodles = [];
@@ -45,18 +45,18 @@ export class FormularioInsercaoUsuariosMoodleComponent extends AbstractComponent
     }
 
 	novoEstudante () {
-		this.estudanteTemp = Estudante.generateEstudante();
+		this.estudanteTemp = EstudanteMoodle.generateEstudante();
 	}
 	adicionarEstudante() {
         if (this.estudanteTemp.isValid()) {
-            this.estudantes.push(new Estudante (this.estudanteTemp.username, this.estudanteTemp.email, this.estudanteTemp.fullname, this.estudanteTemp.is_professor, this.estudanteTemp.senha));
+            this.estudantes.push(new EstudanteMoodle (this.estudanteTemp.username, this.estudanteTemp.email, this.estudanteTemp.fullname, this.estudanteTemp.is_professor, this.estudanteTemp.senha));
             jQuery('#dialogCreateEstudante').modal('hide');
-            this.estudanteTemp = Estudante.generateEstudante();
+            this.estudanteTemp = EstudanteMoodle.generateEstudante();
         }
         else 
             alert ("Usuário Inválido!");
     }
-    removerEstudante(estudante:Estudante) {
+    removerEstudante(estudante:EstudanteMoodle) {
         if (!confirm ("Deseja remover este estudante")) 
             return;
         var i = 0;
@@ -79,7 +79,7 @@ export class FormularioInsercaoUsuariosMoodleComponent extends AbstractComponent
             var fileReader = new FileReader();
             var _this = this;
             fileReader.onload = function (e) {
-                _this.estudantes =  Estudante.processaCSVcomSenha(fileReader.result);
+                _this.estudantes =  EstudanteMoodle.processaCSVcomSenha(fileReader.result);
             }
             fileReader.readAsText(fileTobeRead);
         }
@@ -104,7 +104,7 @@ export class FormularioInsercaoUsuariosMoodleComponent extends AbstractComponent
         jQuery('#saidaExport').html("<i>Aguarde...<i>");
         this.editavel = false;
         //this.blockAutoRestore = true;
-        this.servidoresMoodleService.exportarEstudantes(Estudante.converteEstudantesParaJSONcomSenha( this.estudantes ), this.linkServidorMoodleExportar, this.usarSala ? this.salaExportar : "", this.usarSenha ? this.senhaPadrao : "")
+        this.servidoresMoodleService.exportarEstudantes(EstudanteMoodle.converteEstudantesParaJSONcomSenha( this.estudantes ), this.linkServidorMoodleExportar, this.usarSala ? this.salaExportar : "", this.usarSenha ? this.senhaPadrao : "")
             .then(response => {
                 jQuery('#saidaExport').html(response);
                 this.editavel = true;
