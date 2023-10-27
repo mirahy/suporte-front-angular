@@ -30,7 +30,7 @@ export class UnidadeOrganizacionalService {
     }
 
     alteraSenhaUsuarios(estudantesJSON:string) {
-        return this.web.post('/formulario-altera-usuario/password', {estudantes: estudantesJSON})
+        return this.web.post('formulario-altera-usuario/password', {estudantes: estudantesJSON})
         // return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON})
         //     .toPromise()
             .then((response:any) => {
