@@ -5,7 +5,7 @@ export class Estudante {
     is_professor = false;
     email_alternativo;
 
-    constructor (username:any, email:any, fullname:any, is_professor?:any, senha?:any, email_alternativo?:string) {
+    constructor (username:any, email:any, fullname:any, is_professor?:any, email_alternativo?:string) {
         this.username = username;
         this.email = email;
         this.fullname = fullname;
@@ -82,7 +82,7 @@ export class Estudante {
         var linhas = [];
 
         for (var i = 0; i < estudantes.length; i++) {
-            var tupla = [estudantes[i].username, estudantes[i].email, estudantes[i].fullname, estudantes[i].email_alternativo, estudantes[i].is_professor];
+            var tupla = [estudantes[i].username, estudantes[i].email, estudantes[i].fullname, estudantes[i].is_professor, estudantes[i].email_alternativo];
             linhas.push(tupla);
         }
         return JSON.stringify(linhas);
@@ -109,6 +109,6 @@ export class Estudante {
     }
 
     static generateEstudante() : Estudante {
-        return new Estudante("","","",false,null);
+        return new Estudante("","","",false,"");
     }
 }
