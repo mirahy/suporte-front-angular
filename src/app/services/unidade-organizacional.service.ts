@@ -4,11 +4,12 @@ import { Arvore } from '../shared/arvore';
 import { Estudante } from '../models/estudante';
 import { UnidadeOrganizacional } from '../models/unidade-organizacional';
 import { HttpClient } from '@angular/common/http';
+import { TempWebRequestsService } from './temp-web-requests.service';
 
 @Injectable()
 export class UnidadeOrganizacionalService {
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient, private web:TempWebRequestsService) { }
 
     ouDirRoot = "";
     ou_str = "OU=";
@@ -19,75 +20,84 @@ export class UnidadeOrganizacionalService {
 
 
 
-    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string) {        
-        return this.http.post("/formulario-insere-ad", {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON})
-            .toPromise()
+    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string) { 
+        return this.web.post('formulario-insere-ad', {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON})       
+        // return this.http.post("/formulario-insere-ad", {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON})
+        //     .toPromise()
             .then((response:any) => {
-                return response.text();
+                return response.data;
             });
     }
 
     alteraSenhaUsuarios(estudantesJSON:string) {
-        return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON})
-            .toPromise()
+        return this.web.post('/formulario-altera-usuario/password', {estudantes: estudantesJSON})
+        // return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON})
+        //     .toPromise()
             .then((response:any) => {
-                return response.text();
+                return response.data;
             });
     }
 
 	listar() {
-        return this.http.get("/unidade-organizacional/all")
-            .toPromise()
+        return this.web.get('unidade-organizacional/all')
+        // return this.http.get("/unidade-organizacional/all")
+        //     .toPromise()
             .then((response:any) => {
-                this.unidadesOrganizacionais = UnidadeOrganizacional.generateList(response.json());
+                this.unidadesOrganizacionais = UnidadeOrganizacional.generateList(response.data);
                 this.unidadesOrganizacionaisIndex = new ArrayIndexador<UnidadeOrganizacional>(this.unidadesOrganizacionais);
                 return this.unidadesOrganizacionais;
             });
     }
 
 	create(ou:UnidadeOrganizacional) {
-        return this.http.post("/unidade-organizacional",ou)
-            .toPromise()
+        return this.web.post('/unidade-organizacional',ou)
+        // return this.http.post("/unidade-organizacional",ou)
+        //     .toPromise()
             .then(response => {
                 return this.listar();
             });
     }
     update(ou:UnidadeOrganizacional) {
-        return this.http.put("/unidade-organizacional/"+ou.id,ou)
-            .toPromise()
+        return this.web.put('/unidade-organizacional/'+ou.id,ou)
+        // return this.http.put("/unidade-organizacional/"+ou.id,ou)
+        //     .toPromise()
             .then(response => {
                 return this.listar();
             });
     }
     delete(ou:UnidadeOrganizacional) {
-        return this.http.delete("/unidade-organizacional/"+ou.id)
-            .toPromise()
+        return this.web.delete('/unidade-organizacional/'+ou.id)
+        // return this.http.delete("/unidade-organizacional/"+ou.id)
+        //     .toPromise()
             .then(response => {
                 return this.listar();
             });
     }
 
     getOuDirRoot () {
-        return this.http.get("/unidade-organizacional/ou-dir-root")
-            .toPromise()
+        return this.web.get('unidade-organizacional/ou-dir-root')
+        // return this.http.get("/unidade-organizacional/ou-dir-root")
+        //     .toPromise()
             .then((response:any) => {
-                this.ouDirRoot = response.text();
+                this.ouDirRoot = response.data;
                 return this.ouDirRoot;
             });
     }
     setOuDirRoot (ouDirRoot:string) {
-        return this.http.post("/unidade-organizacional/ou-dir-root", {"ou-dir-root" : ouDirRoot})
-            .toPromise()
+        return this.web.post('/unidade-organizacional/ou-dir-root', {"ou-dir-root" : ouDirRoot})
+        // return this.http.post("/unidade-organizacional/ou-dir-root", {"ou-dir-root" : ouDirRoot})
+        //     .toPromise()
             .then((response:any) => {
-                this.ouDirRoot = response.text();
+                this.ouDirRoot = response.data;
                 return this.ouDirRoot;
             });
     }
 
     substituiEmailsPorPadrao (estudantesJSON:unknown) {
-        return this.http.post("/formulario-insere-ad/substitui-emails", {estudantes: estudantesJSON}).toPromise()
+        return this.web.post('formulario-insere-ad/substitui-emails', {estudantes: estudantesJSON})
+        // return this.http.post("/formulario-insere-ad/substitui-emails", {estudantes: estudantesJSON}).toPromise()
             .then((response:any) => {
-                var estudantes = Estudante.converteObjectParaEstudantes( response.json() ) ;
+                var estudantes = Estudante.converteObjectParaEstudantes( response.data) ;
                 return estudantes;
             });
     }
@@ -124,12 +134,13 @@ export class UnidadeOrganizacionalService {
     }
 
     getOuFilhas () {
-        return this.http.get("/unidade-organizacional/ous-filhas")
-            .toPromise()
+        return this.web.get('unidade-organizacional/ous-filhas')
+        // return this.http.get("/unidade-organizacional/ous-filhas")
+        //     .toPromise()
             .then((response:any) => {
                 var ouRoot = this.ouDirRoot;
                 var _this = this;
-                var ouFilhas = response.json().map(function (ou:any) {
+                var ouFilhas = response.data.map(function (ou:any) {
                     if (ou == ouRoot)
                         return [];
                     _this.ou_str = ou.search("OU=") >= 0 ? "OU=" : (ou.search("Ou=") >= 0 ? "Ou=" : "ou=");
