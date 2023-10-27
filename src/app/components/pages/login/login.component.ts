@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.usuarioService.login(usuario)
     .then(response=>{
       try {
-        if(!!response.error_description){
+        if(!(typeof response.error_description === "undefined")){
           if(response.error_description.email !== undefined){
             jQuery("#msgerror").html('<strong >' + response.error_description.email + "</strong>");
           }
@@ -39,8 +39,9 @@ export class LoginComponent implements OnInit {
             jQuery("#msgerror").html('<strong >' + response.error_description.password + "</strong>");
           }
         }
-      } catch (error) {
-        //...
+        
+      } catch (error:any) {
+        console.log(error)
       }
       if(this.usuarioService.logado){
         this.nav.ngOnInit()

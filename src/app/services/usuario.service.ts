@@ -21,7 +21,9 @@ export class UsuarioService {
     try {
       const csrf = await this.api.getUrl('sanctum/csrf-cookie');
       const response = await this.api.post('login', data);
-      if (!response.data.error) {
+      if (!response.data.error
+        && typeof response.data.user !== undefined
+        && typeof response.data.token.plainTextToken !== undefined) {
         localStorage.setItem(
           environment.storage_token,
           btoa(JSON.stringify(response.data.token.plainTextToken))
@@ -31,7 +33,7 @@ export class UsuarioService {
           btoa(JSON.stringify(response.data.user))
         );
       } else {
-        return response.data;
+        return response.data
       }
     } catch (error) {
       return error;
