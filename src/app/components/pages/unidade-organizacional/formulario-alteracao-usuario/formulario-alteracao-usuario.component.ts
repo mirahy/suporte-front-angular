@@ -25,9 +25,6 @@ export class FormularioAlteracaoUsuarioComponent extends AbstractComponent imple
 
     linksMoodles = [];
 
-    usarSenha = false;
-    senhaPadrao = "";
-
     plDisciplinasAcademicosTemp: PlDisciplinasAcademicos = PlDisciplinasAcademicos.generatePlDisciplinasAcademicos();
     periodoLetivoSelecionadoId = "";
     cursoSelecionadoId = "";
@@ -99,7 +96,7 @@ export class FormularioAlteracaoUsuarioComponent extends AbstractComponent imple
         jQuery('#saidaExport').html("<i>Aguarde...<i>");
         this.editavel = false;
         this.aviso = "";
-        this.unidadeOrganizacionalService.alteraSenhaUsuarios(Estudante.converteEstudantesParaJSONcomSenha( this.estudantes ), this.usarSenha ? this.senhaPadrao : "")
+        this.unidadeOrganizacionalService.alteraSenhaUsuarios(Estudante.converteEstudantesParaJSONcomSenha( this.estudantes ))
             .then(response => {
                 jQuery('#saidaExport').html(response);
                 this.editavel = true;

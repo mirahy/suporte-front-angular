@@ -19,16 +19,16 @@ export class UnidadeOrganizacionalService {
 
 
 
-    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string, senha:unknown) {        
-        return this.http.post("/formulario-insere-ad", {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON, senhaPadrao: senha})
+    criarContasAD(ouCadastro:string, ous: Array<any>, estudantesJSON:string) {        
+        return this.http.post("/formulario-insere-ad", {ouCadastro: ouCadastro, ous: ous, estudantes: estudantesJSON})
             .toPromise()
             .then((response:any) => {
                 return response.text();
             });
     }
 
-    alteraSenhaUsuarios(estudantesJSON:string, senha:unknown) {
-        return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON, senhaPadrao: senha})
+    alteraSenhaUsuarios(estudantesJSON:string) {
+        return this.http.post("/formulario-altera-usuario/password", {estudantes: estudantesJSON})
             .toPromise()
             .then((response:any) => {
                 return response.text();
@@ -87,7 +87,7 @@ export class UnidadeOrganizacionalService {
     substituiEmailsPorPadrao (estudantesJSON:unknown) {
         return this.http.post("/formulario-insere-ad/substitui-emails", {estudantes: estudantesJSON}).toPromise()
             .then((response:any) => {
-                var estudantes = Estudante.converteObjectParaEstudantesComSenha( response.json() ) ;
+                var estudantes = Estudante.converteObjectParaEstudantes( response.json() ) ;
                 return estudantes;
             });
     }
